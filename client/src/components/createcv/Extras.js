@@ -1,0 +1,84 @@
+import React from 'react'
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+
+const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, dataLanguage }) => {
+
+  const topSkill = [
+    { title: 'JavaScript' },
+    { title: 'Problem-Solving Skills' },
+    { title: 'Planning and Organizational Skills' },
+    { title: 'Data Analysis' },
+    { title: 'Adaptability' },
+    { title: "Other" }
+  ];
+
+  const topLanguage = [
+    { title: "English" },
+    { title: "Japanses" },
+    { title: "Chineses" },
+    { title: "Korean Laguage" },
+    { title: "Other" }
+  ]
+  const onTagsChangeSkill = (event, values) => {
+
+    handleSkill(values)
+
+  }
+  const onTagsChangeLanguage = (event, values) => {
+    handleLanguage(values)
+  }
+
+
+
+
+  return (
+    <div className="extras-cv mt-5">
+      <div className="card">
+        <div className="card-body">
+          <h3 className="mb-3">Extras Details</h3>
+          <form>
+            <div className="row mb-3">
+              <label for="" className="col-sm-3 col-form-label">Skill</label>
+              <div className="col-sm-8">                
+                <Autocomplete
+                  multiple
+                  limitTags={2}
+                  id="multiple-limit-tags"
+                  options={topSkill}
+                  onChange={onTagsChangeSkill}
+                  defaultValue={dataSkill}
+                  getOptionLabel={(option) => option.title}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Skill" placeholder="Skill" />
+                  )}
+                />
+
+              </div>
+            </div>
+            <hr />
+            <div className="row mb-3">
+              <label for="" className="col-sm-3 col-form-label">Language</label>
+              <div className="col-sm-8">           
+                <Autocomplete
+                  multiple
+                  limitTags={2}
+                  id="multiple-limit-tags"
+                  options={topLanguage}
+                  onChange={onTagsChangeLanguage}
+                  defaultValue={dataLanguage}
+                  getOptionLabel={(option) => option.title}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Language" placeholder="Language" />
+                  )}
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Extras
