@@ -1,5 +1,6 @@
 const Company = require('../models/companyModel')
 const Users = require('../models/userModel')
+const Job = require('../models/jobModel')
 
 const companyCtrl = {
     getInfoCompany: async (req, res) => {
@@ -61,7 +62,9 @@ const companyCtrl = {
         } catch (err) {
             return res.status(500).json({ msg: err.message })
         }
-
+    },
+    getTopCompany: (req, res) => {
+        
     }
 }
 

@@ -43,8 +43,10 @@ const jobCtrl = {
     },
     searchJob: async (req, res) => {
         try {
-            const jobs = await Job.find({ position: { $regex: req.query.position } })
-            res.json(jobs)
+            const jobs = await Job.find({ position: { $regex: req.query.position, $options: 'i' } })
+            const jobs2 = await Job.find({ skill: { $elemMatch: { title: { $regex: req.query.position, $options: 'i' } } } })
+            const jobs3 = await Job.find({ companyName: { $regex: req.query.position, $options: 'i' } })
+            res.json([...jobs, ...jobs2, ...jobs3])
         } catch (err) {
             return res.status(500).json({ msg: err.message })
         }
