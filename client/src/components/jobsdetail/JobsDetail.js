@@ -5,6 +5,8 @@ import { useSelector, useDispatch, useStore } from 'react-redux'
 import { Link, useParams, Redirect, NavLink } from 'react-router-dom'
 import './JobsDetail.scss'
 import SearchJob from '../jobs/SearchJob'
+import { searchJob } from '../../redux/actions/listJobAction'
+import dateFormat from 'dateformat'
 
 
 const JobsDetail = () => {
@@ -16,7 +18,7 @@ const JobsDetail = () => {
 
     const { allJob, auth, socket } = useSelector(state => state)
 
-    const jobs = allJob.jobs ? allJob.jobs : []
+    const jobs = allJob.jobs ? allJob.jobs : allJob.searchJob ? allJob.searchJob : []
 
     const checkId = (id) => {
         jobs.forEach(element => {
@@ -28,6 +30,7 @@ const JobsDetail = () => {
 
     useEffect(() => {
         checkId(id)
+        console.log(job)
     }, [id, auth.token, allJob])
 
 
@@ -75,8 +78,8 @@ const JobsDetail = () => {
                                                     <i className="fas fa-user"></i>
                                                 </div>
                                                 <div className="info-detail">
-                                                    <span className="title-3">Cấp bậc:</span>
-                                                    <span>25-30 Triệu</span>
+                                                    <span className="title-3">Level:</span>
+                                                    <span>{job.level}</span>
                                                 </div>
                                             </div>
                                             <hr />
@@ -97,7 +100,7 @@ const JobsDetail = () => {
                                                 </div>
                                                 <div className="info-detail">
                                                     <span className="title-3">Deadline:</span>
-                                                    <span>30-10-2021</span>
+                                                    <span>{dateFormat(job.endDate, 'dd/mm/yyyy')}</span>
                                                 </div>
                                             </div>
                                             <hr />
@@ -153,7 +156,7 @@ const JobsDetail = () => {
                             <h5 className="mt-3 text-uppercase">Job Description</h5>
                             <div className="job-desription-content">
                                 <span>
-                                    1/ CÔNG TÁC QUẢN LÝ CHUNG <br />
+                                    {/* 1/ CÔNG TÁC QUẢN LÝ CHUNG <br />
                                     - Quản lý, điều hành toàn bộ hoạt động của Phòng trong lĩnh vực kinh doanh;<br />
                                     - Xây dựng, trình duyệt và triển khai thực hiện kế hoạch kinh doanh hàng tháng, quý, năm của công ty;<br />
                                     - Tham gia xây dựng hệ thống quản trị nhân sự, xây dựng hệ thống quy trình theo quy định của công ty<br />
@@ -162,20 +165,29 @@ const JobsDetail = () => {
                                     - Báo cáo kết quả doanh hàng tháng hoặc khi có yêu cầu;<br />
                                     - Hàng tháng, hàng quý, đánh giá hiệu quả công việc của phòng Kinh doanh gửi cho Giám đốc;<br />
                                     - Lên kế hoạch đào tạo, tuyển dụng Nhân sự & ngân sách dự trù cho các hoạt động của Phòng;<br />
-                                    - Phối hợp với Phòng Marketing triển khai kế hoạch MKT nhằm phục vụ hoạt động bán hàng
+                                    - Phối hợp với Phòng Marketing triển khai kế hoạch MKT nhằm phục vụ hoạt động bán hàng */}
+                                    {
+                                        job.description
+                                    }
                                 </span>
                             </div>
-                        </div>                      
+                        </div>
                         <div className="job-requirements">
                             <h5 className="mt-3 text-uppercase">JOB REQUIREMENTS</h5>
                             <div className="job-requirements-content">
                                 <span>
-                                    1. Yêu cầu sử dụng thành thạo các phần mềm thiết kế Autocad<br />
+                                    {/* 1. Yêu cầu sử dụng thành thạo các phần mềm thiết kế Autocad<br />
                                     2. Có kinh nghiệm làm QS 1 năm trở lên<br />
                                     3. Tỷ mỷ, cẩn thận<br />
                                     4. Có tinh thần học hỏi và cầu tiến<br />
                                     5. Có thể làm tăng ca<br />
-                                    6. Có mong muốn gắn bó lâu dài với công ty
+                                    6. Có mong muốn gắn bó lâu dài với công ty */}
+                                    {job.requirement}
+                                    <br />
+                                    <h5 className="mt-3 text-uppercase">Skill</h5>
+                                    {job.skill && job.skill.map(element => (
+                                        <span>-{element.title}<br /></span>
+                                    ))}
                                 </span>
                             </div>
                         </div>
@@ -194,10 +206,11 @@ const JobsDetail = () => {
                             <h5 className="mt-3 text-uppercase">BENEFITS</h5>
                             <div className="job-benefits-content">
                                 <span>
-                                    - Lương thỏa thuận từ 12-15 triệu. <br />
+                                    {/* - Lương thỏa thuận từ 12-15 triệu. <br />
                                     - Làm việc từ thứ 2 đến thứ 7 hàng tuần giờ hành chính.<br />
                                     - Đóng bảo hiểm theo quy định nhà nước.<br />
-                                    - Chế độ lương thưởng, hiếu, hỉ, sinh nhật , thưởng hoàn thành công việc.
+                                    - Chế độ lương thưởng, hiếu, hỉ, sinh nhật , thưởng hoàn thành công việc. */}
+                                    {job.benefit}
                                 </span>
                             </div>
                         </div>
@@ -208,7 +221,7 @@ const JobsDetail = () => {
                                 <span>
                                     Người liên hệ: Ms. Thanh <br />
                                     Địa chỉ công ty: Tầng 5, Số 68 Trần Thái Tông, Dịch Vọng Hậu, Cầu Giấy, Hà Nội<br />
-                                    Hạn nộp hồ sơ: 09/10/2021
+                                    Hạn nộp hồ sơ: {dateFormat(job.endDate, 'dd/mm/yyyy')}
                                 </span>
                             </div>
                         </div>

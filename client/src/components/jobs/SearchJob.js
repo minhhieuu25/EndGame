@@ -8,23 +8,23 @@ const SearchJob = () => {
 
     const options = [
         {
-            label: 'Tất cả địa điểm',
-            value: 'Tất cả'
+            label: 'All locations',
+            value: 'All locations'
         },
         {
-            label: 'Hà Nội',
-            value: 'Hà Nội'
+            label: 'Ha Noi',
+            value: 'Ha Noi'
         },
         {
-            label: 'Đà Nẵng',
-            value: 'Đà Nẵng'
+            label: 'Da Nang',
+            value: 'Da Nang'
         },
         {
-            label: 'TP. Hồ Chí Minh',
-            value: 'TP. Hồ Chí Minh'
+            label: 'TP. Ho Chi Minh',
+            value: 'TP. Ho Chi Minh'
         }
     ]
-    const [address, setAddress] = useState('Tất cả')
+    const [address, setAddress] = useState('All locations')
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
 

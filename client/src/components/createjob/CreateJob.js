@@ -41,6 +41,9 @@ const CreateJob = () => {
         { title: 'Planning and Organizational Skills' },
         { title: 'Data Analysis' },
         { title: 'Adaptability' },
+        { title: 'ReactJs' },
+        { title: 'VueJs' },
+        { title: 'Sql Server' },
         { title: "Other" }
     ];
 
@@ -106,7 +109,7 @@ const CreateJob = () => {
 
     }, [])
     return (
-        
+
         <div className="create-job" >
             <div className="create-cv-header">
                 <h2 className="text-center text-2">Create Post</h2>

@@ -32,19 +32,17 @@ export const searchJob = (search, address) => async (dispatch) => {
     try {
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
         const resSearchJob = await getDataAPI(`/search_job?position=${search}`, null)
+        console.log(resSearchJob)
+
+
         dispatch({
             type: GLOBALTYPES.ALLJOB,
             payload: {
-                searchJob: address === 'Tất cả' ? resSearchJob.data : resSearchJob.data.filter((key) => key.address === address)
-            }
-        })
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {
-                success: resSearchJob.data.msg
-            }
-        })
+                searchJob: address === 'All locations' ? resSearchJob.data : resSearchJob.data.filter((key) => key.address === address)
 
+            }
+        })
+        dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: false } })
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,
