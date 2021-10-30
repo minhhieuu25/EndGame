@@ -46,7 +46,7 @@ const JobsComponent = (props) => {
                 </div>
             </div>
             <div className="col-sm-3 right-job">
-                <img src={logo} alt="Logo company" />
+                <img src={props.logo} alt="Logo company" />
             </div>
         </Fragment>
     );

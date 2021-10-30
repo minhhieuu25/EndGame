@@ -5,6 +5,7 @@ import { GLOBALTYPES } from './redux/actions/globalTypes'
 import { NOTIFY_TYPES } from './redux/actions/notifyAction'
 import { MESS_TYPES } from './redux/actions/messageAction'
 import { getAllJob } from './redux/actions/listJobAction'
+import { getListCompany } from './redux/actions/listCompanyAction'
 
 import audiobell from './audio/got-it-done-613.mp3'
 
@@ -93,7 +94,7 @@ const SocketClient = () => {
 
             if (notify.sound) audioRef.current.play()
             spawnNotification(
-                msg.user.firstname +' '+ msg.user.lastname + ' ' + msg.text,
+                msg.user.firstname + ' ' + msg.user.lastname + ' ' + msg.text,
                 msg.user.avatar,
                 msg.url,
                 'RankWork'
@@ -189,6 +190,12 @@ const SocketClient = () => {
             dispatch(getAllJob())
         })
     }, [socket, dispatch])
+
+    // useEffect(() => {
+    //     socket.on('upgradeToClient', data => {
+    //         dispatch(getListCompany())
+    //     })
+    // }, [socket, dispatch])
 
     return (
         <>

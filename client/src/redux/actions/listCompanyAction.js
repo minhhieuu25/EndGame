@@ -44,3 +44,25 @@ export const deleteCompany = (data, auth) => async (dispatch) => {
         })
     }
 }
+
+export const getTopCompany = () => async (dispatch) => {
+    try {
+        dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
+        const res = await getDataAPI('get_top_company', null)
+        dispatch({
+            type: GLOBALTYPES.TOPCOMPANY,
+            payload: {
+                topcompany: res.data
+            }
+        })
+        dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: false } })
+
+    } catch (err) {
+        dispatch({
+            type: GLOBALTYPES.ALERT,
+            payload: {
+                error: err.response.data.msg
+            }
+        })
+    }
+}

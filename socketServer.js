@@ -181,6 +181,15 @@ const SocketServer = (socket) => {
             })
         }
     })
+
+    // socket.on('upgradeAccount', data => {
+    //     const client = users.find(user => user.role === 'admin')
+    //     if (client.length > 0) {
+    //         client.forEach(client => {
+    //             socket.to(`${client.socketId}`).emit('upgradeToClient', data)
+    //         })
+    //     }
+    // })
 }
 
 module.exports = SocketServer

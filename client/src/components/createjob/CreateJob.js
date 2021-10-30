@@ -8,6 +8,7 @@ import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import dateFormat from 'dateformat'
 
 
 
@@ -53,11 +54,13 @@ const CreateJob = () => {
     const [jobType, setJobType] = useState('Full-time')
     const [companySize, setSize] = useState('10-')
     const initState = {
-        companyName: '', position: '', industry: '', address: '', description: '', requirement: '', minSalary: 0, maxSalary: 0, companySize: '', infoCompany: '', benefit: '', endDate: ''
+        companyName: '', position: '', industry: '', address: '', description: '', requirement: '', minSalary: 0,
+        maxSalary: 0, companySize: '', infoCompany: '', benefit: '', endDate: ''
     }
     const [jobData, setJobData] = useState(initState)
     const [companyData, setCompanyData] = useState({})
-    const { idCompany, companyName, position, industry, address, description, requirement, minSalary, maxSalary, infoCompany, benefit, endDate } = jobData
+    const { idCompany, companyName, position, industry, address, description, requirement, minSalary, maxSalary,
+        infoCompany, benefit, endDate } = jobData
 
     const [skill, setSkill] = useState([])
     const [logo, setLogo] = useState('')
@@ -98,6 +101,7 @@ const CreateJob = () => {
 
     useEffect(() => {
         let company = {}
+        let date = new Date()
         if (listCompany.companies) {
             listCompany.companies.map(element => {
                 if (element.idCompany === auth.user._id)
@@ -105,8 +109,9 @@ const CreateJob = () => {
             })
         }
         // setCompanyData(company)
-        setJobData({ ...jobData, ['companyName']: company.companyName, ['infoCompany']: company.info, ['companySize']: company.companySize })
 
+        setJobData({ ...jobData, ['endDate']: dateFormat(date, 'yyyy-mm-dd'), ['companyName']: company.companyName, ['infoCompany']: company.info, ['companySize']: company.companySize })
+        console.log(jobData)
     }, [])
     return (
 
@@ -186,7 +191,7 @@ const CreateJob = () => {
                                         defaultValue={skill}
                                         getOptionLabel={(option) => option.title}
                                         renderInput={(params) => (
-                                            <TextField {...params} label="limitTags" placeholder="Skill" />
+                                            <TextField {...params} label="Skill tag" placeholder="Skill" />
                                         )}
                                     />
                                 </div>
@@ -201,9 +206,15 @@ const CreateJob = () => {
                                 </div>
                             </div>
                             <div className="row mb-3">
+                                <label for="" className="col-sm-3 col-form-label">Benefits</label>
+                                <div className="col-sm-8">
+                                    <input type="" className="form-control" name='benefit' onChange={handleInput} id="" placeholder="Ví dụ: Lương tháng 13" />
+                                </div>
+                            </div>
+                            <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label">Date-end</label>
                                 <div className="col-sm-8">
-                                    <input type="date" className="form-control" name='endDate' onChange={handleInput} />
+                                    <input type="date" className="form-control" value={jobData.endDate} name='endDate' onChange={handleInput} />
                                 </div>
                             </div>
                         </form>
@@ -241,24 +252,19 @@ const CreateJob = () => {
                                     <textarea className="form-control" name='infoCompany' defaultValue={jobData.infoCompany} onChange={handleInput} placeholder="Thông tin công ty..."></textarea>
                                 </div>
                             </div>
-                            <div className="row mb-3">
-                                <label for="" className="col-sm-3 col-form-label">Benefits</label>
-                                <div className="col-sm-8">
-                                    <input type="" className="form-control" name='benefit' onChange={handleInput} id="" placeholder="Ví dụ: Lương tháng 13" />
-                                </div>
-                            </div>
-                            <div className="row mb-3">
+
+                            {/* <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label">Company Logo</label>
                                 <div className="col-sm-8">
                                     <input type="file" class="form-control" accept="image/*" onChange={changeLogo} aria-label="Upload" />
                                 </div>
-                            </div>
-                            <div className="row mb-3">
+                            </div> */}
+                            {/* <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label">Company Photos</label>
                                 <div className="col-sm-8">
                                     <input type="file" onChange={changeImage} accept="image/*" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
                                 </div>
-                            </div>
+                            </div> */}
                         </form>
                         <div className="text-center">
                             <button type="" onClick={handleCreate} class="btn btn-primary btn-save">Post Job</button>

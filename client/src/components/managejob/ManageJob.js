@@ -103,7 +103,6 @@ const ManageJobs = () => {
                 <h2 className="text-center text-2">Manage Jobs</h2>
             </div>
             <div className="manage-job-container">
-                {console.log('job', jobs)}
                 <DataGrid
                     rows={jobs}
                     columns={columns}

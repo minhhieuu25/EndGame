@@ -27,7 +27,7 @@ import UserList from './pages/userList/UserList'
 
 import { getAllJob } from './redux/actions/listJobAction'
 import { getTypeJob } from './redux/actions/homeJobAction'
-import { getListCompany } from './redux/actions/listCompanyAction'
+import { getListCompany, getTopCompany } from './redux/actions/listCompanyAction'
 import { getAllResume } from './redux/actions/resumeAction'
 import { getAllUsers } from './redux/actions/usersAction'
 
@@ -48,6 +48,7 @@ import SocketClient from './SocketClient'
 import { getNotifies } from './redux/actions/notifyAction'
 import CallModal from './components/message/CallModal'
 import Peer from 'peerjs'
+import UpdateJob from './pages/updatejob/[id]'
 
 function App() {
   const { auth, status, modal, call } = useSelector(state => state)
@@ -67,6 +68,7 @@ function App() {
     dispatch(getAllJob())
     dispatch(getTypeJob())
     dispatch(getListCompany())
+    dispatch(getTopCompany())
 
     setTimeout(() => {
       window.scrollTo({ top: scroll, behavior: 'smooth' })
@@ -144,6 +146,7 @@ function App() {
             <Route exact path="/newJob" component={NewJob} />
             <Route exact path="/managejob" component={ManageJob} />
             <Route exact path="/userList" component={UserList} />
+            <Route exact path="/edit-job/:id" component={UpdateJob} />
 
 
             <PrivateRouter exact path="/:page" component={PageRender} />

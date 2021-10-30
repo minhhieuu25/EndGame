@@ -6,6 +6,7 @@ const authAdmin = require('../middleware/authAdmin')
 
 
 router.get('/get_info_company', companyCtrl.getInfoCompany)
+router.get('/get_top_company', companyCtrl.getTopCompany)
 router.get('/get_info_company:id', auth, authCompany, companyCtrl.getInfomationCompany)
 router.get('/get_all_company', companyCtrl.getAllCompany)
 router.post('/get_company_by_industry', companyCtrl.getCompanyByIndustry)

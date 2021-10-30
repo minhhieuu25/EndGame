@@ -58,36 +58,48 @@ export const createJob = (jobData, level, jobType, skill, companySize, logo, ima
         let mediaLogo, mediaImage;
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
 
-        if (logo) mediaLogo = await imageUpload([logo])
-        if (image) mediaImage = await imageUpload([image])
-
-
-        const res = await postDataAPI("create_job", {
-            ...jobData, level, jobType, companySize, skill,
-            logo: logo ? mediaLogo[0].url : '', image: image ? mediaImage[0].url : ''
-        }, auth.token)
-
-
-
-        dispatch(getAllJob())
-        dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
-        if (res.data.newJob) {
-
-
-            socket.emit('createJob', auth.user)
-
-
-            // Notify
-            const msg = {
-                id: res.data.newJob._id,
-                text: 'added a new post.',
-                recipients: res.data.newJob.user.followersCompany,
-                url: `/jobdetail/${res.data.newJob._id}`,
-                image: logo ? mediaLogo[0].url : ''
-            }
-
-            dispatch(createNotify({ msg, auth, socket }))
+        let now = new Date()
+        let endDate = new Date(jobData.endDate)
+        if (jobData.minSalary > jobData.maxSalary) {
+            dispatch({ type: GLOBALTYPES.ALERT, payload: { error: 'Salary wrong' } })
         }
+        else
+            if (now.getTime() > endDate.getTime()) {
+                dispatch({ type: GLOBALTYPES.ALERT, payload: { error: 'End date wrong' } })
+            }
+            else {
+                if (logo) mediaLogo = await imageUpload([logo])
+                if (image) mediaImage = await imageUpload([image])
+
+
+                const res = await postDataAPI("create_job", {
+                    ...jobData, level, jobType, companySize, skill,
+                    // logo: logo ? mediaLogo[0].url : '', image: image ? mediaImage[0].url : ''
+                    logo: auth.user.avatar,
+                }, auth.token)
+
+
+
+                dispatch(getAllJob())
+                dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
+                if (res.data.newJob) {
+
+
+                    socket.emit('createJob', auth.user)
+
+
+                    // Notify
+                    const msg = {
+                        id: res.data.newJob._id,
+                        text: 'added a new post.',
+                        recipients: res.data.newJob.user.followersCompany,
+                        url: `/jobdetail/${res.data.newJob._id}`,
+                        image: logo ? mediaLogo[0].url : ''
+                    }
+
+                    dispatch(createNotify({ msg, auth, socket }))
+                }
+            }
 
 
     } catch (err) {

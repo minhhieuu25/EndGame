@@ -63,8 +63,9 @@ const companyCtrl = {
             return res.status(500).json({ msg: err.message })
         }
     },
-    getTopCompany: (req, res) => {
-        
+    getTopCompany: async (req, res) => {
+        const top = await Job.aggregate([{ "$group": { _id: { idCompany: "$idCompany", companyName: '$companyName', logo: '$logo' }, count: { $sum: 1 } } }]).sort('-count')
+        return res.json(top)
     }
 }
 
