@@ -12,7 +12,7 @@ import { upgradeAccount } from '../../redux/actions/authAction'
 
 const CompanyInfor = () => {
 
-    const { allResume, auth, dataResume } = useSelector(state => state)
+    const { allResume, auth, dataResume, socket } = useSelector(state => state)
     const [logo, setLogo] = useState('')
     const [companySize, setSize] = useState('10-')
 
@@ -47,7 +47,7 @@ const CompanyInfor = () => {
     }
 
     const handleUpgrade = () => {
-        dispatch(upgradeAccount(company, logo, companySize, auth))
+        dispatch(upgradeAccount(company, logo, companySize, auth, socket))
     }
     return (
         <>

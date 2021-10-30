@@ -3,6 +3,7 @@ import { getDataAPI, postDataAPI } from '../../utils/fetchData'
 import { imageUpload } from '../../utils/imageUpload'
 import valid from '../../utils/valid'
 import validation_reset from '../../utils/validation_reset'
+import { createNotify } from './notifyAction'
 
 export const login = (data) => async (dispatch) => {
     try {
@@ -211,7 +212,7 @@ export const logout = () => async (dispatch) => {
     }
 }
 
-export const upgradeAccount = (company, logo, companySize, auth) => async (dispatch) => {
+export const upgradeAccount = (company, logo, companySize, auth, socket) => async (dispatch) => {
 
     try {
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
@@ -222,6 +223,21 @@ export const upgradeAccount = (company, logo, companySize, auth) => async (dispa
             logo: logo ? media[0].url : undefined,
             companySize
         }, auth.token)
+
+        // // Socket
+        // socket.emit('upgradeAccount', company)
+
+        // // Notify
+        // const msg = {
+        //     id: res.data.idCompany,
+        //     text: 'A newly registered company.',
+        //     recipients: '',
+        //     url: `manage_companies`,
+        //     // content: post.content,
+        //     // image: post.images[0].url
+        // }
+
+        // dispatch(createNotify({ msg, auth, socket }))
 
         dispatch({
             type: GLOBALTYPES.ALERT,

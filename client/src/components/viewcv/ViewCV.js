@@ -23,7 +23,7 @@ const ViewCV = () => {
 		endDateEducation: '',
 		descriptionEducation: '',
 		nameCompany: '',
-		positonCompan: '',
+		positionCompany: '',
 		startDateExperience: '',
 		endDateExperience: '',
 		descriptionExperience: '',
@@ -43,7 +43,7 @@ const ViewCV = () => {
 
 	return (
 		<>
-			<div className="main-1" ref={ref} onLoad={window.scrollTo(0, 0)}>
+			<div className="main-1" ref={ref} >
 				<div className="top-section-1">
 					<img className="profile-1" alt="avatr" src={dataResume.avatar} />
 					<p className="p1-1">{resume.fullname}</p>

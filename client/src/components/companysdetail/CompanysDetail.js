@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux'
 import FollowCompanyBtn from '../FollowCompanyBtn'
 import dateFormat from 'dateformat';
 import BtnSaveJob from './BtnSaveJob'
-
+import ShareModal from '../ShareModal'
+import { BASE_URL } from '../../utils/config'
 
 
 import logo from '../../images/LogoFPT.png'
@@ -64,6 +65,7 @@ const CompanysDetails = () => {
                         <div className="col-sm-3 btn-1 text-center">
                             <FollowCompanyBtn company={company} />
                             <button type="button" className="btn btn btn-light-1 mt-3"><i className="fas fa-share-alt"></i> Share Company</button>
+                            <ShareModal url={`${BASE_URL}/companydetail/${company.idCompany}`} />
                         </div>
                     </div>
                 </div>
@@ -73,7 +75,6 @@ const CompanysDetails = () => {
                         <div className="card">
                             <ul className="card-body">
                                 <h3 className="card-title">Found <span>{jobs.length}</span> jobs for this company.</h3>
-
                                 {
                                     jobs.map((element) => (
                                         <>

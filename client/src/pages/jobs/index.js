@@ -70,8 +70,8 @@ const Job = () => {
                                                     idJob={item._id}
                                                     idCompany={item.idCompany}
                                                     endDate={item.endDate}
+                                                    logo={item.logo}
                                                 />
-
                                             </div>
                                             <hr />
                                         </>

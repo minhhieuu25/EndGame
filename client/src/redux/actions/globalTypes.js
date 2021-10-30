@@ -15,7 +15,8 @@ export const GLOBALTYPES = {
     LISTCOMPANY: 'LISTCOMPANY',
     ALLRESUME: 'ALLRESUME',
     DATARESUME: 'DATARESUME',
-    ALLUSER:'ALLUSER',
+    ALLUSER: 'ALLUSER',
+    TOPCOMPANY: 'TOPCOMPANY'
 }
 
 export const EditData = (data, id, post) => {

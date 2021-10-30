@@ -11,6 +11,7 @@ const jobCtrl = {
             return res.json({ msg: 'Missing pramater' })
         }
 
+
         const newJob = new Job({
             idCompany: req.user._id, companyName, position, level, jobType, industry, address, description, requirement, skill,
             companySize, infoCompany, logo, image, benefit, minSalary, maxSalary, endDate
@@ -43,10 +44,17 @@ const jobCtrl = {
     },
     searchJob: async (req, res) => {
         try {
-            const jobs = await Job.find({ position: { $regex: req.query.position, $options: 'i' } })
-            const jobs2 = await Job.find({ skill: { $elemMatch: { title: { $regex: req.query.position, $options: 'i' } } } })
-            const jobs3 = await Job.find({ companyName: { $regex: req.query.position, $options: 'i' } })
-            res.json([...jobs, ...jobs2, ...jobs3])
+            if (req.query.position) {
+                const jobs = await Job.find({ position: { $regex: req.query.position, $options: 'i' } })
+                const jobs2 = await Job.find({ skill: { $elemMatch: { title: { $regex: req.query.position, $options: 'i' } } } })
+                const jobs3 = await Job.find({ companyName: { $regex: req.query.position, $options: 'i' } })
+                // console.log(jobs, jobs2, jobs3)
+                res.json([...jobs, ...jobs2, ...jobs3])
+            }
+            else {
+                const jobs = await Job.find()
+                res.json([...jobs])
+            }
         } catch (err) {
             return res.status(500).json({ msg: err.message })
         }

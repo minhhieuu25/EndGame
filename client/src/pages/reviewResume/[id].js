@@ -8,7 +8,7 @@ const ref = React.createRef();
 
 const ReviewResume = () => {
 
-    const initState = {
+	const initState = {
 		fullname: '',
 		email: '',
 		dateofBirth: '1900-01-01',
@@ -23,39 +23,36 @@ const ReviewResume = () => {
 		endDateEducation: '',
 		descriptionEducation: '',
 		nameCompany: '',
-		positonCompan: '',
+		positionCompany: '',
 		startDateExperience: '',
 		endDateExperience: '',
 		descriptionExperience: '',
+		avatar: ''
 	}
 
-    const dispatch = useDispatch()
-    const { id } = useParams()
-    const { allResume, auth } = useSelector(state => state)
+	const dispatch = useDispatch()
+	const { id } = useParams()
+	const { allResume, auth } = useSelector(state => state)
 
-    const [resume, setResume] = useState(initState)
+	const [resume, setResume] = useState(initState)
 
-    useEffect(() => {
-        let data = {}
-        if (allResume.resume) {
-            allResume.resume.map(element => {
-                if (element._id === id) {
-                    data = { ...element }   
-					console.log(`aa`,element)          
-                }
-            })
-        }
-        setResume(data)
-		
-		console.log(`data`, data)
-		console.log(resume)
-    }, [allResume.resume])
+	useEffect(() => {
+		let data = {}
+		if (allResume.resumes) {
+			allResume.resumes.map(element => {
+				if (element._id === id) {
+					data = { ...element }
+				}
+			})
+		}
+		setResume(data)
+	}, [allResume.resumes])
 
-    return (
-        <>
-            <div className="main-1" ref={ref}>
+	return (
+		<>
+			<div className="main-1" ref={ref}>
 				<div className="top-section-1">
-					<img className="profile-1" alt="avatr" src="" />
+					<img className="profile-1" alt="avatar" src={resume.avatar} />
 					<p className="p1-1">{resume.fullname}</p>
 					<p className="p2-1">{resume.position}</p>
 				</div>
@@ -69,11 +66,21 @@ const ReviewResume = () => {
 						<br />
 						<p className="head-1">my skills</p>
 						<ul className="skills-1">
-							<li><span>{resume.skill}</span></li>
+							{
+								resume.skill && resume.skill.map(element => (
+									<li><span>{element.title}&nbsp;&nbsp;</span></li>
+								))
+							}
+							{/* <li><span>{resume.skill}</span></li> */}
 						</ul>
 						<br />
 						<p className="head-1">Languages</p>
-						<p className="p3-1">{resume.language}</p>
+						{
+							resume.language && resume.language.map(element => (
+								<p className="p3-1">{element.title}</p>
+							))
+						}
+						{/* <p className="p3-1">{resume.language}</p> */}
 					</div>
 				</div>
 				<div className="line-1"></div>
@@ -99,8 +106,8 @@ const ReviewResume = () => {
 					{({ toPdf }) => <button className="btn btn-primary" onClick={toPdf}>Download file PDF</button>}
 				</Pdf>
 			</div>
-        </>
-    )
+		</>
+	)
 }
 
 export default ReviewResume

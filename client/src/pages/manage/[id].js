@@ -195,7 +195,7 @@ const Manage = () => {
                     <Route path="/userList">
                         <UserList />
                     </Route>
-                    <Route path="/user/:userId"> 
+                    <Route path="/user/:userId">
                         <User />
                     </Route>
                     <Route path="/newJob">
@@ -205,7 +205,6 @@ const Manage = () => {
                         <ManageJob />
                     </Route>
                     <Route path="/edit-job/:id">
-                        
                         <UpdateJob />
                     </Route>
                 </Switch>

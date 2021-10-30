@@ -12,6 +12,7 @@ import { updateJob } from '../../redux/actions/listJobAction'
 import Sidebar from '../sidebar/Sidebar'
 import '../../pages/manage/manage.scss'
 
+
 const UpdateJobs = () => {
     const dataLevel = [
         "Interns",
@@ -49,6 +50,7 @@ const UpdateJobs = () => {
     const [jobType, setJobType] = useState('')
     const [companySize, setSize] = useState('10-')
     const [skill, setSkill] = useState([])
+    const [endDate, setEndDate] = useState('')
 
     const initState = {
         companyName: '', position: '', level, industry: '', address: '', description: '', requirement: '', companySize: '', infoCompany: '', benefit: ''
@@ -99,6 +101,7 @@ const UpdateJobs = () => {
                     setLevel(element.level)
                     setJobType(element.jobType)
                     setSkill([...element.skill])
+                    setEndDate(dateFormat(element.endDate, 'yyyy-mm-dd'))
                 }
             })
         }
@@ -107,7 +110,7 @@ const UpdateJobs = () => {
 
     return (
         <>
-            <div className="manage_container" onLoad={window.scrollTo(0, 0)}>
+            <div className="manage_container">
                 <Sidebar />
                 <div className="create-job">
                     <div className="create-job-header">
@@ -203,7 +206,7 @@ const UpdateJobs = () => {
                                     <div className="row mb-3">
                                         <label for="" className="col-sm-3 col-form-label">Date-end</label>
                                         <div className="col-sm-8">
-                                            <input type="date" className="form-control" />
+                                            <input type="date" value={endDate} className="form-control" />
                                         </div>
                                     </div>
                                 </form>
