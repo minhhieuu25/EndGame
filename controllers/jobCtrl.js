@@ -72,6 +72,16 @@ const jobCtrl = {
         } catch (err) {
             return res.status(500).json({ msg: err.message })
         }
+    },
+    deleteJob: async (req, res) => {
+        try {
+            const { id } = req.body
+            await Job.findOneAndDelete({ _id: id })
+            return res.json({ msg: 'Delete success!' })
+        } catch (err) {
+            return res.status(500).json({ msg: err.message })
+        }
+
     }
 }
 

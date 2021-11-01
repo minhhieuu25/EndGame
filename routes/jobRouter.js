@@ -9,5 +9,6 @@ router.post('/get_all_job', jobCtrl.getAllJob)
 router.post('/get_job_by_type', jobCtrl.getjobByType)
 router.get('/search_job', jobCtrl.searchJob)
 router.post('/update_job', auth, authCompany, jobCtrl.updateJob)
+router.post('/delete_job', auth, authCompany, jobCtrl.deleteJob)
 
 module.exports = router

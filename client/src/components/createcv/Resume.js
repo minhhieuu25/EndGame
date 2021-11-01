@@ -10,6 +10,8 @@ import { checkImage } from '../../utils/imageUpload';
 import { deleteData } from '../../redux/actions/resumeAction';
 import { GLOBALTYPES } from '../../redux/actions/globalTypes';
 
+let arrEdu = [];
+let arrExp = [];
 
 const Resume = () => {
 
@@ -17,26 +19,22 @@ const Resume = () => {
     const [avatar, setAvatar] = useState(dataResume.avatar ? dataResume.avatar : '')
     const [skill, setSkill] = useState(dataResume.skill ? dataResume.skill : [])
     const [language, setLanguage] = useState(dataResume.language ? dataResume.language : [])
+    const [education, setEducation] = useState([])
+    const [experience, setExperience] = useState([])
+
+    const [loadEdu, setLoadEdu] = useState([1])
+    const [loadExp, setLoadExp] = useState([1])
+
+
 
     const initState = {
         fullname: '',
         email: '',
         dateofBirth: '1900-01-01',
-        images: '',
         position: '',
         phoneNumber: '',
         address: '',
         descriptionProfile: '',
-        nameSchool: '',
-        major: '',
-        startDateEducation: '',
-        endDateEducation: '',
-        descriptionEducation: '',
-        nameCompany: '',
-        positonCompan: '',
-        startDateExperience: '',
-        endDateExperience: '',
-        descriptionExperience: '',
         // skill: '',
         // language: ''
     }
@@ -50,16 +48,6 @@ const Resume = () => {
         phoneNumber,
         address,
         descriptionProfile,
-        nameSchool,
-        major,
-        startDateEducation,
-        endDateEducation,
-        descriptionEducation,
-        nameCompany,
-        positonCompany,
-        startDateExperience,
-        endDateExperience,
-        descriptionExperience,
         // skill,
         // language 
     } = cvData
@@ -73,19 +61,19 @@ const Resume = () => {
     const handleInput = e => {
         const { name, value } = e.target
         setCVData({ ...cvData, [name]: value })
-        console.log(cvData)
+
     }
 
     const dispatch = useDispatch()
 
     const handlePreview = async () => {
-        await dispatch(getResume(cvData, skill, language, avatar))
+        await dispatch(getResume(cvData, arrEdu, arrExp, skill, language, avatar))
 
     }
 
     const handleSave = async () => {
-
-        dispatch(saveResume(cvData, skill, language, avatar, auth))
+        // dispatch(saveResume(cvData, arrEdu, arrExp, skill, language, avatar, auth))
+        console.log(arrEdu)
     }
 
     const changeAvatar = (e) => {
@@ -98,11 +86,32 @@ const Resume = () => {
         setAvatar(file)
     }
 
+    const handleDeleteEdu = (i) => {
+        
+    }
+
     return (
         <>
             <Profile handleInput={handleInput} changeAvatar={changeAvatar} values={cvData} />
-            <Education handleInput={handleInput} values={cvData} />
-            <Experience handleInput={handleInput} values={cvData} />
+            {
+                loadEdu.map((element, index) => (
+                    <Education handleInput={handleInput} values={cvData} index={index} arr={arrEdu} handleDelete={handleDeleteEdu} />
+                ))
+            }
+            <div>
+                <button type="button" class="btn btn-info" onClick={e => setLoadEdu([...loadEdu, 1])}>Add Education More</button>
+            </div>
+            {
+                loadExp.map((element, index) => (
+                    <>
+                        <Experience handleInput={handleInput} values={cvData} index={index} arr={arrExp} />
+
+                    </>
+                ))
+            }
+            <div>
+                <button type="button" class="btn btn-info" onClick={e => setLoadExp([...loadExp, 1])}>Add Experience More</button>
+            </div>
             <Extras handleInput={handleInput} handleSkill={setSkill} handleLanguage={setLanguage} values={cvData}
                 dataSkill={skill} dataLanguage={language} />
             <div className="mt-3 mb-5">

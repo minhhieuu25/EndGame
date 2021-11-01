@@ -8,14 +8,12 @@ const cvCtrl = {
     createCV: async (req, res) => {
         try {
 
-            const { avatar, fullname, email, dateofBirth, position, phoneNumber, address, descriptionProfile, nameSchool,
-                major, startDateEducation, endDateEducation, descriptionEducation, nameCompany, positonCompany,
-                startDateExperience, endDateExperience, descriptionExperience, skill, language } = req.body
-
+            const { avatar, fullname, email, dateofBirth, position, phoneNumber, address, descriptionProfile, educations,
+                experiences, skill, language } = req.body
+            console.log(req.body)
             const newCV = new CV({
                 idCandidate: req.user._id, fullname, email, dateofBirth, avatar, position, phoneNumber, address, descriptionProfile,
-                nameSchool, major, startDateEducation, endDateEducation, descriptionEducation, nameCompany, positonCompany,
-                startDateExperience, endDateExperience, descriptionExperience, skill, language
+                educations, experiences, skill, language
             })
             await newCV.save()
             return res.json({

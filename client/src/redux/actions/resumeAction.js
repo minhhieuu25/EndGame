@@ -7,7 +7,7 @@ import { createNotify } from './notifyAction'
 
 import valid from '../../utils/valid'
 
-export const getResume = (dataResume, skill, language, avatar) => async (dispatch) => {
+export const getResume = (dataResume, arrEdu, arrExp, skill, language, avatar) => async (dispatch) => {
     try {
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
         let media
@@ -15,10 +15,10 @@ export const getResume = (dataResume, skill, language, avatar) => async (dispatc
         dispatch({
             type: GLOBALTYPES.DATARESUME,
             payload: {
-                resumes: dataResume,
+                resumes: { ...dataResume, educations: [...arrEdu], experiences: [...arrExp], skill: [...skill], language: [...language] },
                 avatar: avatar ? media[0].url : '',
-                skill: skill,
-                language: language
+                // skill: skill,
+                // language: language
             }
         })
         dispatch({
@@ -38,7 +38,7 @@ export const getResume = (dataResume, skill, language, avatar) => async (dispatc
     }
 }
 
-export const saveResume = (cvData, skill, language, avatar, auth) => async (dispatch) => {
+export const saveResume = (cvData, arrEdu, arrExp, skill, language, avatar, auth) => async (dispatch) => {
     try {
         let media;
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
@@ -46,7 +46,7 @@ export const saveResume = (cvData, skill, language, avatar, auth) => async (disp
         if (avatar) media = await imageUpload([avatar])
 
         const res = await postDataAPI("create_cv", {
-            ...cvData,
+            ...cvData, educations: [...arrEdu], experiences: [...arrExp],
             skill,
             language,
             avatar: avatar ? media[0].url : ''

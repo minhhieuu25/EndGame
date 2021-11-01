@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Pdf from "react-to-pdf";
 import { useParams, Link, useLocation } from 'react-router-dom'
 import './ViewCV.scss'
+import dateFormat from 'dateformat'
 
 const ref = React.createRef();
 
@@ -17,17 +18,11 @@ const ReviewResume = () => {
 		phoneNumber: '',
 		address: '',
 		descriptionProfile: '',
-		nameSchool: '',
-		major: '',
-		startDateEducation: '',
-		endDateEducation: '',
-		descriptionEducation: '',
-		nameCompany: '',
-		positionCompany: '',
-		startDateExperience: '',
-		endDateExperience: '',
-		descriptionExperience: '',
-		avatar: ''
+		educations: [],
+		experiences: [],
+		avatar: '',
+		skill: [],
+		language: []
 	}
 
 	const dispatch = useDispatch()
@@ -90,12 +85,24 @@ const ReviewResume = () => {
 						<p className="p3-1" style={{ fontSize: "14px" }}>{resume.descriptionProfile}</p>
 						<br />
 						<p className="head-1">EXPERIENCE</p>
-						<p>{resume.nameCompany} (2018 - NOW)</p>
-						<p className="p-4-1">{resume.descriptionExperience}</p>
+						{
+							resume.experiences && resume.experiences.map(element => (
+								<>
+									<p>{element.nameCompany} ({dateFormat(element.startDate, 'mm/yyyy')} - {dateFormat(element.endDate, 'mm/yyyy')})</p>
+									<p className="p-4-1">{element.descriptionExperience}</p>
+								</>
+							))
+						}
 						<br />
 						<p className="head-1">Education</p>
-						<p>{resume.nameSchool} (2018 - NOW)</p>
-						<p className="p-4-1" >{resume.descriptionEducation}</p>
+						{
+							resume.educations && resume.educations.map(element => (
+								<>
+									<p>{element.nameSchool} ({dateFormat(element.startDate, 'mm/yyyy')} - {dateFormat(element.endDate, 'mm/yyyy')})</p>
+									<p className="p-4-1">{element.descriptionEducation}</p>
+								</>
+							))
+						}
 					</div>
 				</div>
 				<div className="clearfix-1"></div>

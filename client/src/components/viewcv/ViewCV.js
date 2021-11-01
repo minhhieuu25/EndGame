@@ -3,6 +3,7 @@ import './ViewCV.scss'
 import Pdf from "react-to-pdf";
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import dateFormat from 'dateformat';
 
 const ref = React.createRef();
 
@@ -17,16 +18,8 @@ const ViewCV = () => {
 		phoneNumber: '',
 		address: '',
 		descriptionProfile: '',
-		nameSchool: '',
-		major: '',
-		startDateEducation: '',
-		endDateEducation: '',
-		descriptionEducation: '',
-		nameCompany: '',
-		positionCompany: '',
-		startDateExperience: '',
-		endDateExperience: '',
-		descriptionExperience: '',
+		educations: [],
+		experiences: [],
 		skill: '',
 		language: ''
 	}
@@ -37,6 +30,7 @@ const ViewCV = () => {
 	useEffect(() => {
 		if (dataResume.resumes)
 			setResume(dataResume.resumes)
+		// console.log(resume)
 	}, [dataResume])
 
 
@@ -59,11 +53,19 @@ const ViewCV = () => {
 						<br />
 						<p className="head-1">my skills</p>
 						<ul className="skills-1">
-							<li><span>{resume.skill}</span></li>
+							{
+								resume.skill && resume.skill.map(element => (
+									<li><span>{element.title}&nbsp;&nbsp;</span></li>
+								))
+							}
 						</ul>
 						<br />
 						<p className="head-1">Languages</p>
-						<p className="p3-1">{resume.language}</p>
+						{
+							resume.language && resume.language.map(element => (
+								<p className="p3-1">{element.title}</p>
+							))
+						}
 					</div>
 				</div>
 				<div className="line-1"></div>
@@ -73,12 +75,24 @@ const ViewCV = () => {
 						<p className="p3-1" style={{ fontSize: "14px" }}>{resume.descriptionProfile}</p>
 						<br />
 						<p className="head-1">EXPERIENCE</p>
-						<p>{resume.nameCompany} (2018 - NOW)</p>
-						<p className="p-4-1">{resume.descriptionExperience}</p>
+						{
+							resume.experiences && resume.experiences.map(element => (
+								<>
+									<p>{element.nameCompany} ({dateFormat(element.startDate, 'mm/yyyy')} - {dateFormat(element.endDate, 'mm/yyyy')})</p>
+									<p className="p-4-1">{element.descriptionExperience}</p>
+								</>
+							))
+						}
 						<br />
 						<p className="head-1">Education</p>
-						<p>{resume.nameSchool} (2018 - NOW)</p>
-						<p className="p-4-1" >{resume.descriptionEducation}</p>
+						{
+							resume.educations && resume.educations.map(element => (
+								<>
+									<p>{element.nameSchool} ({dateFormat(element.startDate, 'mm/yyyy')} - {dateFormat(element.endDate, 'mm/yyyy')})</p>
+									<p className="p-4-1">{element.descriptionEducation}</p>
+								</>
+							))
+						}
 					</div>
 				</div>
 				<div className="clearfix-1"></div>
