@@ -46,6 +46,10 @@
                 background-color: #71b8e8;
                 color: white;
             }
+            .item-share {
+                transition: 0.5s;
+                animation: downup 0.7s forwards;
+            }
             
         }
     }
@@ -128,5 +132,17 @@
                 }
             }
         }       
+    }
+}
+
+@keyframes downup {
+    from {
+        transform: translateY(-15px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0%);
+        opacity: 1;
     }
 }

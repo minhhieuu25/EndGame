@@ -15,6 +15,7 @@ const CompanysDetails = () => {
 
     const { id } = useParams()
     const [company, setCompany] = useState({})
+    const [typeShare, setTypeShare] = useState(false)
 
     const { listCompany, auth, allJob } = useSelector(state => state)
 
@@ -64,17 +65,19 @@ const CompanysDetails = () => {
                         </div>
                         <div className="col-sm-3 btn-1 text-center">
                             <FollowCompanyBtn company={company} />
-                            <button type="button" className="btn btn btn-light-1 mt-3"><i className="fas fa-share-alt"></i> Share Company</button>
-                            <ShareModal url={`${BASE_URL}/companydetail/${company.idCompany}`} />
+                            <button type="button" className="btn btn btn-light-1 mt-3" onClick={() => setTypeShare(!typeShare)}><i className="fas fa-share-alt"></i> Share Company</button>
+                            <div className="item-share" style={{display: `${typeShare ? 'block' : 'none'}`}}>
+                                <ShareModal url={`${BASE_URL}/companydetail/${company.idCompany}`} />
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="vacancie-recruiting mt-3">
-                    <h2 className="text-center">Related jobs.</h2>
+                    <h2 className="text-center">Related jobs</h2>
                     <div className="container">
                         <div className="card">
                             <ul className="card-body">
-                                <h3 className="card-title">Found <span>{jobs.length}</span> jobs for this company.</h3>
+                                <h3 className="card-title">Found <span>{jobs.length}</span> jobs for this company</h3>
                                 {
                                     jobs.map((element) => (
                                         <>

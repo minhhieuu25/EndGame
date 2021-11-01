@@ -52,11 +52,11 @@ const FollowCompanyBtn = ({ job }) => {
                 followed
                     ? <button className="btn btn-unfollow mt-3"
                         onClick={handleUnFollow}>
-                        <i class="far fa-heart"></i> Unfollow Job
+                        <i class="far fa-heart"></i> UnSave Job
                     </button>
                     : <button className="btn btn-follow mt-3"
                         onClick={handleFollow}>
-                        <i class="far fa-heart"></i> Follow Job
+                        <i class="far fa-heart"></i> Save Job
                     </button>
             }
         </>
