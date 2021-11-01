@@ -31,16 +31,17 @@
                             margin: 4px 0px;
                             padding: 10px 25px;
                             border-radius: 7px;
-                            font-weight: 500;   
+                            font-weight: 500; 
+                            color: rgb(100, 99, 99);  
                             
                             i {
-                                margin-right: 5px;
+                                margin-right: 5px;                             
                             }
                         }
                        
                         a:hover {
                             color: #1790d4;
-                            background: hsla(0,3%,93.5%,.7215686274509804);                                      
+                            background: hsla(0,3%,93.5%,.7215686274509804);                                                                                           
                         }
 
                         .logout {
@@ -84,15 +85,15 @@
 .header .menu li.active {
     opacity: 1;
 }
-.header .menu .material-icons {
-    font-size: 30px;
-    margin-top: 7px;
-}
-.header .menu  .iconImg {
-    width: 30px;
-    height: 30px;
+.header .menu .icon-style {
+    font-size: 25px;
+    color: white;
+    opacity: 0.8;
 }
 
+.header .menu .icon-style:hover {
+    opacity: 1;
+}
 
 .header .menu .dropdown-menu {
     position: absolute;
@@ -105,12 +106,17 @@
 
 .header .menu .notify_length {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 25%;
+    left: 77%;
     transform: translate(-50%, -50%);
     color: white;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 10px;
+    background-color: red;
+    height: 15px;
+    width: 15px;
+    text-align: center;
+    border-radius: 50%;
 }
 
 .menu.left .nav-link span {

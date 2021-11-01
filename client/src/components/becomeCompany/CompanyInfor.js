@@ -53,8 +53,8 @@ const CompanyInfor = () => {
         <>
             <Profile handleInput={handleInput} changeAvatar={changeAvatar} values={company} setSize={setSize} />
             <div className="mt-3 mb-5">
-                <button type="button" class="btn btn-primary mr-3" onClick={handleUpgrade}>Upgrade</button>
-                <Link to='/viewcv'><button type="button" class="btn btn-primary">Cancel</button></Link>
+                <button type="button" class="btn btn-lg btn-primary mr-3" onClick={handleUpgrade}>Upgrade</button>
+                <Link to='/nhatuyendung'><button type="button" class="btn btn-lg btn-primary">Cancel</button></Link>
             </div>
         </>
     )
