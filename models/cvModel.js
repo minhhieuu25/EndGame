@@ -40,37 +40,43 @@ const cvSchema = new mongoose.Schema({
         maxlength: 200
     },
     //Education Details
-    nameSchool: {
-        type: String,
-    },
-    major: {
-        type: String,
-    },
-    startDateEducation: {
-        type: Date
-    },
-    endDateEducation: {
-        type: Date
-    },
-    descriptionEducation: {
-        type: String,
-        default: '',
-        maxlength: 200
+    // nameSchool: {
+    //     type: String,
+    // },
+    // major: {
+    //     type: String,
+    // },
+    // startDateEducation: {
+    //     type: Date
+    // },
+    // endDateEducation: {
+    //     type: Date
+    // },
+    // descriptionEducation: {
+    //     type: String,
+    //     default: '',
+    //     maxlength: 200
+    // },
+    educations: {
+        type: Array
     },
 
     //Experience Details
 
-    nameCompany: {
-        type: String,
-    },
-    positonCompany: {
-        type: String,
-    },
-    startDateExperience: {
-        type: Date
-    },
-    endDateExperience: {
-        type: Date
+    // nameCompany: {
+    //     type: String,
+    // },
+    // positonCompany: {
+    //     type: String,
+    // },
+    // startDateExperience: {
+    //     type: Date
+    // },
+    // endDateExperience: {
+    //     type: Date
+    // },
+    experiences: {
+        type: Array
     },
     descriptionExperience: {
         type: String,
