@@ -7,7 +7,7 @@ import { submitCV } from '../../redux/actions/resumeAction'
 const SubmitCVModal = ({ setShowSubmitCV, job }) => {
 
     const dispatch = useDispatch()
-    const { id } = useParams()
+    // const { id } = useParams()
     const { auth, allResume, socket, allJob } = useSelector(state => state)
     const [resumes, setResumes] = useState([])
     const [selected, setSelected] = useState('')
@@ -19,16 +19,17 @@ const SubmitCVModal = ({ setShowSubmitCV, job }) => {
         }
         if (allJob.jobs) {
             allJob.jobs.map(element => {
-                if (element._id === id)
+                if (element._id === job._id)
                     setIdCompany(element.idCompany)
             })
         }
         if (allJob.searchJob) {
             allJob.searchJob.map(element => {
-                if (element._id === id)
+                if (element._id === job._id)
                     setIdCompany(element.idCompany)
             })
         }
+        console.log(idCompany)
     }, [allResume.resumes])
 
     const handleOnChange = (e) => {
@@ -36,8 +37,8 @@ const SubmitCVModal = ({ setShowSubmitCV, job }) => {
     }
 
     const handleSubmit = () => {
-       
-        dispatch(submitCV(id, idCompany, selected, auth, socket))
+
+        dispatch(submitCV(job._id, idCompany, selected, auth, socket))
         setShowSubmitCV(false)
     }
 
@@ -59,11 +60,11 @@ const SubmitCVModal = ({ setShowSubmitCV, job }) => {
                         <>
                             <input type="radio"
                                 name="vote"
-                                value={data._id}                          
+                                value={data._id}
                                 id={data._id}
                                 key={index}
                                 checked={selected === data._id}
-                                onChange={handleOnChange} />                              
+                                onChange={handleOnChange} />
                             <label key={index} htmlFor={data._id} title={data.position}>{data.position}</label>
                         </>
 

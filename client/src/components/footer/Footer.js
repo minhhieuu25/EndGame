@@ -13,7 +13,7 @@ const Footer = () => {
                 <div className="row text-center">
                     <div className="footer-col-1 col-sm-3">
                         <h3>Download Our App</h3>
-                        <p>Download App for Android and IOS mobile phone.</p>
+                        <p>Download App for Android and IOS mobile phone</p>
                         <div className="app-logo">
                             <img src={play} />
                             <img src={app} />
@@ -21,7 +21,7 @@ const Footer = () => {
                     </div>
                     <div className="footer-col-2 col-sm-3">
                         <img src={logo} />
-                        <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
+                        <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Jobs Accessible to the Many</p>
                     </div>
                     <div className="footer-col-3 col-sm-3">
                         <h3>Useful Links</h3>

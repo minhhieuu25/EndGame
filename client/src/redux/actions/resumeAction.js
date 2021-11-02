@@ -2,6 +2,7 @@ import { GLOBALTYPES } from './globalTypes'
 import { getDataJob, getDataAPI, postDataAPI, patchDataAPI } from '../../utils/fetchData'
 import { imageUpload } from '../../utils/imageUpload'
 import { createNotify } from './notifyAction'
+import { getListSubmited } from './sumitedAction'
 
 
 
@@ -182,6 +183,7 @@ export const submitCV = (idJob, idCompany, idCV, auth, socket) => async (dispatc
                 // image: logo ? mediaLogo[0].url : ''
             }
             dispatch(createNotify({ msg, auth, socket }))
+            dispatch(getListSubmited(auth))
         }
         dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
     } catch (err) {

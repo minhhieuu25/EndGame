@@ -23,6 +23,7 @@ import allResume from './resumeReducer'
 import dataResume from './dataResumeReducer'
 import users from './usersReducer'
 import topCompany from './topCompanyReducer'
+import submited from './submitedReducer'
 
 export default combineReducers({
     users,
@@ -48,5 +49,6 @@ export default combineReducers({
     listCompany,
     allResume,
     dataResume,
-    topCompany
+    topCompany,
+    submited
 })

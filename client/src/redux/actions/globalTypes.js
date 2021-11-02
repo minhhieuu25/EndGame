@@ -16,7 +16,8 @@ export const GLOBALTYPES = {
     ALLRESUME: 'ALLRESUME',
     DATARESUME: 'DATARESUME',
     ALLUSER: 'ALLUSER',
-    TOPCOMPANY: 'TOPCOMPANY'
+    TOPCOMPANY: 'TOPCOMPANY',
+    SUBMITEDRESUME: 'SUBMITEDRESUME'
 }
 
 export const EditData = (data, id, post) => {

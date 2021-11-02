@@ -24,13 +24,10 @@ const MenuRightAuth = () => {
     return (
         <div className="menu">
             <ul className="navbar-nav flex-row">
-                <li className="nav-item dropdown" style={{ opacity: 1 }} >
+                <li className="nav-item dropdown" style={{ opacity: 1, marginRight: "0.25rem" }} >
                     <span className="nav-link position-relative" id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span className="material-icons"
-                            style={{ color: notify.data.length > 0 ? 'crimson' : '' }}>
-                            notifications_active
-                        </span>
+                        <i className="fas fa-bell icon-style" style={{ color: notify.data.length > 0 ? 'crimson' : '' }}></i>
                         <span className="notify_length">{notify.data.length}</span>
                     </span>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown"
@@ -40,9 +37,9 @@ const MenuRightAuth = () => {
                 </li>
 
                 {/* message */}
-                <li className="nav-item dropdown" style={{ opacity: 1 }} >
-                    <Link className="" to='/message'>
-                        <img src={Message} className="iconImg" alt="" />
+                <li className="nav-item dropdown" style={{ opacity: 1, marginRight: "0.25rem" }} >
+                    <Link className="mt-1" to='/message'>
+                        <i className="fab fa-facebook-messenger icon-style"></i>
                     </Link>
                 </li>
 
@@ -56,15 +53,16 @@ const MenuRightAuth = () => {
                     </span>
                     <div className="dropdown-menu dropdown_menu-6" aria-labelledby="navbarDropdown" style={{ zIndex: '1000' }}>
 
-                        <Link className="dropdown-item" to={`/account/${auth.user._id}`}>
-                            <i className="fas fa-user-cog"></i> Account Setting</Link>
-
                         {/* isUser moi hien  */}
                         {!auth.isCompany && !auth.isAdmin && <>
                             <Link className="dropdown-item" to={`/profile/${auth.user._id}`}>
                                 <i className="fas fa-user"></i> Profile Candidate</Link>
                             <Link className="dropdown-item" to={`/managecv`}>
                                 <i className="fas fa-tasks"></i> Manage CV</Link>
+                            <Link className="dropdown-item" to={`/savedjobs/${auth.user._id}`}>
+                                <i className="fas fa-heart"></i> Saved Jobs</Link>
+                            <Link className="dropdown-item" to={`/appliedjobs/${auth.user._id}`}>
+                                <i className="fas fa-briefcase"></i> Applied Jobs</Link>
                         </>}
 
                         {/* isCompany moi hien  */}
@@ -91,6 +89,9 @@ const MenuRightAuth = () => {
 
                             {theme ? 'Light mode' : 'Dark mode'}
                         </label> */}
+
+                        <Link className="dropdown-item" to={`/account/${auth.user._id}`}>
+                            <i className="fas fa-cog"></i> Account Settings</Link>
 
                         <div className="dropdown-divider"></div>
                         <Link className="dropdown-item logout" to="/"
