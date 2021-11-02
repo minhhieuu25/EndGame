@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
 import dateFormat from 'dateformat';
-import { useSelector, useDispatch } from 'react-redux'
-import './ManageCV.scss'
-import { deleteResume } from '../../redux/actions/resumeAction'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { deleteResume } from '../../redux/actions/resumeAction';
+import './ManageCV.scss';
 
 
 

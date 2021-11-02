@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { checkImage } from '../../utils/imageUpload'
-import { GLOBALTYPES } from '../../redux/actions/globalTypes'
-import { useParams } from 'react-router'
+import Autocomplete from '@mui/material/Autocomplete'
+import TextField from '@mui/material/TextField'
 import dateFormat from 'dateformat'
-import Chip from '@mui/material/Chip';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import { updateJob } from '../../redux/actions/listJobAction'
-import Sidebar from '../sidebar/Sidebar'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router'
 import '../../pages/manage/manage.scss'
+import { GLOBALTYPES } from '../../redux/actions/globalTypes'
+import { updateJob } from '../../redux/actions/listJobAction'
+import { checkImage } from '../../utils/imageUpload'
+import Sidebar from '../sidebar/Sidebar'
 
 
 const UpdateJobs = () => {

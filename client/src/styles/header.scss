@@ -79,16 +79,19 @@
     display: block;
     
 }
+
 .header .menu li:hover {
     opacity: 1;
 }
-.header .menu li.active {
-    opacity: 1;
+
+.header .menu li.active{
+    opacity: 1;   
 }
+
 .header .menu .icon-style {
     font-size: 25px;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
 }
 
 .header .menu .icon-style:hover {
@@ -100,6 +103,7 @@
     left: inherit;
     right: 0;
 }
+
 .header .menu label {
     cursor: pointer;
 }

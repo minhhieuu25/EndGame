@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PageRender from './customRouter/PageRender'
 import PrivateRouter from './customRouter/PrivateRouter'
 
-import Home from './pages/home'
 import HomePage from './pages/homePage'
 import Login from './pages/login'
 import Register from './pages/register'
@@ -22,8 +21,9 @@ import admin_manage_company from './pages/admin_manage_company'
 import admin_manage_post from './pages/admin_manage_post'
 import Dashboard from './pages/dashboard/Dashboard'
 import NewJob from './pages/newJob/NewJob'
-import ManageJob from './pages/managejob'
+import ManageJob from './pages/managejob/[id]'
 import UserList from './pages/userList/UserList'
+import AnalysisJob from './pages/analysisjob/[id]'
 
 import { getAllJob } from './redux/actions/listJobAction'
 import { getTypeJob } from './redux/actions/homeJobAction'
@@ -144,9 +144,10 @@ function App() {
             <Route exact path="/becomeCompany" component={becomeCompany} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/newJob" component={NewJob} />
-            <Route exact path="/managejob" component={ManageJob} />
+            <Route exact path="/managejob/:id" component={ManageJob} />
             <Route exact path="/userList" component={UserList} />
             <Route exact path="/edit-job/:id" component={UpdateJob} />
+            <Route exact path="/analysis/:id" component={AnalysisJob} />
 
 
             <PrivateRouter exact path="/:page" component={PageRender} />
