@@ -27,9 +27,9 @@ import Dashboard from '../dashboard/Dashboard'
 import UserList from '../userList/UserList'
 import User from '../user/User'
 import NewJob from '../newJob/NewJob'
-import ManageJob from '../managejob'
+import ManageJob from '../managejob/[id]'
 import UpdateJob from '../updatejob/[id]'
-import UpdateJobs from '../../components/updateJob/UpdateJobs'
+
 
 const chartOptions = {
     series: [{
@@ -201,7 +201,7 @@ const Manage = () => {
                     <Route path="/newJob">
                         <NewJob />
                     </Route>
-                    <Route path="/managejob">
+                    <Route path="/managejob/:id">
                         <ManageJob />
                     </Route>
                     <Route path="/edit-job/:id">

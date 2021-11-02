@@ -57,10 +57,10 @@ export default function Sidebar() {
             <Link to="/newJob" className="link">
               <li className="sidebarListItem">
                 <AddToQueue className="sidebarIcon" />
-                Add Jobs
+                Post Job
               </li>
             </Link>
-            <Link to="/managejob" className="link">
+            <Link to="/managejob/:id" className="link">
               <li className="sidebarListItem">
                 <WorkOutline className="sidebarIcon" />
                 Manage Jobs

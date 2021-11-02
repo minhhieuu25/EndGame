@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
-import './JobType.scss'
-import logo from '../../../images/LogoFPT.png'
-import { getDataAPI } from '../../../utils/fetchData';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux'
-import { getTypeJob } from '../../../redux/actions/homeJobAction'
-import { getAllJob } from '../../../redux/actions/listJobAction';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getTypeJob } from '../../../redux/actions/homeJobAction';
+import './JobType.scss';
 
 
 const JobType = () => {
@@ -25,6 +21,7 @@ const JobType = () => {
 
 
     const jobIntership = homeJobReducer.jobInternship ? homeJobReducer.jobInternship : []
+    const jobPartTime = homeJobReducer.jobPartTime ? homeJobReducer.jobPartTime : []
     const jobFullTime = homeJobReducer.jobFullTime ? homeJobReducer.jobFullTime : []
 
 
@@ -83,7 +80,7 @@ const JobType = () => {
                             </div>
                             <div className="list-job card-body">
                                 {
-                                    jobFullTime.map((job) => (
+                                    jobPartTime.map((job) => (
                                         <>
                                             <div className="job-over-item row">
                                                 <div className="col-3">

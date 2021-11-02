@@ -1,24 +1,18 @@
 import React from 'react';
-import './JobIndustry.scss'
-import logojob from '../../../images/logo-job.png'
-import logobanhang from '../../../images/logojobindustry/logobanhang.png'
-import logobatdongsan from '../../../images/logojobindustry/logobatdongsan.png'
-import logodichvu from '../../../images/logojobindustry/logodichvu.png'
-import logodientu from '../../../images/logojobindustry/logodientu.png'
-import logoduan from '../../../images/logojobindustry/logoduan.png'
-import logointernet from '../../../images/logojobindustry/logointernet.png'
-import logoitmang from '../../../images/logojobindustry/logoit-mang.png'
-import logoketoan from '../../../images/logojobindustry/logoketoan.png'
-import logomarketing from '../../../images/logojobindustry/logomarketing.png'
-import logonganhang from '../../../images/logojobindustry/logonganhang.png'
-import logonhansu from '../../../images/logojobindustry/logonhansu.png'
-import logonoithat from '../../../images/logojobindustry/logonoithat.png'
-import logoquangcao from '../../../images/logojobindustry/logoquangcao.png'
-import logosanxuat from '../../../images/logojobindustry/logosanxuat.png'
-import logotaichinh from '../../../images/logojobindustry/logotaichinh.png'
-import logothuky from '../../../images/logojobindustry/logothuky.png'
-import logoxaydung from '../../../images/logojobindustry/logoxaydung.png'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import logojob from '../../../images/logo-job.png';
+import logobanhang from '../../../images/logojobindustry/logobanhang.png';
+import logodientu from '../../../images/logojobindustry/logodientu.png';
+import logoitmang from '../../../images/logojobindustry/logoit-mang.png';
+import logoketoan from '../../../images/logojobindustry/logoketoan.png';
+import logomarketing from '../../../images/logojobindustry/logomarketing.png';
+import logonganhang from '../../../images/logojobindustry/logonganhang.png';
+import logonhansu from '../../../images/logojobindustry/logonhansu.png';
+import logonoithat from '../../../images/logojobindustry/logonoithat.png';
+import logoquangcao from '../../../images/logojobindustry/logoquangcao.png';
+import logotaichinh from '../../../images/logojobindustry/logotaichinh.png';
+import logoxaydung from '../../../images/logojobindustry/logoxaydung.png';
+import './JobIndustry.scss';
 
 
 const JobIndustry = () => {

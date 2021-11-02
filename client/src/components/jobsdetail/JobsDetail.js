@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import FollowCompanyBtn from '../FollowJobBtn'
-import SubmitCVModal from '../submitcvmodal/SubmitCVModal'
-import { useSelector, useDispatch, useStore } from 'react-redux'
-import { Link, useParams, Redirect, NavLink } from 'react-router-dom'
-import './JobsDetail.scss'
-import SearchJob from '../jobs/SearchJob'
-import { searchJob } from '../../redux/actions/listJobAction'
 import dateFormat from 'dateformat'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
+import FollowCompanyBtn from '../FollowJobBtn'
+import SearchJob from '../jobs/SearchJob'
+import SubmitCVModal from '../submitcvmodal/SubmitCVModal'
+import './JobsDetail.scss'
 
 
 const JobsDetail = () => {
@@ -93,17 +92,7 @@ const JobsDetail = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-sm-6">
-                                            <div className="content-detail">
-                                                <div className="icon-left">
-                                                    <i className="far fa-clock"></i>
-                                                </div>
-                                                <div className="info-detail">
-                                                    <span className="title-3">Deadline:</span>
-                                                    <span>{dateFormat(job.endDate, 'dd/mm/yyyy')}</span>
-                                                </div>
-                                            </div>
-                                            <hr />
+                                        <div className="col-sm-6">                                           
                                             <div className="content-detail">
                                                 <div className="icon-left">
                                                     <i className="fas fa-bars"></i>
@@ -126,13 +115,23 @@ const JobsDetail = () => {
                                             <hr />
                                             <div className="content-detail">
                                                 <div className="icon-left">
-                                                    <i className="fas fa-briefcase"></i>
+                                                    <i className="far fa-clock"></i>
                                                 </div>
                                                 <div className="info-detail">
-                                                    <span className="title-3">Job Level:</span>
-                                                    <span>{job.level}</span>
+                                                    <span className="title-3">Date created:</span>
+                                                    <span>{dateFormat(job.createdAt, 'dd/mm/yyyy')}</span>
                                                 </div>
                                             </div>
+                                            <hr />
+                                            <div className="content-detail">
+                                                <div className="icon-left">
+                                                    <i className="far fa-clock"></i>
+                                                </div>
+                                                <div className="info-detail">
+                                                    <span className="title-3">Expires on:</span>
+                                                    <span>{dateFormat(job.endDate, 'dd/mm/yyyy')}</span>
+                                                </div>
+                                            </div>                                       
                                         </div>
                                     </div>
                                 </div>
