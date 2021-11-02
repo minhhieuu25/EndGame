@@ -21,7 +21,7 @@ const CreateJob = () => {
     ]
     const dataTypeJob = [
         "Full-time",
-        "Past-time",
+        "Part-time",
         "Internship",
         "Freelancer",
         "Seasonal",
@@ -117,12 +117,12 @@ const CreateJob = () => {
 
         <div className="create-job" >
             <div className="create-cv-header">
-                <h2 className="text-center text-2">Create Post</h2>
+                <h2 className="text-center text-2">Post Job</h2>
             </div>
             <div className="container-create-job">
                 <div className="profile-account card">
                     <div className="card-body">
-                        <h4 className="text-center mb-4">Job</h4>
+                        <h4 className="text-center mb-4">The Job</h4>
                         <form>
                             <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label">Job Title</label>

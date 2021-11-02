@@ -5,6 +5,32 @@
     .text-2{
         padding: 20px 0px;
     }
+    .header-manage-job {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        .list-job-1 {
+            span {
+                font-size: 20px;
+                font-weight: 700;
+                color: #007bff;
+            }
+        }
+        .btn-new-job {
+            .btn-new-job-1 {
+                border: 1px solid #007bff;
+                color: #007bff;
+                font-weight: 700;
+                border-radius: 8px;
+            }
+
+            .btn-new-job-1:hover {
+                background-color: #c9e2fc;
+            }
+        }
+    }
+
     .manage-job-container {
         height: 375px;
 

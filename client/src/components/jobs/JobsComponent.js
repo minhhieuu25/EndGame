@@ -36,7 +36,7 @@ const JobsComponent = (props) => {
                 <div className="row job-info">
                     <div className="end-date col-sm-6">
                         <i class="far fa-clock"></i>
-                        <span title={dateFormat(props.endDate, 'dd/mm/yyyy')}>Deadline: {dateFormat(props.endDate, 'dd/mm/yyyy')}</span>
+                        <span title={dateFormat(props.endDate, 'dd/mm/yyyy')}>Expires on: {dateFormat(props.endDate, 'dd/mm/yyyy')}</span>
 
                     </div>
                     <div className="exp col-sm-6">

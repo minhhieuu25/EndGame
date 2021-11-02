@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { upgradeAccount } from '../../redux/actions/authAction';
+import { GLOBALTYPES } from '../../redux/actions/globalTypes';
+import { checkImage } from '../../utils/imageUpload';
 import Profile from './Profile';
 
-import { Link } from 'react-router-dom'
-import { getResume, saveResume } from '../../redux/actions/resumeAction'
-import { useSelector, useDispatch } from 'react-redux'
-import { checkImage } from '../../utils/imageUpload';
-import { deleteData } from '../../redux/actions/resumeAction';
-import { GLOBALTYPES } from '../../redux/actions/globalTypes';
-import { upgradeAccount } from '../../redux/actions/authAction'
 
 
 const CompanyInfor = () => {

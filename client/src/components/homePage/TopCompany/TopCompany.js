@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './TopCompany.scss'
-import LogoShinHan from '../../../images/LogoShinHan.png'
-import LogoFPT from '../../../images/LogoFPT.png'
-import LogoTech from '../../../images/LogoTech.png'
-import LogoLG from '../../../images/logoLG.png'
 import { useSelector } from 'react-redux';
-
+import { Link } from 'react-router-dom';
+import './TopCompany.scss';
 
 const TopCompany = () => {
 
@@ -26,7 +22,7 @@ const TopCompany = () => {
                     {
                         top.map(element => (
                             <div className="col-sm-3 col-6 company-block">
-                                <a href="" target="_blank">
+                                <Link to={`/companydetail/${element._id.idCompany}`}>
                                     <div className="company-box card">
                                         <img src={element._id.logo} />
                                         <div className="company-box-content">
@@ -34,7 +30,7 @@ const TopCompany = () => {
                                             <span className="company-tag text-uppercase">New Job</span>
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                         ))
                     }

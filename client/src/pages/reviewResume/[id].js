@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import dateFormat from 'dateformat';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import Pdf from "react-to-pdf";
-import { useParams, Link, useLocation } from 'react-router-dom'
-import './ViewCV.scss'
-import dateFormat from 'dateformat'
+import './ViewCV.scss';
 
 const ref = React.createRef();
 
