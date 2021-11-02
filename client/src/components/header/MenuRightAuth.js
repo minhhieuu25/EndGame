@@ -27,7 +27,7 @@ const MenuRightAuth = () => {
                 <li className="nav-item dropdown" style={{ opacity: 1, marginRight: "0.25rem" }} >
                     <span className="nav-link position-relative" id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i className={`fas fa-bell icon-style`} style={{ color: notify.data.length > 0 ? 'crimson' : '' }}></i>
+                        <i className={`fas fa-bell icon-style`}></i>
                         <span className="notify_length">{notify.data.length}</span>
                     </span>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown"
@@ -37,7 +37,7 @@ const MenuRightAuth = () => {
                 </li>
 
                 {/* message */}
-                <li className="nav-item dropdown"  style={{ opacity: 1, marginRight: "0.25rem" }} >
+                <li className="nav-item dropdown" style={{ opacity: 1, marginRight: "0.25rem" }} >
                     <Link className="mt-1" to='/message'>
                         <i className={`fab fa-facebook-messenger icon-style`}></i>
                     </Link>
@@ -113,7 +113,6 @@ const MenuRightAuth = () => {
 
             </ul>
         </div>
-
     )
 }
 
