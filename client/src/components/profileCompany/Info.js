@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { GLOBALTYPES } from '../../redux/actions/globalTypes'
 import Avatar from '../Avatar'
 import EditProfileCompany from './EditProfileCompany'
-import FollowBtn from '../FollowBtn'
-import Followers from './Followers'
-import Following from './Following'
-import { GLOBALTYPES } from '../../redux/actions/globalTypes'
-import { getProfileCompany } from '../../redux/actions/profileCompanyAction'
-import { useParams } from 'react-router'
-import { useSelector } from 'react-redux'
 
 const Info = ({ id, auth, profile, dispatch }) => {
     const [companyData, setCompanyData] = useState([])

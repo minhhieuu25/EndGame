@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'
-import { searchJob } from '../../redux/actions/listJobAction';
-import { useParams, useLocation, Redirect } from 'react-router';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { searchJob } from '../../redux/actions/listJobAction';
 
 const SearchJob = () => {
 

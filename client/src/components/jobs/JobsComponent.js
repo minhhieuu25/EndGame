@@ -1,11 +1,6 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import logo from '../../images/LogoFPT.png'
-import { getAllJob } from '../../redux/actions/listJobAction'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
 import dateFormat from 'dateformat';
-
-
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 const JobsComponent = (props) => {
 

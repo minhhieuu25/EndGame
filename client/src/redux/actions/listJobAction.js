@@ -1,9 +1,8 @@
-import { GLOBALTYPES } from './globalTypes'
-import { getDataJob, getDataAPI, postDataAPI } from '../../utils/fetchData'
+import { getDataAPI, getDataJob, postDataAPI } from '../../utils/fetchData'
 import { imageUpload } from '../../utils/imageUpload'
+import { GLOBALTYPES } from './globalTypes'
 import { createNotify } from './notifyAction'
 
-import valid from '../../utils/valid'
 
 export const getAllJob = () => async (dispatch) => {
     try {

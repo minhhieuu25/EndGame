@@ -31,7 +31,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logojob} />
+                                                    <img src={logojob} alt=""/>
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">IT - Software</span>
                                                         <span className="job-tag">44 Jobs</span>
@@ -44,7 +44,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logotaichinh} />
+                                                    <img src={logotaichinh} alt=""/>
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">Finance / Investment</span>
                                                         <span className="job-tag">87 Jobs</span>
@@ -57,7 +57,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logobanhang} />
+                                                    <img src={logobanhang} alt=""/>
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">Sales</span>
                                                         <span className="job-tag">24 Jobs</span>
@@ -70,7 +70,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logomarketing} />
+                                                    <img src={logomarketing} alt=""/>
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">Marketing</span>
                                                         <span className="job-tag">83 Jobs</span>
@@ -87,7 +87,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logoitmang} />
+                                                    <img src={logoitmang} alt=""/>
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">Networking</span>
                                                         <span className="job-tag">52 Jobs</span>
@@ -100,7 +100,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logonganhang} />
+                                                    <img src={logonganhang} alt=""/>
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">Banking</span>
                                                         <span className="job-tag">23 Jobs</span>
@@ -113,7 +113,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logodientu} />
+                                                    <img src={logodientu} alt="" />
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">Electrical /  Electronic</span>
                                                         <span className="job-tag">74 Jobs</span>
@@ -126,7 +126,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logoxaydung} />
+                                                    <img src={logoxaydung} alt="" />
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">Civl / Construction</span>
                                                         <span className="job-tag">123 Jobs</span>
@@ -143,7 +143,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logoquangcao} />
+                                                    <img src={logoquangcao} alt=""/>
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">Advertising / PR</span>
                                                         <span className="job-tag">12 Jobs</span>
@@ -156,7 +156,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logonoithat} />
+                                                    <img src={logonoithat} alt=""/>
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">Architeture</span>
                                                         <span className="job-tag">67 Jobs</span>
@@ -169,7 +169,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logoketoan} />
+                                                    <img src={logoketoan} alt=""/>
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">Auditing</span>
                                                         <span className="job-tag">7 Jobs</span>
@@ -182,7 +182,7 @@ const JobIndustry = () => {
                                         <div className="box">
                                             <Link to="">
                                                 <div className="box-job">
-                                                    <img src={logonhansu} />
+                                                    <img src={logonhansu} alt=""/>
                                                     <div className="box-content">
                                                         <span className="job-name text-uppercase">Human Resource</span>
                                                         <span className="job-tag">52 Jobs</span>

@@ -17,7 +17,7 @@ const NhaTuyenDung = () => {
                             <p id="section-header-1">Get Your Job Matched With The Right Candidate</p>
                         </div>
                         <div className="col-sm-6 img-header">
-                            <img src={img0} />
+                            <img src={img0} alt=""/>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ const NhaTuyenDung = () => {
                 </div>
                 <div id="section-1" className="row">
                     <div className="col-sm-6 img-1">
-                        <img src={img1} />
+                        <img src={img1} alt="" />
                     </div>
                     <div className="col-sm-6 detail">
                         <h4>Post Job</h4>
@@ -58,12 +58,12 @@ const NhaTuyenDung = () => {
                         </ul>
                     </div>
                     <div className="col-sm-6 img-1 text-right">
-                        <img className="text-end" src={img2} />
+                        <img className="text-end" src={img2} alt="" />
                     </div>
                 </div>
                 <div id="section-3" className="row">
                     <div className="col-sm-6 img-1">
-                        <img src={img3} />
+                        <img src={img3} alt="" />
                     </div>
                     <div className="col-sm-6 detail">
                         <h4>Employer Branding</h4>

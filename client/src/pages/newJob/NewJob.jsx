@@ -1,7 +1,6 @@
-import { useContext, useState } from "react";
 import CreateJob from "../../components/createjob/CreateJob";
 import Sidebar from "../../components/sidebar/Sidebar";
-import '../../pages/manage/manage.scss'
+import '../../pages/manage/manage.scss';
 export default function NewJob() {
   return (
     <>

@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { followJob, unFollowJob, followCompany, unFollowCompany } from '../redux/actions/profileCompanyAction'
-import { refreshToken } from '../redux/actions/authAction'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { followJob, unFollowJob } from '../redux/actions/profileCompanyAction'
 import './FollowBtn.scss'
 
 
 const FollowCompanyBtn = ({ job }) => {
     const [followed, setFollowed] = useState(false)
-
-    const { auth, profile, socket } = useSelector(state => state)
+    const { auth, socket } = useSelector(state => state)
     const dispatch = useDispatch()
-
-
-
     const [load, setLoad] = useState(false)
-
-
 
     useEffect(() => {
 

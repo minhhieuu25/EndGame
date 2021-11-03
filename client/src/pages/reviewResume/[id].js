@@ -1,6 +1,6 @@
 import dateFormat from 'dateformat';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import Pdf from "react-to-pdf";
 import './ViewCV.scss';
@@ -25,9 +25,8 @@ const ReviewResume = () => {
 		language: []
 	}
 
-	const dispatch = useDispatch()
 	const { id } = useParams()
-	const { allResume, auth } = useSelector(state => state)
+	const { allResume} = useSelector(state => state)
 
 	const [resume, setResume] = useState(initState)
 

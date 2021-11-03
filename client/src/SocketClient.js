@@ -1,13 +1,11 @@
 import React, { useEffect, useRef } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { POST_TYPES } from './redux/actions/postAction'
-import { GLOBALTYPES } from './redux/actions/globalTypes'
-import { NOTIFY_TYPES } from './redux/actions/notifyAction'
-import { MESS_TYPES } from './redux/actions/messageAction'
-import { getAllJob } from './redux/actions/listJobAction'
-import { getListCompany } from './redux/actions/listCompanyAction'
-
+import { useDispatch, useSelector } from 'react-redux'
 import audiobell from './audio/got-it-done-613.mp3'
+import { GLOBALTYPES } from './redux/actions/globalTypes'
+import { getAllJob } from './redux/actions/listJobAction'
+import { MESS_TYPES } from './redux/actions/messageAction'
+import { NOTIFY_TYPES } from './redux/actions/notifyAction'
+import { POST_TYPES } from './redux/actions/postAction'
 
 
 const spawnNotification = (body, icon, url, title) => {

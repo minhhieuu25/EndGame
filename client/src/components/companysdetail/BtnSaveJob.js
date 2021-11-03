@@ -7,7 +7,7 @@ import './CompanysDetail.scss'
 const BtnSaveJob = ({ job }) => {
     const [followed, setFollowed] = useState(false)
 
-    const { auth, profile, socket } = useSelector(state => state)
+    const { auth, socket } = useSelector(state => state)
     const dispatch = useDispatch()
 
     const [load, setLoad] = useState(false)

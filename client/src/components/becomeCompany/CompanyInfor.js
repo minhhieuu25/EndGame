@@ -10,7 +10,7 @@ import Profile from './Profile';
 
 const CompanyInfor = () => {
 
-    const { allResume, auth, dataResume, socket } = useSelector(state => state)
+    const { auth, socket } = useSelector(state => state)
     const [logo, setLogo] = useState('')
     const [companySize, setSize] = useState('10-')
 
