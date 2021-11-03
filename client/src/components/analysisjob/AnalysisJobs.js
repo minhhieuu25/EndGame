@@ -51,7 +51,6 @@ const AnalysisJobs = () => {
     const [cvs, setCvs] = useState([])
 
     useEffect(() => {
-        console.log('1', submited.submited)
         if (allJob.jobs) {
             allJob.jobs.map((element) => {
                 if (element._id === id) {
@@ -99,10 +98,11 @@ const AnalysisJobs = () => {
                             <span>Expires on:</span> {dateFormat(jobs.endDate, 'dd/mm/yyyy')}
                         </div>
                         <div className="job-day">
-                            <span>Status:</span> Active - Pending Approval - Closed
+                            {/* <span>Status:</span> Active - Pending Approval - Closed */}
+                            <span>Status:</span> {new Date(jobs.endDate).getTime() < new Date().getTime() ? 'Closed' : 'Active'}
                         </div>
                         <div className="job-day">
-                            <span>Total Resume:</span> 30
+                            <span>Total Resume:</span> {cvs.length}
                         </div>
                         <div className="featured">
                             <div className="featuredItem">
