@@ -2,7 +2,7 @@ import { DataGrid } from "@material-ui/data-grid";
 import { ArrowDownward } from "@material-ui/icons";
 import dateFormat from 'dateformat';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import './AnalysisJobs.scss';
@@ -10,51 +10,48 @@ import './AnalysisJobs.scss';
 
 const AnalysisJobs = () => {
 
-    const rows = [
-        
-    ];
+
 
     const columns = [
-        {   field: 'id', 
-            headerName: 'ID', 
-            width: 100 
-        },
+        { field: 'id', headerName: 'ID', width: 100 },
         {
             field: 'fullname',
             headerName: 'Full name',
             width: 150,
-            
+
         },
         {
-            field: 'aa',
+            field: 'dateSubmit',
             headerName: 'Apply on',
             width: 150,
-            
+            valueFormatter: (params) => { return dateFormat(params.value, 'dd/mm/yyyy') }
+
         },
         {
-            field: 'aa2',
+            field: 'status',
             headerName: 'Status',
-            width: 150,       
+            width: 150,
         },
         {
             field: 'aa23',
             headerName: 'Point',
-            width: 150,       
+            width: 150,
         },
         {
             field: 'aa1',
             headerName: 'Action',
             width: 120,
-            
+
         },
     ]
     const { id } = useParams()
-    const { allJob, auth, allResume } = useSelector(state => state)
+    const { allJob, submited } = useSelector(state => state)
     const [jobs, setJobs] = useState([])
-    const dispatch = useDispatch()
-    const [resumes, setResume] = useState([])
+    const [post, setPost] = useState({})
+    const [cvs, setCvs] = useState([])
 
     useEffect(() => {
+        console.log('1', submited.submited)
         if (allJob.jobs) {
             allJob.jobs.map((element) => {
                 if (element._id === id) {
@@ -62,10 +59,29 @@ const AnalysisJobs = () => {
                 }
             });
         }
-        if (allResume.resumes) {
-            setResume(allResume.resumes)
+
+    }, [])
+
+    useEffect(() => {
+        let arr = {}
+        let arr1 = []
+        if (submited.submited) {
+            submited.submited.map((element, index) => {
+                if (element.idJob === id) {
+                    arr = { ...element }
+                }
+            })
         }
-    }, [id, allJob, allResume])
+        setPost(arr)
+
+        if (arr.cv) {
+            arr.cv.map((element, index) => {
+                arr1 = [...arr1, { ...element, 'id': index }]
+            })
+        }
+        setCvs([...arr1])
+
+    }, [])
 
     return (
         <div className="analysis-job-view">
@@ -94,7 +110,7 @@ const AnalysisJobs = () => {
                                 <div className="featuredMoneyContainer">
                                     <span className="featuredMoney">30</span>
                                     <span className="featuredMoneyRate">
-                                        -1 <ArrowDownward className="featuredIcon negative" />                                       
+                                        -1 <ArrowDownward className="featuredIcon negative" />
                                     </span>
                                 </div>
                                 <span className="featuredSub">Compared to last day</span>
@@ -104,7 +120,7 @@ const AnalysisJobs = () => {
                                 <div className="featuredMoneyContainer">
                                     <span className="featuredMoney">123</span>
                                     <span className="featuredMoneyRate">
-                                        -1 <ArrowDownward className="featuredIcon negative" />                                       
+                                        -1 <ArrowDownward className="featuredIcon negative" />
                                     </span>
                                 </div>
                                 <span className="featuredSub">Compared to last day</span>
@@ -114,7 +130,7 @@ const AnalysisJobs = () => {
                                 <div className="featuredMoneyContainer">
                                     <span className="featuredMoney">3</span>
                                     <span className="featuredMoneyRate">
-                                        -1 <ArrowDownward className="featuredIcon negative" />                                       
+                                        -1 <ArrowDownward className="featuredIcon negative" />
                                     </span>
                                 </div>
                                 <span className="featuredSub">Compared to last day</span>
@@ -141,7 +157,7 @@ const AnalysisJobs = () => {
                                     <DataGrid
                                         component="div"
                                         pageSize={5}
-                                        rows={rows}
+                                        rows={cvs}
                                         columns={columns}
                                         rowsPerPageOptions={[5]}
                                         checkboxSelection

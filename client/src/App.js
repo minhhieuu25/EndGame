@@ -30,7 +30,7 @@ import { getTypeJob } from './redux/actions/homeJobAction'
 import { getListCompany, getTopCompany } from './redux/actions/listCompanyAction'
 import { getAllResume } from './redux/actions/resumeAction'
 import { getAllUsers } from './redux/actions/usersAction'
-import { getListSubmited } from './redux/actions/sumitedAction'
+import { getListSubmited, getListSubmitedForCompany } from './redux/actions/sumitedAction'
 
 import Alert from './components/alert/Alert'
 import Header from './components/header/Header'
@@ -83,12 +83,15 @@ function App() {
   useEffect(() => {
     if (auth.token) {
       dispatch(getPosts(auth.token))
-      dispatch(getListSubmited(auth))
       dispatch(getSuggestions(auth.token))
       dispatch(getNotifies(auth.token))
       dispatch(getAllResume(auth))
       if (auth.isAdmin)
         dispatch(getAllUsers(auth.token))
+      if (!auth.isAdmin && !auth.isCompany)
+        dispatch(getListSubmited(auth))
+      if (auth.isCompany)
+        dispatch(getListSubmitedForCompany(auth))
     }
   }, [dispatch, auth.token, auth])
 
