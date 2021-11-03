@@ -33,7 +33,6 @@ const MenuLeft = () => {
                             </Link>
                         </li>
                     ))
-
                 }
                 {!auth.isCompany && !auth.isAdmin &&
                     <li className={`nav-item px-2 ${isActive('/createCV')}`} >
