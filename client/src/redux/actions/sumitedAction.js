@@ -20,3 +20,22 @@ export const getListSubmited = (auth) => async (dispatch) => {
         })
     }
 }
+
+export const getListSubmitedForCompany = (auth) => async (dispatch) => {
+    try {
+        const res = await getDataAPI('get_submited_for_company', auth.token)
+        dispatch({
+            type: GLOBALTYPES.SUBMITEDRESUME,
+            payload: {
+                submited: res.data
+            }
+        })
+    } catch (err) {
+        dispatch({
+            type: GLOBALTYPES.ALERT,
+            payload: {
+                error: err.response.data.msg
+            }
+        })
+    }
+}
