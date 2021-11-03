@@ -1,9 +1,8 @@
-import { GLOBALTYPES } from './globalTypes'
-import { getDataAPI, postDataAPI } from '../../utils/fetchData'
+import { postDataAPI } from '../../utils/fetchData'
 import { imageUpload } from '../../utils/imageUpload'
 import valid from '../../utils/valid'
 import validation_reset from '../../utils/validation_reset'
-import { createNotify } from './notifyAction'
+import { GLOBALTYPES } from './globalTypes'
 
 export const login = (data) => async (dispatch) => {
     try {

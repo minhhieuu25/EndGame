@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react'
-
-import Info from '../../components/profileCompany/Info'
-import Posts from '../../components/profileCompany/Posts'
-import Saved from '../../components/profileCompany/Saved'
-
-import { useSelector, useDispatch } from 'react-redux'
-import LoadIcon from '../../images/loading.gif'
-import { getProfileUsers } from '../../redux/actions/profileAction'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import Info from '../../components/profileCompany/Info'
+import { getProfileUsers } from '../../redux/actions/profileAction'
+
+
 
 
 const Profile = () => {
     const { profile, auth } = useSelector(state => state)
     const dispatch = useDispatch()
-
     const { id } = useParams()
-    const [saveTab, setSaveTab] = useState(false)
 
     useEffect(() => {
         if (profile.ids.every(item => item !== id)) {

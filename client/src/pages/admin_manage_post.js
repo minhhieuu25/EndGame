@@ -1,18 +1,10 @@
-import React, { useState, useEffect } from 'react'
-
-import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { getAllUsers } from '../redux/actions/usersAction'
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { updateRole, deleteUser } from '../redux/actions/usersAction';
-import { refreshToken } from '../redux/actions/authAction';
-import { deleteCompany } from '../redux/actions/listCompanyAction';
-import { auth } from 'google-auth-library';
-import dateFormat from 'dateformat';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
+import dateFormat from 'dateformat';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteCompany } from '../redux/actions/listCompanyAction';
+// import { updateRole } from '../redux/actions/usersAction';
+
 
 const initialState = {
     // companyName: '', address: '', industry: '', info: '', website: '', phoneNumber: '', companySize: '', logo: ''
@@ -22,11 +14,6 @@ const limit = 7
 function Profile() {
     const { auth, listCompany, allJob } = useSelector(state => state)
     const [data, setData] = useState(initialState)
-
-    const [avatar, setAvatar] = useState(false)
-    const [dataUser, setDataUser] = useState([])
-
-    const [callback, setCallback] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -43,14 +30,14 @@ function Profile() {
 
     }, [allJob])
 
-    const handleChange = e => {
-        const { name, value } = e.target
-        setData({ ...data, [name]: value })
-    }
+    // const handleChange = e => {
+    //     const { name, value } = e.target
+    //     setData({ ...data, [name]: value })
+    // }
 
-    const handleUpdate = () => {
-        dispatch(updateRole(data, auth))
-    }
+    // const handleUpdate = () => {
+    //     dispatch(updateRole(data, auth))
+    // }
 
     const handleView = (job) => {
         setData(job)

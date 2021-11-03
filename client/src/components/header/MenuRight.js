@@ -1,5 +1,4 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 
 const MenuRight = () => {
@@ -9,8 +8,6 @@ const MenuRight = () => {
         { label: 'FOR EMPLOYERS', title: 'FOR EMPLOYERS', path: '/nhatuyendung' }
     ]
 
-    const { auth, theme, notify } = useSelector(state => state)
-    const dispatch = useDispatch()
     const { pathname } = useLocation()
 
     const isActive = (pn) => {

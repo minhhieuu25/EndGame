@@ -9,7 +9,7 @@ const MenuLeft = () => {
         { label: 'Companies', title: 'Companies', path: '/companys' },
     ]
 
-    const { auth, theme, notify } = useSelector(state => state)
+    const { auth } = useSelector(state => state)
     const dispatch = useDispatch()
     const { pathname } = useLocation()
 

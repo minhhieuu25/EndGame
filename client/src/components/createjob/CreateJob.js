@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import './CreateJob.scss'
-import { useSelector, useDispatch } from 'react-redux'
-import { checkImage } from '../../utils/imageUpload'
-import { GLOBALTYPES } from '../../redux/actions/globalTypes'
-import { createJob } from '../../redux/actions/listJobAction'
-import Chip from '@mui/material/Chip';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete'
+import TextField from '@mui/material/TextField'
 import dateFormat from 'dateformat'
-
-
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+// import { GLOBALTYPES } from '../../redux/actions/globalTypes'
+import { createJob } from '../../redux/actions/listJobAction'
+// import { checkImage } from '../../utils/imageUpload'
+import './CreateJob.scss'
 
 const CreateJob = () => {
 
@@ -48,7 +44,7 @@ const CreateJob = () => {
         { title: "Other" }
     ];
 
-    const { auth, theme, listCompany, socket } = useSelector(state => state)
+    const { auth, listCompany, socket } = useSelector(state => state)
     const dispatch = useDispatch()
     const [level, setLevel] = useState('Interns')
     const [jobType, setJobType] = useState('Full-time')
@@ -58,9 +54,6 @@ const CreateJob = () => {
         maxSalary: 0, companySize: '', infoCompany: '', benefit: '', endDate: ''
     }
     const [jobData, setJobData] = useState(initState)
-    const [companyData, setCompanyData] = useState({})
-    const { idCompany, companyName, position, industry, address, description, requirement, minSalary, maxSalary,
-        infoCompany, benefit, endDate } = jobData
 
     const [skill, setSkill] = useState([])
     const [logo, setLogo] = useState('')
@@ -72,30 +65,30 @@ const CreateJob = () => {
 
     }
 
-    const changeLogo = (e) => {
-        const file = e.target.files[0]
+    // const changeLogo = (e) => {
+    //     const file = e.target.files[0]
 
-        const err = checkImage(file)
-        if (err) return dispatch({
-            type: GLOBALTYPES.ALERT, payload: { error: err }
-        })
-        setLogo(file)
-    }
-    const changeImage = (e) => {
-        const file = e.target.files[0]
+    //     const err = checkImage(file)
+    //     if (err) return dispatch({
+    //         type: GLOBALTYPES.ALERT, payload: { error: err }
+    //     })
+    //     setLogo(file)
+    // }
+    // const changeImage = (e) => {
+    //     const file = e.target.files[0]
 
-        const err = checkImage(file)
-        if (err) return dispatch({
-            type: GLOBALTYPES.ALERT, payload: { error: err }
-        })
+    //     const err = checkImage(file)
+    //     if (err) return dispatch({
+    //         type: GLOBALTYPES.ALERT, payload: { error: err }
+    //     })
 
-        setImage(file)
-    }
+    //     setImage(file)
+    // }
 
     const handleCreate = () => {
         dispatch(createJob(jobData, level, jobType, skill, companySize, logo, image, auth, socket))
     }
-    const onTagsChangeSkill = (event, values) => {
+    const onTagsChangeSkill = (values) => {
         setSkill(values)
     }
 
@@ -111,7 +104,7 @@ const CreateJob = () => {
         // setCompanyData(company)
 
         setJobData({ ...jobData, ['endDate']: dateFormat(date, 'yyyy-mm-dd'), ['companyName']: company.companyName, ['infoCompany']: company.info, ['companySize']: company.companySize })
-        console.log(jobData)
+
     }, [])
     return (
 

@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { followCompany, unFollowCompany } from '../redux/actions/profileCompanyAction'
-import { refreshToken } from '../redux/actions/authAction'
-import { useParams } from 'react-router'
-import { getDataAPI } from '../utils/fetchData'
-
 import './FollowBtn.scss'
-import Company from '../pages/companys'
+
 
 
 
@@ -14,7 +10,7 @@ const FollowCompanyBtn = ({ company }) => {
     const [followed, setFollowed] = useState(false)
     // const id = useParams()
 
-    const { auth, profile, socket, listCompany } = useSelector(state => state)
+    const { auth, socket, listCompany } = useSelector(state => state)
     const dispatch = useDispatch()
 
 

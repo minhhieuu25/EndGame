@@ -15,12 +15,12 @@ const Footer = () => {
                         <h3>Download Our App</h3>
                         <p>Download App for Android and IOS mobile phone</p>
                         <div className="app-logo">
-                            <img src={play} />
-                            <img src={app} />
+                            <img src={play} alt="" />
+                            <img src={app} alt="" />
                         </div>
                     </div>
                     <div className="footer-col-2 col-sm-3">
-                        <img src={logo} />
+                        <img src={logo} alt="" />
                         <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Jobs Accessible to the Many</p>
                     </div>
                     <div className="footer-col-3 col-sm-3">

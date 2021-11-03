@@ -1,13 +1,9 @@
-import { GLOBALTYPES } from './globalTypes'
-import { getDataJob, getDataAPI, postDataAPI, patchDataAPI } from '../../utils/fetchData'
+import dateFormat from 'dateformat'
+import { getDataAPI, patchDataAPI, postDataAPI } from '../../utils/fetchData'
 import { imageUpload } from '../../utils/imageUpload'
+import { GLOBALTYPES } from './globalTypes'
 import { createNotify } from './notifyAction'
 import { getListSubmited } from './sumitedAction'
-
-
-
-import valid from '../../utils/valid'
-import dateFormat from 'dateformat'
 
 export const getResume = (dataResume, arrEdu, arrExp, skill, language, avatar) => async (dispatch) => {
     try {

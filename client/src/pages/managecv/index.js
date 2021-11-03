@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import ManageCV from '../../components/managecv/ManageCV'
-import { useSelector, useDispatch } from 'react-redux'
 import { getAllResume } from '../../redux/actions/resumeAction'
-
-
 
 const ManageCVs = () => {
 

@@ -10,7 +10,7 @@ const MenuRightAuth = () => {
         { label: 'FOR EMPLOYERS', title: 'FOR EMPLOYERS', path: '/nhatuyendung' },
     ]
 
-    const { auth, theme, notify } = useSelector(state => state)
+    const { auth, notify } = useSelector(state => state)
     const dispatch = useDispatch()
     const { pathname } = useLocation()
 

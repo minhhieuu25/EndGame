@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react'
-
-import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { getAllUsers } from '../redux/actions/usersAction'
+import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { updateRole, deleteUser } from '../redux/actions/usersAction';
-import { refreshToken } from '../redux/actions/authAction';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteUser, updateRole } from '../redux/actions/usersAction';
+
 const initialState = {
     firstname: '',
     lastname: '',
@@ -22,10 +19,7 @@ function Profile() {
     const { auth, users } = useSelector(state => state)
     const [data, setData] = useState(initialState)
 
-    const [avatar, setAvatar] = useState(false)
     const [dataUser, setDataUser] = useState([])
-
-    const [callback, setCallback] = useState(false)
 
     const dispatch = useDispatch()
 

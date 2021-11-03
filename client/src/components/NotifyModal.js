@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import NoNotice from '../images/notice.png'
-import { Link } from 'react-router-dom'
-import Avatar from './Avatar'
 import moment from 'moment'
-import { isReadNotify, NOTIFY_TYPES, deleteAllNotifies } from '../redux/actions/notifyAction'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import NoNotice from '../images/notice.png'
+import { deleteAllNotifies, isReadNotify, NOTIFY_TYPES } from '../redux/actions/notifyAction'
+import Avatar from './Avatar'
 
 const NotifyModal = () => {
-    const { auth, notify, listCompany } = useSelector(state => state)
-    const [companyInfo, setInfo] = useState()
+    const { auth, notify } = useSelector(state => state)
     const dispatch = useDispatch()
 
     // const handleGetInfo = () => {

@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from 'react'
-
-import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { getAllUsers } from '../redux/actions/usersAction'
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { updateRole, deleteUser } from '../redux/actions/usersAction';
-import { refreshToken } from '../redux/actions/authAction';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteCompany } from '../redux/actions/listCompanyAction';
+
 const initialState = {
     companyName: '', address: '', industry: '', info: '', website: '', phoneNumber: '', companySize: '', logo: ''
 }
@@ -17,13 +9,7 @@ const limit = 10
 function Profile() {
     const { auth, users, listCompany } = useSelector(state => state)
     const [data, setData] = useState(initialState)
-    // const [companies, setCompanies] = useState([])
-
-    const [avatar, setAvatar] = useState(false)
     const [dataUser, setDataUser] = useState([])
-
-    const [callback, setCallback] = useState(false)
-
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -39,14 +25,14 @@ function Profile() {
 
     }, [users, listCompany])
 
-    const handleChange = e => {
-        const { name, value } = e.target
-        setData({ ...data, [name]: value })
-    }
+    // const handleChange = e => {
+    //     const { name, value } = e.target
+    //     setData({ ...data, [name]: value })
+    // }
 
-    const handleUpdate = () => {
-        dispatch(updateRole(data, auth))
-    }
+    // const handleUpdate = () => {
+    //     dispatch(updateRole(data, auth))
+    // }
 
     const handleView = (company) => {
         setData(company)
@@ -56,9 +42,6 @@ function Profile() {
         dispatch(deleteCompany(company, auth))
     }
 
-    const handleDetail = () => {
-
-    }
     //phan trang
     const initDataShow = listCompany.companies ? listCompany.companies : [];
     const [dataShow, setDataShow] = useState(initDataShow)

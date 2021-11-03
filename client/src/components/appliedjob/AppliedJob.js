@@ -6,8 +6,7 @@ import './AppliedJob.scss'
 
 const AppliedJob = () => {
 
-    const { auth, allJob, submited } = useSelector(state => state)
-    const [jobApplied, setJobApplied] = useState([])
+    const { allJob, submited } = useSelector(state => state)
     const [dataSubmited, setDataSubmited] = useState([])
     useEffect(() => {
         const jobs = allJob.jobs ? allJob.jobs : []

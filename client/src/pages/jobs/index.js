@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './job.scss'
-import logo from '../../images/LogoFPT.png'
-import JobsComponent from '../../components/jobs/JobsComponent'
-import SearchJob from '../../components/jobs/SearchJob'
-import { refreshToken } from '../../redux/actions/authAction';
-
-import { getAllJob, searchJob } from '../../redux/actions/listJobAction'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { style } from '@mui/system';
-
+import JobsComponent from '../../components/jobs/JobsComponent';
+import SearchJob from '../../components/jobs/SearchJob';
+import './job.scss';
 
 const limit = 5
 

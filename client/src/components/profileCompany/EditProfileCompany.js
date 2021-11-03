@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { checkImage } from '../../utils/imageUpload'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { GLOBALTYPES } from '../../redux/actions/globalTypes'
 import { updateProfileCompany } from '../../redux/actions/profileCompanyAction'
+import { checkImage } from '../../utils/imageUpload'
 // import './Edit.scss'
 
 const EditProfileCompany = ({ data, setOnEdit }) => {
@@ -11,8 +11,6 @@ const EditProfileCompany = ({ data, setOnEdit }) => {
         // companyName: '', address: '', companySize: '', website: '', info: '', phoneNumber: ''
     }
     const [companyData, setCompanyData] = useState(initState)
-    const { companyName, address, companySize, website, info, phoneNumber } = initState
-
     const [logo, setLogo] = useState('')
 
     const { auth, theme } = useSelector(state => state)

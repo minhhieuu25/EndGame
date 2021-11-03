@@ -1,20 +1,10 @@
-import "./sidebar.css";
 import {
-  LineStyle,
-  Timeline,
-  TrendingUp,
-  PermIdentity,
-  PlayCircleOutline,
-  List,
-  MailOutline,
-  DynamicFeed,
-  ChatBubbleOutline,
-  WorkOutline,
-  Report,
-  AddToQueue,
-  QueuePlayNext,
+  AddToQueue, ChatBubbleOutline, DynamicFeed, LineStyle, MailOutline, PermIdentity,
+  PlayCircleOutline, QueuePlayNext, Report, Timeline,
+  TrendingUp, WorkOutline
 } from '@mui/icons-material';
 import { Link } from "react-router-dom";
+import "./sidebar.css";
 
 export default function Sidebar() {
   return (

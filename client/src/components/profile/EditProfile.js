@@ -9,7 +9,7 @@ const EditProfile = ({ setOnEdit }) => {
         fullname: '', mobile: '', address: '', website: '', story: '', gender: ''
     }
     const [userData, setUserData] = useState(initState)
-    const { fullname, mobile, address, website, story, gender } = userData
+    const { fullname, mobile, address, story, gender } = userData
 
     const [avatar, setAvatar] = useState('')
 
