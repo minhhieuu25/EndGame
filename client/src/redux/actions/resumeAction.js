@@ -7,6 +7,7 @@ import { getListSubmited } from './sumitedAction'
 
 
 import valid from '../../utils/valid'
+import dateFormat from 'dateformat'
 
 export const getResume = (dataResume, arrEdu, arrExp, skill, language, avatar) => async (dispatch) => {
     try {
@@ -171,8 +172,10 @@ export const deleteData = () => async (dispatch) => {
 export const submitCV = (idJob, idCompany, idCV, auth, socket) => async (dispatch) => {
     try {
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
-        console.log('id', idCompany)
-        const res = await postDataAPI('submit-cv', { idJob, idCompany, idCV }, auth.token)
+        const date = new Date()
+
+
+        const res = await postDataAPI('submit-cv', { idJob, idCompany, idCV, dateSubmit: dateFormat(date, 'yyyy/mm/dd') }, auth.token)
         console.log(res.data)
         if (res.data.newSubmit) {
             const msg = {
