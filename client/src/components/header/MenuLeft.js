@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../../redux/actions/authAction'
-import { GLOBALTYPES } from '../../redux/actions/globalTypes'
-import Avatar from '../Avatar'
-import NotifyModal from '../NotifyModal'
 
 const MenuLeft = () => {
 

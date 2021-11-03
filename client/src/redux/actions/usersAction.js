@@ -1,5 +1,5 @@
+import { getDataAPI, patchDataAPI, postDataAPI } from '../../utils/fetchData'
 import { GLOBALTYPES } from './globalTypes'
-import { deleteDataAPI, getDataAPI, patchDataAPI, postDataAPI } from '../../utils/fetchData'
 
 
 export const getAllUsers = (data) => async (dispatch) => {
