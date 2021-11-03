@@ -34,6 +34,7 @@ import { getListSubmited, getListSubmitedForCompany } from './redux/actions/sumi
 
 import Alert from './components/alert/Alert'
 import Header from './components/header/Header'
+import MessageAuth from './components/header/MessageAuth'
 import Footer from './components/footer/Footer'
 import StatusModal from './components/StatusModal'
 
@@ -125,6 +126,7 @@ function App() {
       <input type="checkbox" id="theme" />
       <div className={`App ${(status || modal) && 'mode'}`}>
         <Header />
+        <MessageAuth />
         <div className="main">
 
           {/* {auth.token && <Header />} */}

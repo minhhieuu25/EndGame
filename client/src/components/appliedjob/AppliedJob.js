@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import './AppliedJob.scss'
 import dateFormat from 'dateformat'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import './AppliedJob.scss'
 
 const AppliedJob = () => {
 
