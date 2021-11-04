@@ -1,12 +1,9 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../../redux/actions/authAction'
-import { GLOBALTYPES } from '../../redux/actions/globalTypes'
 import Avatar from '../Avatar'
 import NotifyModal from '../NotifyModal'
-import Notification from "./notification.svg";
-import Message from "./message.svg";
 
 const MenuRightAuth = () => {
     const navLinks = [
@@ -27,7 +24,7 @@ const MenuRightAuth = () => {
                 <li className="nav-item dropdown" style={{ opacity: 1, marginRight: "0.25rem" }} >
                     <span className="nav-link position-relative" id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i className={`fas fa-bell icon-style`} style={{ color: notify.data.length > 0 ? 'crimson' : '' }}></i>
+                        <i className={`fas fa-bell icon-style`}></i>
                         <span className="notify_length">{notify.data.length}</span>
                     </span>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown"
@@ -37,7 +34,7 @@ const MenuRightAuth = () => {
                 </li>
 
                 {/* message */}
-                <li className="nav-item dropdown"  style={{ opacity: 1, marginRight: "0.25rem" }} >
+                <li className="nav-item dropdown" style={{ opacity: 1, marginRight: "0.25rem" }} >
                     <Link className="mt-1" to='/message'>
                         <i className={`fab fa-facebook-messenger icon-style`}></i>
                     </Link>
@@ -113,7 +110,6 @@ const MenuRightAuth = () => {
 
             </ul>
         </div>
-
     )
 }
 

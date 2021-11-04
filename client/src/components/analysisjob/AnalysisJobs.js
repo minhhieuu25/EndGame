@@ -1,16 +1,17 @@
 import { DataGrid } from "@material-ui/data-grid";
-import { ArrowDownward } from "@material-ui/icons";
+import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
+import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import dateFormat from 'dateformat';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, Link } from 'react-router-dom';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
+import { getListSubmitedForCompany } from "../../redux/actions/sumitedAction";
 import './AnalysisJobs.scss';
 
 
+
 const AnalysisJobs = () => {
-
-
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 100 },
@@ -38,19 +39,36 @@ const AnalysisJobs = () => {
             width: 150,
         },
         {
-            field: 'aa1',
+            field: 'action',
             headerName: 'Action',
             width: 120,
+            renderCell: (params) => {
+                return (
+                    <>
+                        <Link to={"/detailResume/" + params.row.idCV} >
+                            <ReadMoreIcon />
+                        </Link>
+                        {/* <Link to={"/edit-job/" + params.row._id}>
+                            <EditIcon titleAccess="Edit" />
+                        </Link>
+                        <DeleteOutline titleAccess="Delete" className="manage-job-delete" onClick={e => handleDelete(params.row._id)} /> */}
 
+                    </>
+                );
+            },
         },
     ]
     const { id } = useParams()
-    const { allJob, submited } = useSelector(state => state)
+    const { allJob, submited, auth } = useSelector(state => state)
     const [jobs, setJobs] = useState([])
     const [post, setPost] = useState({})
     const [cvs, setCvs] = useState([])
+    const [totalCVToday, setCvToday] = useState(0)
+    const [totalCVYesterday, setCvYesterday] = useState(0)
+    const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(getListSubmitedForCompany(id, auth))
         if (allJob.jobs) {
             allJob.jobs.map((element) => {
                 if (element._id === id) {
@@ -59,28 +77,33 @@ const AnalysisJobs = () => {
             });
         }
 
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         let arr = {}
         let arr1 = []
         if (submited.submited) {
-            submited.submited.map((element, index) => {
-                if (element.idJob === id) {
-                    arr = { ...element }
-                }
-            })
+            arr = { ...submited.submited }
         }
         setPost(arr)
-
         if (arr.cv) {
             arr.cv.map((element, index) => {
                 arr1 = [...arr1, { ...element, 'id': index }]
             })
         }
         setCvs([...arr1])
-
+        calTotalCVToday(arr1)
+        calTotalCVYesterday(arr1)
     }, [])
+
+    const calTotalCVToday = (cvs) => {
+        const arr = cvs.filter(element => dateFormat(element.dateSubmit, 'dd/mm/yyyy') === dateFormat(new Date(), 'dd/mm/yyyy'))
+        setCvToday(arr.length)
+    }
+    const calTotalCVYesterday = (cvs) => {
+        const arr = cvs.filter(element => dateFormat(element.dateSubmit, 'dd/mm/yyyy') === dateFormat(new Date(Date.now() - 864e5), 'dd/mm/yyyy'))
+        setCvYesterday(arr.length)
+    }
 
     return (
         <div className="analysis-job-view">
@@ -108,9 +131,9 @@ const AnalysisJobs = () => {
                             <div className="featuredItem">
                                 <span className="featuredTitle">Total Resume</span>
                                 <div className="featuredMoneyContainer">
-                                    <span className="featuredMoney">30</span>
+                                    <span className="featuredMoney">{totalCVToday}</span>
                                     <span className="featuredMoneyRate">
-                                        -1 <ArrowDownward className="featuredIcon negative" />
+                                        {totalCVToday - totalCVYesterday} {totalCVToday - totalCVYesterday > 0 ? <ArrowUpward className="featuredIcon negative" style={{ color: "green" }} /> : <ArrowDownward className="featuredIcon negative" />}
                                     </span>
                                 </div>
                                 <span className="featuredSub">Compared to last day</span>

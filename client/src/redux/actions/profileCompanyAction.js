@@ -1,13 +1,7 @@
-import { GLOBALTYPES, DeleteData, DeleteDataFollow } from './globalTypes'
 import { getDataAPI, patchDataAPI } from '../../utils/fetchData'
 import { imageUpload } from '../../utils/imageUpload'
-import { createNotify, removeNotify } from './notifyAction'
-import { useState } from 'react'
-import { set } from 'mongoose'
+import { DeleteDataFollow, GLOBALTYPES } from './globalTypes'
 import { getListCompany } from './listCompanyAction'
-import cookieParser from 'cookie-parser'
-
-
 
 
 export const PROFILECOMPANY_TYPES = {

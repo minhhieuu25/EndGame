@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { GLOBALTYPES } from '../../redux/actions/globalTypes'
@@ -15,7 +16,7 @@ const Notify = () => {
 
             {
                 alert.error && 
-                <Toast msg={{title: 'Error', body: alert.error}}
+                <Toast msg={{title: 'Error', body: alert.error} }
                 handleShow={() => dispatch({type: GLOBALTYPES.ALERT, payload: {}})} 
                 bgColor="bg-danger" />
             }

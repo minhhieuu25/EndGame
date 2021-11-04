@@ -169,14 +169,12 @@ export const deleteData = () => async (dispatch) => {
     }
 }
 
-export const submitCV = (idJob, idCompany, idCV, auth, socket) => async (dispatch) => {
+export const submitCV = (idJob, idCompany, cv, auth, socket) => async (dispatch) => {
     try {
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
         const date = new Date()
 
-
-        const res = await postDataAPI('submit-cv', { idJob, idCompany, idCV, dateSubmit: dateFormat(date, 'yyyy/mm/dd') }, auth.token)
-        console.log(res.data)
+        const res = await postDataAPI('submit-cv', { idJob, idCompany, idCV: cv._id, dataCV: cv, dateSubmit: dateFormat(date, 'yyyy/mm/dd') }, auth.token)
         if (res.data.newSubmit) {
             const msg = {
                 id: res.data.newSubmit.idCV,

@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import './AppliedJob.scss'
 import dateFormat from 'dateformat'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import './AppliedJob.scss'
 
 const AppliedJob = () => {
 
     const { auth, allJob, submited } = useSelector(state => state)
     const [jobApplied, setJobApplied] = useState([])
     const [dataSubmited, setDataSubmited] = useState([])
+
+    const handleDelete = () => {
+
+    }
+
     useEffect(() => {
         const jobs = allJob.jobs ? allJob.jobs : []
         const jobSubmited = submited.submited ? submited.submited : []
@@ -41,6 +46,9 @@ const AppliedJob = () => {
                                             <div className="name-company">
                                                 <Link><span >{element.companyName}</span></Link>
                                             </div>
+                                            {/* {
+                                                element.cv.map(data => console.log(data))
+                                            } */}
                                             <div className="row">
                                                 <div className="col-sm-4">
                                                     <span className="font-weight-bold">Status: </span><span style={{ color: 'green' }}> Approved</span>

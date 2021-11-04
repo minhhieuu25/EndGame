@@ -72,8 +72,7 @@ const Resume = () => {
     }
 
     const handleSave = async () => {
-        // dispatch(saveResume(cvData, arrEdu, arrExp, skill, language, avatar, auth))
-        console.log(arrEdu)
+        dispatch(saveResume(cvData, arrEdu, arrExp, skill, language, avatar, auth))
     }
 
     const changeAvatar = (e) => {
@@ -87,7 +86,7 @@ const Resume = () => {
     }
 
     const handleDeleteEdu = (i) => {
-        
+
     }
 
     return (
