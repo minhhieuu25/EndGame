@@ -8,7 +8,7 @@ import MenuRightAuth from './MenuRightAuth'
 
 
 const Header = () => {
-    const { auth, status, modal, call } = useSelector(state => state)
+    const { auth } = useSelector(state => state)
 
     return (
         <div className="header">

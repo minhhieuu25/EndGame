@@ -1,5 +1,6 @@
 const Users = require('../models/userModel')
 const Company = require('../models/companyModel')
+const Job = require('../models/jobModel')
 
 const userCtrl = {
     searchUser: async (req, res) => {
@@ -149,13 +150,17 @@ const userCtrl = {
             // const user = await Users.find({ _id: req.params.id, followersCompany: req.user._id })
             // if (user.length > 0) return res.status(500).json({ msg: "You followed this company." })
             const user = await Users.find({ _id: req.user._id, followJob: req.params.id })
-            if (user.length > 0) return res.status(500).json({ msg: "Yoy followed this job" })
+            if (user.length > 0) return res.status(500).json({ msg: "You followed this job" })
 
 
 
             const newUser = await Users.findOneAndUpdate({ _id: req.user._id }, {
                 $push: { followJob: req.params.id }
             }, { new: true })
+
+            await Job.findOneAndUpdate({ _id: req.params.id }, {
+                $push: { jobFollower: req.user._id }
+            })
 
             // await Users.findOneAndUpdate({ _id: req.user._id }, {
             //     $push: { followCompany: req.params.id }
@@ -176,6 +181,10 @@ const userCtrl = {
             const newUser = await Users.findOneAndUpdate({ _id: req.user._id }, {
                 $pull: { followJob: req.params.id }
             }, { new: true })
+
+            await Job.findOneAndUpdate({ _id: req.params.id }, {
+                $pull: { jobFollower: req.user._id }
+            })
 
             res.json({ id: req.params.id })
 

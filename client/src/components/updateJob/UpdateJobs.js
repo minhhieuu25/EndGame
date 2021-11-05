@@ -54,7 +54,7 @@ const UpdateJobs = () => {
         companyName: '', position: '', level, industry: '', address: '', description: '', requirement: '', companySize: '', infoCompany: '', benefit: ''
     }
     const [jobData, setJobData] = useState(initState)
-    const { idCompany, companyName, position, industry, address, description, requirement, minSalary, maxSalary, infoCompany, benefit } = jobData
+    // const { idCompany, companyName, position, industry, address, description, requirement, minSalary, maxSalary, infoCompany, benefit } = jobData
 
     const [logo, setLogo] = useState('')
     const [image, setImage] = useState('')

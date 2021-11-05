@@ -91,7 +91,6 @@ function App() {
         dispatch(getAllUsers(auth.token))
       if (!auth.isAdmin && !auth.isCompany)
         dispatch(getListSubmited(auth))
-
     }
   }, [dispatch, auth.token, auth])
 

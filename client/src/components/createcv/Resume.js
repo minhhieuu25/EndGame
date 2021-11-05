@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import Profile from './Profile';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { GLOBALTYPES } from '../../redux/actions/globalTypes';
+import { getResume, saveResume } from '../../redux/actions/resumeAction';
+import { checkImage } from '../../utils/imageUpload';
 import Education from './Education';
 import Experience from './Experience';
 import Extras from './Extras';
-import { Link } from 'react-router-dom'
-import { getResume, saveResume } from '../../redux/actions/resumeAction'
-import { useSelector, useDispatch } from 'react-redux'
-import { checkImage } from '../../utils/imageUpload';
-import { deleteData } from '../../redux/actions/resumeAction';
-import { GLOBALTYPES } from '../../redux/actions/globalTypes';
+import Profile from './Profile';
+
 
 let arrEdu = [];
 let arrExp = [];
 
 const Resume = () => {
 
-    const { allResume, auth, dataResume } = useSelector(state => state)
+    const { dataResume, auth } = useSelector(state => state)
     const [avatar, setAvatar] = useState(dataResume.avatar ? dataResume.avatar : '')
     const [skill, setSkill] = useState(dataResume.skill ? dataResume.skill : [])
     const [language, setLanguage] = useState(dataResume.language ? dataResume.language : [])
-    const [education, setEducation] = useState([])
-    const [experience, setExperience] = useState([])
 
     const [loadEdu, setLoadEdu] = useState([1])
     const [loadExp, setLoadExp] = useState([1])
@@ -39,18 +37,6 @@ const Resume = () => {
         // language: ''
     }
     const [cvData, setCVData] = useState(initState)
-
-    const {
-        fullname,
-        email,
-        dateofBirth,
-        position,
-        phoneNumber,
-        address,
-        descriptionProfile,
-        // skill,
-        // language 
-    } = cvData
 
     useEffect(() => {
         if (dataResume.resumes)

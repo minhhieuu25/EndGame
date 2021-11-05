@@ -10,7 +10,6 @@ import { getListSubmitedForCompany } from "../../redux/actions/sumitedAction";
 import './AnalysisJobs.scss';
 
 
-
 const AnalysisJobs = () => {
 
     const columns = [
@@ -34,9 +33,10 @@ const AnalysisJobs = () => {
             width: 150,
         },
         {
-            field: 'aa23',
+            field: 'Point',
             headerName: 'Point',
             width: 150,
+
         },
         {
             field: 'action',
@@ -45,7 +45,7 @@ const AnalysisJobs = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/detailResume/" + params.row.idCV} >
+                        <Link to={"/detailResume/" + params.row.idCV}>
                             <ReadMoreIcon />
                         </Link>
                         {/* <Link to={"/edit-job/" + params.row._id}>
@@ -77,7 +77,7 @@ const AnalysisJobs = () => {
             });
         }
 
-    }, [dispatch])
+    }, [dispatch, id])
 
     useEffect(() => {
         let arr = {}
@@ -94,7 +94,7 @@ const AnalysisJobs = () => {
         setCvs([...arr1])
         calTotalCVToday(arr1)
         calTotalCVYesterday(arr1)
-    }, [])
+    }, [submited.submited])
 
     const calTotalCVToday = (cvs) => {
         const arr = cvs.filter(element => dateFormat(element.dateSubmit, 'dd/mm/yyyy') === dateFormat(new Date(), 'dd/mm/yyyy'))
@@ -141,22 +141,22 @@ const AnalysisJobs = () => {
                             <div className="featuredItem">
                                 <span className="featuredTitle">View</span>
                                 <div className="featuredMoneyContainer">
-                                    <span className="featuredMoney">123</span>
-                                    <span className="featuredMoneyRate">
+                                    <span className="featuredMoney">{jobs.jobFollower ? jobs.jobFollower.length : 0}</span>
+                                    {/* <span className="featuredMoneyRate">
                                         -1 <ArrowDownward className="featuredIcon negative" />
-                                    </span>
+                                    </span> */}
                                 </div>
                                 <span className="featuredSub">Compared to last day</span>
                             </div>
                             <div className="featuredItem">
-                                <span className="featuredTitle">Resume</span>
+                                <span className="featuredTitle">Selected resume</span>
                                 <div className="featuredMoneyContainer">
-                                    <span className="featuredMoney">3</span>
-                                    <span className="featuredMoneyRate">
-                                        -1 <ArrowDownward className="featuredIcon negative" />
-                                    </span>
+                                    <span className="featuredMoney">{cvs.filter(element => element.status === 'Accept').length}</span>
+                                    {/* <span className="featuredMoneyRate">
+                                        <ArrowDownward className="featuredIcon negative" />
+                                    </span> */}
                                 </div>
-                                <span className="featuredSub">Compared to last day</span>
+                                {/* <span className="featuredSub">Compared to last day</span> */}
                             </div>
                         </div>
                         <div className="chart">

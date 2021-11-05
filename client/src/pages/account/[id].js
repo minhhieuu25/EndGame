@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react'
-
-import Info from '../../components/account/Info'
-import Posts from '../../components/account/Posts'
-import Saved from '../../components/account/Saved'
-import Setting from '../../components/account/Setting'
-
-import { useSelector, useDispatch } from 'react-redux'
-import LoadIcon from '../../images/loading.gif'
-import { getProfileUsers } from '../../redux/actions/profileAction'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import Info from '../../components/account/Info'
+import { getProfileUsers } from '../../redux/actions/profileAction'
 
 
 const Account = () => {
@@ -16,7 +10,6 @@ const Account = () => {
     const dispatch = useDispatch()
 
     const { id } = useParams()
-    const [saveTab, setSaveTab] = useState(false)
 
     useEffect(() => {
         if (profile.ids.every(item => item !== id)) {

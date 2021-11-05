@@ -12,7 +12,8 @@ const submitCtrl = {
             const oldSubmit = await submit.findOne({ idJob })
             if (oldSubmit) {
                 const arr = oldSubmit.cv.filter(element => element.idCV === idCV)
-                if (!arr) {
+
+                if (!arr[0]) {
                     await submit.findOneAndUpdate({ idJob }, {
                         $push: {
                             cv: {
@@ -56,6 +57,18 @@ const submitCtrl = {
         try {
             const submited = await submit.find({ idCompany: req.user._id })
             res.json(submited)
+        } catch (err) {
+            return res.json({ msg: err.message })
+        }
+    },
+    unsubmit: async (req, res) => {
+        try {
+            const { idJob } = req.body
+
+            await submit.findOneAndUpdate({ idJob: idJob }, {
+                $pull: { cv: { idCandidate: req.user._id } }
+            })
+            return res.json({ msg: 'Unsubmit success!!' })
         } catch (err) {
             return res.json({ msg: err.message })
         }

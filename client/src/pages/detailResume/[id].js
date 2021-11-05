@@ -28,8 +28,8 @@ const ReviewResume = () => {
 
 	const { id } = useParams()
 	const { submited, auth } = useSelector(state => state)
-
 	const [resume, setResume] = useState(initState)
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		let data = {}
@@ -41,6 +41,10 @@ const ReviewResume = () => {
 			setResume({ ...data })
 		}
 	}, [])
+
+	const handleAccept = () => {
+		// dispatch(acceptResume())
+	}
 
 	return (
 		<>
@@ -108,6 +112,7 @@ const ReviewResume = () => {
 			</div>
 			<div className="text-center">
 				<button className="btn btn-primary mr-2">Accept Resume</button>
+				<button className="btn btn-primary mr-2">Refuse Resume</button>
 				<Pdf targetRef={ref} filename="post.pdf">
 					{({ toPdf }) => <button className="btn btn-primary" onClick={toPdf}>Download file PDF</button>}
 				</Pdf>

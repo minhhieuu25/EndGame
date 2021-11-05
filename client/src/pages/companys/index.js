@@ -1,9 +1,9 @@
 import React from 'react';
-import './company.scss'
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import SearchJob from '../../components/jobs/SearchJob';
 import ListCompany from '../../components/ListCompany';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
+import './company.scss';
 
 const Company = () => {
 

@@ -41,25 +41,6 @@ const Resume = () => {
     const [avatar, setAvatar] = useState(allResume.resumes.filter(element => id === element._id).avatar)
     const [skill, setSkill] = useState([])
     const [language, setLanguage] = useState([])
-    const {
-        fullname,
-        email,
-        dateofBirth,
-        position,
-        phoneNumber,
-        address,
-        descriptionProfile,
-        nameSchool,
-        major,
-        startDateEducation,
-        endDateEducation,
-        descriptionEducation,
-        nameCompany,
-        positonCompany,
-        startDateExperience,
-        endDateExperience,
-        descriptionExperience,
-    } = cvData
 
     useEffect(() => {
         if (allResume.resumes) {
