@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { GLOBALTYPES } from '../../redux/actions/globalTypes';
-import { getResume } from '../../redux/actions/resumeAction';
+import { getResume, saveResume } from '../../redux/actions/resumeAction';
 import { checkImage } from '../../utils/imageUpload';
 import Education from './Education';
 import Experience from './Experience';
 import Extras from './Extras';
 import Profile from './Profile';
 
+
 let arrEdu = [];
 let arrExp = [];
 
 const Resume = () => {
 
-    const { dataResume } = useSelector(state => state)
+    const { dataResume, auth } = useSelector(state => state)
     const [avatar, setAvatar] = useState(dataResume.avatar ? dataResume.avatar : '')
     const [skill, setSkill] = useState(dataResume.skill ? dataResume.skill : [])
     const [language, setLanguage] = useState(dataResume.language ? dataResume.language : [])
@@ -57,8 +58,7 @@ const Resume = () => {
     }
 
     const handleSave = async () => {
-        // dispatch(saveResume(cvData, arrEdu, arrExp, skill, language, avatar, auth))
-        console.log(arrEdu)
+        dispatch(saveResume(cvData, arrEdu, arrExp, skill, language, avatar, auth))
     }
 
     const changeAvatar = (e) => {
@@ -72,7 +72,7 @@ const Resume = () => {
     }
 
     const handleDeleteEdu = (i) => {
-        
+
     }
 
     return (

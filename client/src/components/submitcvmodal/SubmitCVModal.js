@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import './SubmitCVModal.scss'
 import { submitCV } from '../../redux/actions/resumeAction'
+import { Link } from 'react-router-dom'
 
 const SubmitCVModal = ({ setShowSubmitCV, job }) => {
 
@@ -10,12 +11,12 @@ const SubmitCVModal = ({ setShowSubmitCV, job }) => {
     // const { id } = useParams()
     const { auth, allResume, socket, allJob } = useSelector(state => state)
     const [resumes, setResumes] = useState([])
-    const [selected, setSelected] = useState('')
+    const [selected, setSelected] = useState({})
     const [idCompany, setIdCompany] = useState('')
     useEffect(() => {
         if (allResume.resumes) {
             setResumes(allResume.resumes)
-            setSelected(allResume.resumes[0]._id)
+            setSelected(allResume.resumes[0])
         }
         if (allJob.jobs) {
             allJob.jobs.map(element => {
@@ -54,16 +55,16 @@ const SubmitCVModal = ({ setShowSubmitCV, job }) => {
                     </div>
                 </div>
                 <hr />
-                <h6>You have <span>2</span> resume on RankWorks. Please select a resume to apply for:</h6>
+                <h6>You have <span>{resumes.length}</span> resume on RankWorks. Please select a resume to apply for:</h6>
                 <div className="mt-3 list-cv-data">
                     {resumes.map((data, index) => (
                         <>
                             <input type="radio"
                                 name="vote"
-                                value={data._id}
+                                value={data}
                                 id={data._id}
                                 key={index}
-                                checked={selected === data._id}
+                                checked={selected._id === data._id}
                                 onChange={handleOnChange} />
                             <label key={index} htmlFor={data._id} title={data.position}>{data.position}</label>
                         </>
@@ -71,12 +72,12 @@ const SubmitCVModal = ({ setShowSubmitCV, job }) => {
                     ))}
                 </div>
                 <div className="button-submit-cv text-center">
-                    <button type="button" class="btn btn-submit-cv" onClick={handleSubmit}><i className="far fa-paper-plane" ></i> Send</button>
+                    {resumes.length > 0 ? <button type="button" class="btn btn-submit-cv" onClick={handleSubmit}><i className="far fa-paper-plane" ></i> Send</button> : <h6>Please create CV</h6>}
                 </div>
                 <hr />
                 <div className="button-no-cv mt-4">
                     <p className="font-weight-bold">If you do not have a resume file:</p>
-                    <button type="button" className="btn btn-new-cv-1 text-uppercase"><i className="fas fa-pen-alt"></i> Create CV online</button>
+                    <Link to={'/createCV'}><button type="button" className="btn btn-new-cv-1 text-uppercase"><i className="fas fa-pen-alt"></i> Create CV online</button></Link>
                 </div>
                 <div className="close-submit" onClick={() => setShowSubmitCV(false)}>
                     &times;
