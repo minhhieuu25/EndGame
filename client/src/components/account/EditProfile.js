@@ -69,7 +69,7 @@ const EditProfile = ({ setOnEdit }) => {
                             name="fullname" value={fullname} onChange={handleInput} />
                         <small className="text-danger position-absolute"
                             style={{ top: '50%', right: '5px', transform: 'translateY(-50%)' }}>
-                            {fullname.length}/25
+                            {/* {fullname.length}/25 */}
                         </small>
                     </div>
                 </div>
@@ -98,7 +98,7 @@ const EditProfile = ({ setOnEdit }) => {
                         className="form-control" onChange={handleInput} />
 
                     <small className="text-danger d-block text-right">
-                        {story.length}/200
+                        {/* {story.length}/200 */}
                     </small>
                 </div>
 

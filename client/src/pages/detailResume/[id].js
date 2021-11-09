@@ -1,5 +1,5 @@
 import dateFormat from 'dateformat';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import Pdf from "react-to-pdf";
@@ -27,6 +27,7 @@ const ReviewResume = () => {
 
 
 	const { id } = useParams()
+
 	const { submited, auth } = useSelector(state => state)
 	const [resume, setResume] = useState(initState)
 	const dispatch = useDispatch()

@@ -41,7 +41,7 @@ const Info = ({ id, auth, profile, dispatch }) => {
 
                         <div className="info_content">
                             <div className="info_content_title">
-                                <h2>{user.fistname + ' ' +user.lastname}</h2>
+                                <h2>{user.fistname + ' ' + user.lastname}</h2>
                                 {
                                     user._id === auth.user._id
                                         ? <button className="btn btn-outline-info"
@@ -57,10 +57,10 @@ const Info = ({ id, auth, profile, dispatch }) => {
 
                             <div className="follow_btn">
                                 <span className="mr-4" onClick={() => setShowFollowers(true)}>
-                                    {user.followers.length} Followers
+                                    {/* {user.followers.length} Followers */}
                                 </span>
                                 <span className="ml-4" onClick={() => setShowFollowing(true)}>
-                                    {user.following.length} Following
+                                    {/* {user.following.length} Following */}
                                 </span>
                             </div>
 

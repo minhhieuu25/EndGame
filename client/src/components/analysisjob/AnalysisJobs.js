@@ -6,11 +6,20 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-import { getListSubmitedForCompany } from "../../redux/actions/sumitedAction";
+import { getListSubmitedForCompany, setStatus } from "../../redux/actions/sumitedAction";
 import './AnalysisJobs.scss';
 
 
+//select
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/NativeSelect';
+
+
 const AnalysisJobs = () => {
+
+
+    // const dispatch = useDispatch()
+
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 100 },
@@ -31,6 +40,25 @@ const AnalysisJobs = () => {
             field: 'status',
             headerName: 'Status',
             width: 150,
+            renderCell: (params) => {
+                return (
+                    <FormControl fullWidth sx={{ height: 20 }}>
+                        <NativeSelect
+                            defaultValue={params.row.status}
+                            onChange={e => handleOnChange(e, params.row.idCV, params.row.idCandidate)}
+                        // inputProps={{
+                        //     name: 'age',
+                        //     id: 'uncontrolled-native',
+                        // }}
+                        >
+                            <option value={'Waiting'}>Waiting</option>
+                            <option value={'Accept'}>Accept</option>
+                            <option value={'Refuse'}>Refuse</option>
+                        </NativeSelect>
+                    </FormControl>
+
+                )
+            }
         },
         {
             field: 'Point',
@@ -45,7 +73,7 @@ const AnalysisJobs = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/detailResume/" + params.row.idCV}>
+                        <Link to={"/detailResume/" + params.row.idCV} query={{ testvalue: "hello" }}>
                             <ReadMoreIcon />
                         </Link>
                         {/* <Link to={"/edit-job/" + params.row._id}>
@@ -59,7 +87,7 @@ const AnalysisJobs = () => {
         },
     ]
     const { id } = useParams()
-    const { allJob, submited, auth } = useSelector(state => state)
+    const { allJob, submited, auth, socket } = useSelector(state => state)
     const [jobs, setJobs] = useState([])
     const [post, setPost] = useState({})
     const [cvs, setCvs] = useState([])
@@ -103,6 +131,11 @@ const AnalysisJobs = () => {
     const calTotalCVYesterday = (cvs) => {
         const arr = cvs.filter(element => dateFormat(element.dateSubmit, 'dd/mm/yyyy') === dateFormat(new Date(Date.now() - 864e5), 'dd/mm/yyyy'))
         setCvYesterday(arr.length)
+    }
+
+    const handleOnChange = (e, idCV, idCandidate) => {
+        // console.log(e.target.value)
+        dispatch(setStatus(jobs._id, idCV, idCandidate, e.target.value, auth, socket))
     }
 
     return (

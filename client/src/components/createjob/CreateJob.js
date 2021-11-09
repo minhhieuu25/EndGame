@@ -88,8 +88,9 @@ const CreateJob = () => {
     const handleCreate = () => {
         dispatch(createJob(jobData, level, jobType, skill, companySize, logo, image, auth, socket))
     }
-    const onTagsChangeSkill = (values) => {
-        setSkill(values)
+    const onTagsChangeSkill = (e, value) => {
+        setSkill([value])
+        console.log(skill)
     }
 
     useEffect(() => {
@@ -176,12 +177,18 @@ const CreateJob = () => {
                                 <div className="col-sm-8">
                                     {/* <input type="" name='skill' onChange={handleInput} className="form-control" id="" placeholder="Ví dụ: JavaScript, C++, ...." /> */}
                                     <Autocomplete
-                                        multiple
+                                        multiples
                                         limitTags={2}
                                         id="multiple-limit-tags"
                                         options={topSkill}
-                                        onChange={onTagsChangeSkill}
-                                        defaultValue={skill}
+                                        // onChange={onTagsChangeSkill}
+                                        onChange={(event, newValue) => {
+                                            setSkill([
+                                                ...skill,
+                                                newValue,
+                                            ]);
+                                        }}
+                                        // defaultValue={skill}
                                         getOptionLabel={(option) => option.title}
                                         renderInput={(params) => (
                                             <TextField {...params} label="Skill tag" placeholder="Skill" />
