@@ -10,7 +10,7 @@ const cvCtrl = {
 
             const { avatar, fullname, email, dateofBirth, position, phoneNumber, address, descriptionProfile, educations,
                 experiences, skill, language } = req.body
-            console.log(req.body)
+
             const newCV = new CV({
                 idCandidate: req.user._id, fullname, email, dateofBirth, avatar, position, phoneNumber, address, descriptionProfile,
                 educations, experiences, skill, language

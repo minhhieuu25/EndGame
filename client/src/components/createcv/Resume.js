@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { GLOBALTYPES } from '../../redux/actions/globalTypes';
-import { getResume } from '../../redux/actions/resumeAction';
+import { getResume, saveResume } from '../../redux/actions/resumeAction';
 import { checkImage } from '../../utils/imageUpload';
 import Education from './Education';
 import Experience from './Experience';
 import Extras from './Extras';
 import Profile from './Profile';
 
+
 let arrEdu = [];
 let arrExp = [];
 
 const Resume = () => {
 
-    const { dataResume } = useSelector(state => state)
+    const { dataResume, auth } = useSelector(state => state)
     const [avatar, setAvatar] = useState(dataResume.avatar ? dataResume.avatar : '')
     const [skill, setSkill] = useState(dataResume.skill ? dataResume.skill : [])
     const [language, setLanguage] = useState(dataResume.language ? dataResume.language : [])
@@ -52,13 +53,12 @@ const Resume = () => {
     const dispatch = useDispatch()
 
     const handlePreview = async () => {
-        await dispatch(getResume(cvData, arrEdu, arrExp, skill, language, avatar))
-
+        // await dispatch(getResume(cvData, arrEdu, arrExp, skill, language, avatar))
+        console.log('preview', arrEdu)
     }
 
     const handleSave = async () => {
-        // dispatch(saveResume(cvData, arrEdu, arrExp, skill, language, avatar, auth))
-        console.log(arrEdu)
+        dispatch(saveResume(cvData, arrEdu, arrExp, skill, language, avatar, auth))
     }
 
     const changeAvatar = (e) => {
@@ -72,7 +72,14 @@ const Resume = () => {
     }
 
     const handleDeleteEdu = (i) => {
-        
+        arrEdu.splice(i, 1)
+        const tmp = loadEdu.splice(i, 1)
+        setLoadEdu(tmp)
+    }
+    const handleDeleteExp = (i) => {
+        arrExp.splice(i, 1)
+        const tmp = loadExp.splice(i, 1)
+        setLoadExp(tmp)
     }
 
     return (
@@ -80,7 +87,7 @@ const Resume = () => {
             <Profile handleInput={handleInput} changeAvatar={changeAvatar} values={cvData} />
             {
                 loadEdu.map((element, index) => (
-                    <Education handleInput={handleInput} values={cvData} index={index} arr={arrEdu} handleDelete={handleDeleteEdu} />
+                    <Education index={index} arr={arrEdu} handleDelete={handleDeleteEdu} load={loadEdu} />
                 ))
             }
             <div>
@@ -89,7 +96,7 @@ const Resume = () => {
             {
                 loadExp.map((element, index) => (
                     <>
-                        <Experience handleInput={handleInput} values={cvData} index={index} arr={arrExp} />
+                        <Experience index={index} arr={arrExp} handleDelete={handleDeleteExp} load={loadExp} />
 
                     </>
                 ))

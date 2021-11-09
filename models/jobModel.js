@@ -64,6 +64,9 @@ const jobSchema = new mongoose.Schema({
     },
     benefit: {
         type: String
+    },
+    jobFollower: {
+        type: Array
     }
 }, {
     timestamps: true

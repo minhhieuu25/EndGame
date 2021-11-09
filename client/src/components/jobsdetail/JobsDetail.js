@@ -92,7 +92,7 @@ const JobsDetail = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-sm-6">                                           
+                                        <div className="col-sm-6">
                                             <div className="content-detail">
                                                 <div className="icon-left">
                                                     <i className="fas fa-bars"></i>
@@ -131,23 +131,36 @@ const JobsDetail = () => {
                                                     <span className="title-3">Expires on:</span>
                                                     <span>{dateFormat(job.endDate, 'dd/mm/yyyy')}</span>
                                                 </div>
-                                            </div>                                       
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-sm-4">
-                                <div className="job-btn">
-                                    <button type="button" className="btn btn-info btn-lg" onClick={() => setShowSubmitCV(true)}><i className="far fa-paper-plane"></i> APPLY NOW</button>
-                                    {
-                                        ShowSubmitCV &&
-                                        <SubmitCVModal
-                                            setShowSubmitCV={setShowSubmitCV}
-                                            job={job} />
-                                    }
-                                    <FollowCompanyBtn job={job} />
-                                    <button type="button" className="btn btn-secondary btn-lg mt-3"><i className="fas fa-share-alt"></i> Share Job</button>
-                                </div>
+                                {auth.isCompany ?
+                                    <div className="job-btn">
+                                        <button type="button" className="btn btn-info btn-lg" onClick={() => setShowSubmitCV(true)} disabled={true}><i className="far fa-paper-plane"></i> APPLY NOW</button>
+                                        {
+                                            ShowSubmitCV &&
+                                            <SubmitCVModal
+                                                setShowSubmitCV={setShowSubmitCV}
+                                                job={job} />
+                                        }
+                                        <FollowCompanyBtn job={job} />
+                                        <button type="button" disabled={true} className="btn btn-secondary btn-lg mt-3" ><i className="fas fa-share-alt" ></i> Share Job</button>
+                                    </div> :
+                                    <div className="job-btn">
+                                        <button type="button" className="btn btn-info btn-lg" onClick={() => setShowSubmitCV(true)}><i className="far fa-paper-plane"></i> APPLY NOW</button>
+                                        {
+                                            ShowSubmitCV &&
+                                            <SubmitCVModal
+                                                setShowSubmitCV={setShowSubmitCV}
+                                                job={job} />
+                                        }
+                                        <FollowCompanyBtn job={job} />
+                                        <button type="button" className="btn btn-secondary btn-lg mt-3"><i className="fas fa-share-alt"></i> Share Job</button>
+                                    </div>
+                                }
                             </div>
 
                         </div>

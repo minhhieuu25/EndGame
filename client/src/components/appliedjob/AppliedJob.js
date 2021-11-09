@@ -1,27 +1,42 @@
 import dateFormat from 'dateformat'
+
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './AppliedJob.scss'
+import { unSubmit, getListSubmited } from '../../redux/actions/sumitedAction'
 
 const AppliedJob = () => {
 
-    const { allJob, submited } = useSelector(state => state)
+    const { allJob, submited, auth } = useSelector(state => state)
+    const [dataJob, setDataJob] = useState([])
     const [dataSubmited, setDataSubmited] = useState([])
+    const dispatch = useDispatch()
+
+    const handleDelete = (idJob) => {
+        dispatch(unSubmit(idJob, auth))
+    }
+
     useEffect(() => {
+        dispatch(getListSubmited(auth))
         const jobs = allJob.jobs ? allJob.jobs : []
         const jobSubmited = submited.submited ? submited.submited : []
-
         let arr = []
         jobs.filter(dataJob => {
             jobSubmited.map(dataCv => {
                 if (dataJob._id === dataCv.idJob) {
-                    arr = [...arr, dataJob]
+                    let tmp = { ...dataJob }
+                    dataCv.cv.map(element => {
+                        if (element.idCandidate === auth.user._id)
+                            tmp = { ...tmp, "status": element.status, 'dateSubmit': element.dateSubmit }
+                    })
+                    arr = [...arr, tmp]
                 }
             })
         })
-        setDataSubmited([...arr])
-    }, [])
+        setDataJob([...arr])
+        setDataSubmited(submited.submited)
+    }, [submited])
 
     return (
         <div className="applied-job-view container" onLoad={window.scrollTo(0, 0)}>
@@ -29,7 +44,7 @@ const AppliedJob = () => {
             <div className="applied-job-content card mt-3">
                 <div className="card-body">
                     {
-                        dataSubmited.map(element => (
+                        dataJob.map(element => (
                             <div className="applied-job-list">
                                 <div className="list-jobs">
                                     <div className="row">
@@ -40,12 +55,13 @@ const AppliedJob = () => {
                                             <div className="name-company">
                                                 <Link><span >{element.companyName}</span></Link>
                                             </div>
+
                                             <div className="row">
                                                 <div className="col-sm-4">
-                                                    <span className="font-weight-bold">Status: </span><span style={{ color: 'green' }}> Approved</span>
+                                                    <span className="font-weight-bold">Status: </span><span style={{ color: 'green' }}>{element.status}</span>
                                                 </div>
                                                 <div className="col-sm-4">
-                                                    <span className="font-weight-bold">Applied on: </span><span> 01-11-2021</span>
+                                                    <span className="font-weight-bold">Applied on: </span><span>{dateFormat(element.dateSubmit, 'dd/mm/yyyy')}</span>
                                                 </div>
                                                 <div className="col-sm-4">
                                                     <span className="font-weight-bold text-danger">Expired: </span><span> {dateFormat(element.endDate, 'dd/mm/yyyy')}</span>
@@ -54,7 +70,7 @@ const AppliedJob = () => {
                                         </div>
                                         <div className="col-sm-3">
                                             <div className="btn-applied-job mt-3">
-                                                <button type="button" className="btn btn-applied-job-1"><i className="far fa-trash-alt"></i> Delete</button>
+                                                <button type="button" className="btn btn-applied-job-1" onClick={e => handleDelete(element._id)}><i className="far fa-trash-alt"></i> Delete</button>
                                             </div>
                                         </div>
                                     </div>
