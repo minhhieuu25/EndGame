@@ -21,26 +21,17 @@ const MenuRightAuth = () => {
     return (
         <div className="menu">
             <ul className="navbar-nav flex-row">
-                <li className="nav-item dropdown" style={{ opacity: 1, marginRight: "0.25rem" }} >
+                <li className="nav-item dropdown" style={{ opacity: 1 }} >
                     <span className="nav-link position-relative" id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i className={`fas fa-bell icon-style`}></i>
                         <span className="notify_length">{notify.data.length}</span>
                     </span>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown"
+                    <div className="dropdown-menu dropdown_menu-5" aria-labelledby="navbarDropdown"
                         style={{ transform: 'translateX(75px)' }}>
                         <NotifyModal />
                     </div>
                 </li>
-
-                {/* message */}
-                <li className="nav-item dropdown" style={{ opacity: 1, marginRight: "0.25rem" }} >
-                    <Link className="mt-1" to='/message'>
-                        <i className={`fab fa-facebook-messenger icon-style`}></i>
-                    </Link>
-                </li>
-
-                {/* done message */}
 
                 <li className="nav-item dropdown" style={{ opacity: 1 }} >
                     <span className="nav-link dropdown-toggle" id="navbarDropdown"
