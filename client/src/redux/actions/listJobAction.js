@@ -67,8 +67,8 @@ export const createJob = (jobData, level, jobType, skill, companySize, logo, ima
                 dispatch({ type: GLOBALTYPES.ALERT, payload: { error: 'End date wrong' } })
             }
             else {
-                if (logo) mediaLogo = await imageUpload([logo])
-                if (image) mediaImage = await imageUpload([image])
+                // if (logo) mediaLogo = await imageUpload([logo])
+                // if (image) mediaImage = await imageUpload([image])
 
 
                 const res = await postDataAPI("create_job", {

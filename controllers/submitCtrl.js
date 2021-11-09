@@ -72,6 +72,20 @@ const submitCtrl = {
         } catch (err) {
             return res.json({ msg: err.message })
         }
+    },
+    setStatus: async (req, res) => {
+        try {
+            const { idJob, idCV, status, idCandidate } = req.body
+            console.log(idCandidate)
+            // const status1 = await submit.findOne({ idJob: idJob, cv: { $elemMatch: { idCV: idCV } } })
+            const status1 = await submit.updateOne({ idJob: idJob, cv: { $elemMatch: { idCV: idCV } } }, {
+                $set: { "cv.$.status": status }
+            })
+            return res.json({ msg: "Success", status, idCandidate, idJob })
+        } catch (err) {
+            return res.json({ msg: err.message })
+        }
+
     }
 }
 

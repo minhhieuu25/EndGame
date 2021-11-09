@@ -78,7 +78,7 @@ const authCtrl = {
             return res.json({ msg: 'Missing logo!' })
         let user_Name = companyName.toLowerCase().replace(/ /g, '')
         try {
-            const user = await Users.findOneAndUpdate({ _id: req.user._id }, { role: 'company', username: user_Name, avatar: logo, lastname: companyName })
+            const user = await Users.findOneAndUpdate({ _id: req.user._id }, { role: 'company', username: user_Name, avatar: logo, firstname: '', lastname: companyName })
             const newCompany = new Company({ idCompany: req.user._id, companyName, address, industry, info, website, phoneNumber, companySize, logo })
             await newCompany.save()
             return res.json({ msg: 'Upgrade success!', ...newCompany._doc })

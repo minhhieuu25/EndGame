@@ -53,8 +53,8 @@ const Resume = () => {
     const dispatch = useDispatch()
 
     const handlePreview = async () => {
-        await dispatch(getResume(cvData, arrEdu, arrExp, skill, language, avatar))
-
+        // await dispatch(getResume(cvData, arrEdu, arrExp, skill, language, avatar))
+        console.log('preview', arrEdu)
     }
 
     const handleSave = async () => {
@@ -72,7 +72,14 @@ const Resume = () => {
     }
 
     const handleDeleteEdu = (i) => {
-
+        arrEdu.splice(i, 1)
+        const tmp = loadEdu.splice(i, 1)
+        setLoadEdu(tmp)
+    }
+    const handleDeleteExp = (i) => {
+        arrExp.splice(i, 1)
+        const tmp = loadExp.splice(i, 1)
+        setLoadExp(tmp)
     }
 
     return (
@@ -80,7 +87,7 @@ const Resume = () => {
             <Profile handleInput={handleInput} changeAvatar={changeAvatar} values={cvData} />
             {
                 loadEdu.map((element, index) => (
-                    <Education handleInput={handleInput} values={cvData} index={index} arr={arrEdu} handleDelete={handleDeleteEdu} />
+                    <Education index={index} arr={arrEdu} handleDelete={handleDeleteEdu} load={loadEdu} />
                 ))
             }
             <div>
@@ -89,7 +96,7 @@ const Resume = () => {
             {
                 loadExp.map((element, index) => (
                     <>
-                        <Experience handleInput={handleInput} values={cvData} index={index} arr={arrExp} />
+                        <Experience index={index} arr={arrExp} handleDelete={handleDeleteExp} load={loadExp} />
 
                     </>
                 ))
