@@ -33,12 +33,11 @@ const SubmitCVModal = ({ setShowSubmitCV, job }) => {
         console.log(idCompany)
     }, [allResume.resumes])
 
-    const handleOnChange = (e) => {
-        setSelected(e.target.value)
+    const handleOnChange = (data) => {
+        setSelected(data)
     }
 
     const handleSubmit = () => {
-
         dispatch(submitCV(job._id, idCompany, selected, auth, socket))
         setShowSubmitCV(false)
     }
@@ -65,7 +64,7 @@ const SubmitCVModal = ({ setShowSubmitCV, job }) => {
                                 id={data._id}
                                 key={index}
                                 checked={selected._id === data._id}
-                                onChange={handleOnChange} />
+                                onChange={e => handleOnChange(data)} />
                             <label key={index} htmlFor={data._id} title={data.position}>{data.position}</label>
                         </>
 

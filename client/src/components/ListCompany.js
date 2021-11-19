@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const ListCompany = () => {
- 
+
     const { listCompany } = useSelector(state => state)
     const companies = listCompany.companies ? listCompany.companies : []
 

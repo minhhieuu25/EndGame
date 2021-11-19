@@ -52,11 +52,11 @@ export const searchJob = (search, address) => async (dispatch) => {
     }
 }
 
-export const createJob = (jobData, level, jobType, skill, companySize, logo, image, auth, socket) => async (dispatch) => {
+export const createJob = (jobData, level, jobType, arrSkill, companySize, logo, image, auth, socket) => async (dispatch) => {
     try {
-        let mediaLogo, mediaImage;
+        let mediaLogo;
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
-
+        console.log(arrSkill)
         let now = new Date()
         let endDate = new Date(jobData.endDate)
         if (jobData.minSalary > jobData.maxSalary) {
@@ -72,7 +72,7 @@ export const createJob = (jobData, level, jobType, skill, companySize, logo, ima
 
 
                 const res = await postDataAPI("create_job", {
-                    ...jobData, level, jobType, companySize, skill,
+                    ...jobData, level, jobType, companySize, skill: arrSkill,
                     // logo: logo ? mediaLogo[0].url : '', image: image ? mediaImage[0].url : ''
                     logo: auth.user.avatar,
                 }, auth.token)

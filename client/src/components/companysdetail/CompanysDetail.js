@@ -66,7 +66,7 @@ const CompanysDetails = () => {
                         <div className="col-sm-3 btn-1 text-center">
                             <FollowCompanyBtn company={company} />
                             <button type="button" className="btn btn btn-light-1 mt-3" onClick={() => setTypeShare(!typeShare)}><i className="fas fa-share-alt"></i> Share Company</button>
-                            <div className="item-share" style={{display: `${typeShare ? 'block' : 'none'}`}}>
+                            <div className="item-share" style={{ display: `${typeShare ? 'block' : 'none'}` }}>
                                 <ShareModal url={`${BASE_URL}/companydetail/${company.idCompany}`} />
                             </div>
                         </div>

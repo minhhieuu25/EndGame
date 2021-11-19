@@ -27,7 +27,6 @@ const AnalysisJobs = () => {
             field: 'fullname',
             headerName: 'Full name',
             width: 150,
-
         },
         {
             field: 'dateSubmit',

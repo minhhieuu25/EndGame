@@ -49,11 +49,11 @@ const FollowCompanyBtn = ({ company }) => {
             {
                 followed
                     ? <button type="button" className="btn btn-unfollow mt-3"
-                        onClick={handleUnFollow}>
+                        onClick={handleUnFollow} >
                         <i class="far fa-heart"></i> Unfollow
                     </button>
                     : <button type="button" className="btn btn-follow mt-3"
-                        onClick={handleFollow}>
+                        onClick={handleFollow} disabled={auth.isCompany}>
                         <i class="far fa-heart"></i> Follow
                     </button>
             }
