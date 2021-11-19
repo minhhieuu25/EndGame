@@ -32,7 +32,8 @@
         .btn-1 {
             display: flex;
             flex-direction: column;
-            
+            transition: 0.5s;
+
             .btn-light-1 {
                 padding: 15px 45px;
                 border: 1px solid #71b8e8;
@@ -46,8 +47,7 @@
                 background-color: #71b8e8;
                 color: white;
             }
-            .item-share {
-                transition: 0.5s;
+            .item-share {      
                 animation: downup 0.7s forwards;
             }
             

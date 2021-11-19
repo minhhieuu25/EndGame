@@ -8,6 +8,11 @@ import { createJob } from '../../redux/actions/listJobAction'
 // import { checkImage } from '../../utils/imageUpload'
 import './CreateJob.scss'
 
+
+import AddSkill from './AddSkill'
+
+
+let arrSkill = []
 const CreateJob = () => {
 
     const dataLevel = [
@@ -32,17 +37,7 @@ const CreateJob = () => {
         "1000-4999"
     ]
 
-    const topSkill = [
-        { title: 'JavaScript' },
-        { title: 'Problem-Solving Skills' },
-        { title: 'Planning and Organizational Skills' },
-        { title: 'Data Analysis' },
-        { title: 'Adaptability' },
-        { title: 'ReactJs' },
-        { title: 'VueJs' },
-        { title: 'Sql Server' },
-        { title: "Other" }
-    ];
+
 
     const { auth, listCompany, socket } = useSelector(state => state)
     const dispatch = useDispatch()
@@ -59,39 +54,31 @@ const CreateJob = () => {
     const [logo, setLogo] = useState('')
     const [image, setImage] = useState('')
 
+    const [load, setLoad] = useState([1])
+
+    const handleDeleteSkill = (i) => {
+        arrSkill.splice(i, 1)
+        load.splice(i, 1)
+        let tmp = [...load]
+        setLoad(tmp)
+    }
+
     const handleInput = e => {
         const { name, value } = e.target
         setJobData({ ...jobData, [name]: value })
-
     }
 
-    // const changeLogo = (e) => {
-    //     const file = e.target.files[0]
-
-    //     const err = checkImage(file)
-    //     if (err) return dispatch({
-    //         type: GLOBALTYPES.ALERT, payload: { error: err }
-    //     })
-    //     setLogo(file)
-    // }
-    // const changeImage = (e) => {
-    //     const file = e.target.files[0]
-
-    //     const err = checkImage(file)
-    //     if (err) return dispatch({
-    //         type: GLOBALTYPES.ALERT, payload: { error: err }
-    //     })
-
-    //     setImage(file)
-    // }
 
     const handleCreate = () => {
-        dispatch(createJob(jobData, level, jobType, skill, companySize, logo, image, auth, socket))
+        dispatch(createJob(jobData, level, jobType, arrSkill, companySize, logo, image, auth, socket))
+        console.log('arrSkill', arrSkill)
     }
     const onTagsChangeSkill = (e, value) => {
         setSkill([value])
         console.log(skill)
     }
+
+
 
     useEffect(() => {
         let company = {}
@@ -175,26 +162,14 @@ const CreateJob = () => {
                             <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label">Skill Tags</label>
                                 <div className="col-sm-8">
-                                    {/* <input type="" name='skill' onChange={handleInput} className="form-control" id="" placeholder="Ví dụ: JavaScript, C++, ...." /> */}
-                                    <Autocomplete
-                                        multiples
-                                        limitTags={2}
-                                        id="multiple-limit-tags"
-                                        options={topSkill}
-                                        // onChange={onTagsChangeSkill}
-                                        onChange={(event, newValue) => {
-                                            setSkill([
-                                                ...skill,
-                                                newValue,
-                                            ]);
-                                        }}
-                                        // defaultValue={skill}
-                                        getOptionLabel={(option) => option.title}
-                                        renderInput={(params) => (
-                                            <TextField {...params} label="Skill tag" placeholder="Skill" />
-                                        )}
-                                    />
+                                    {
+                                        load.map((data, index) => (
+                                            <AddSkill index={index} load={load} handleDeleteSkill={handleDeleteSkill} arr={arrSkill} />
+                                        ))
+                                    }
+                                    <button type="button" onClick={e => setLoad([...load, 1])} class="btn btn-primary btn-save">Add skill</button>
                                 </div>
+
                             </div>
                             <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label">Salary Range</label>
@@ -272,7 +247,7 @@ const CreateJob = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

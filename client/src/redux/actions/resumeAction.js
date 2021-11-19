@@ -5,7 +5,7 @@ import { GLOBALTYPES } from './globalTypes'
 import { createNotify } from './notifyAction'
 import { getListSubmited } from './sumitedAction'
 
-export const getResume = (dataResume, arrEdu, arrExp, skill, language, avatar) => async (dispatch) => {
+export const getResume = (dataResume, arrEdu, arrExp, arrSkill, language, avatar) => async (dispatch) => {
     try {
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
         let media
@@ -13,7 +13,7 @@ export const getResume = (dataResume, arrEdu, arrExp, skill, language, avatar) =
         dispatch({
             type: GLOBALTYPES.DATARESUME,
             payload: {
-                resumes: { ...dataResume, educations: [...arrEdu], experiences: [...arrExp], skill: [...skill], language: [...language] },
+                resumes: { ...dataResume, educations: [...arrEdu], experiences: [...arrExp], skill: [...arrSkill], language: [...language] },
                 avatar: avatar ? media[0].url : '',
                 // skill: skill,
                 // language: language
@@ -36,7 +36,7 @@ export const getResume = (dataResume, arrEdu, arrExp, skill, language, avatar) =
     }
 }
 
-export const saveResume = (cvData, arrEdu, arrExp, skill, language, avatar, auth) => async (dispatch) => {
+export const saveResume = (cvData, arrEdu, arrExp, arrSkill, language, avatar, auth) => async (dispatch) => {
     try {
         let media;
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
@@ -45,7 +45,7 @@ export const saveResume = (cvData, arrEdu, arrExp, skill, language, avatar, auth
 
         const res = await postDataAPI("create_cv", {
             ...cvData, educations: [...arrEdu], experiences: [...arrExp],
-            skill,
+            skill: arrSkill,
             language,
             avatar: avatar ? media[0].url : ''
         }, auth.token)

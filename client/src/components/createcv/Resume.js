@@ -8,10 +8,12 @@ import Education from './Education';
 import Experience from './Experience';
 import Extras from './Extras';
 import Profile from './Profile';
+import AddSkill from './AddSkill'
 
 
 let arrEdu = [];
 let arrExp = [];
+let arrSkill = [];
 
 const Resume = () => {
 
@@ -33,15 +35,12 @@ const Resume = () => {
         phoneNumber: '',
         address: '',
         descriptionProfile: '',
-        // skill: '',
-        // language: ''
     }
     const [cvData, setCVData] = useState(initState)
 
     useEffect(() => {
         if (dataResume.resumes)
             setCVData(dataResume.resumes)
-        console.log(cvData)
     }, [dataResume])
 
     const handleInput = e => {
@@ -53,12 +52,11 @@ const Resume = () => {
     const dispatch = useDispatch()
 
     const handlePreview = async () => {
-        // await dispatch(getResume(cvData, arrEdu, arrExp, skill, language, avatar))
-        console.log('preview', arrEdu)
+        await dispatch(getResume(cvData, arrEdu, arrExp, arrSkill, language, avatar))
     }
 
     const handleSave = async () => {
-        dispatch(saveResume(cvData, arrEdu, arrExp, skill, language, avatar, auth))
+        dispatch(saveResume(cvData, arrEdu, arrExp, arrSkill, language, avatar, auth))
     }
 
     const changeAvatar = (e) => {
@@ -105,7 +103,9 @@ const Resume = () => {
                 <button type="button" class="btn btn-info" onClick={e => setLoadExp([...loadExp, 1])}>Add Experience More</button>
             </div>
             <Extras handleInput={handleInput} handleSkill={setSkill} handleLanguage={setLanguage} values={cvData}
-                dataSkill={skill} dataLanguage={language} />
+                // dataSkill={skill} 
+                dataSkill={arrSkill}
+                dataLanguage={language} />
             <div className="mt-3 mb-5">
                 <button type="button" class="btn btn-primary btn-lg mr-3" onClick={handleSave}>Save CV</button>
                 <Link to='/viewcv'><button type="button" onClick={handlePreview} class="btn btn-primary btn-lg">Preview</button></Link>

@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import AddSkill from './AddSkill'
+
+let arrSkill = []
 
 const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, dataLanguage }) => {
 
@@ -29,7 +32,14 @@ const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, d
     handleLanguage(values)
   }
 
+  const [load, setLoad] = useState([1])
 
+  const handleDeleteSkill = (i) => {
+    dataSkill.splice(i, 1)
+    load.splice(i, 1)
+    let tmp = [...load]
+    setLoad(tmp)
+  }
 
 
   return (
@@ -40,8 +50,8 @@ const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, d
           <form>
             <div className="row mb-3">
               <label for="" className="col-sm-3 col-form-label">Skill</label>
-              <div className="col-sm-8">                
-                <Autocomplete
+              <div className="col-sm-8">
+                {/* <Autocomplete
                   multiple
                   limitTags={2}
                   id="multiple-limit-tags"
@@ -52,14 +62,19 @@ const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, d
                   renderInput={(params) => (
                     <TextField {...params} label="Skill" placeholder="Skill" />
                   )}
-                />
-
+                /> */}
+                {
+                  load.map((data, index) => (
+                    <AddSkill index={index} load={load} handleDeleteSkill={handleDeleteSkill} arr={dataSkill} />
+                  ))
+                }
+                <button type="button" onClick={e => setLoad([...load, 1])} class="btn btn-primary btn-save">Add skill</button>
               </div>
             </div>
             <hr />
             <div className="row mb-3">
               <label for="" className="col-sm-3 col-form-label">Language</label>
-              <div className="col-sm-8">           
+              <div className="col-sm-8">
                 <Autocomplete
                   multiple
                   limitTags={2}
