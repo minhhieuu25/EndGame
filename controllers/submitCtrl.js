@@ -1,5 +1,17 @@
 const submit = require('../models/submitModel')
+const jobs = require('../models/jobModel')
 
+const caculatePoint = (dataJob, dataCV) => {
+    let point = 0;
+    dataCV.map(element => {
+        dataJob.map(data => {
+            if (element.title === data.title) {
+                point = point + element.point * data.point
+            }
+        })
+    })
+    return point;
+}
 
 const submitCtrl = {
     submit: async (req, res) => {
@@ -8,7 +20,7 @@ const submitCtrl = {
             if (!idJob || !idCV)
                 return res.json({ msg: 'Missing parameter!' })
 
-
+            const job = await jobs.findOne({ _id: idJob })
             const oldSubmit = await submit.findOne({ idJob })
             if (oldSubmit) {
                 const arr = oldSubmit.cv.filter(element => element.idCV === idCV)
@@ -18,7 +30,7 @@ const submitCtrl = {
                         $push: {
                             cv: {
                                 'idCV': idCV, 'idCandidate': req.user._id, 'dateSubmit': dateSubmit,
-                                'status': 'Waiting', 'dataCV': dataCV, 'fullname': req.user.firstname + ' ' + req.user.lastname
+                                'status': 'Waiting', 'dataCV': dataCV, 'fullname': req.user.firstname + ' ' + req.user.lastname, 'point': caculatePoint(job.skill, dataCV.skill)
                             }
                         }
                     })
@@ -33,7 +45,7 @@ const submitCtrl = {
                 idJob, idCompany, cv: {
                     'idCV': idCV, 'idCandidate': req.user._id,
                     'dateSubmit': dateSubmit, 'status': 'Waiting', 'fullname': req.user.firstname + ' ' + req.user.lastname,
-                    'dataCV': dataCV
+                    'dataCV': dataCV, 'point': caculatePoint(job.skill, dataCV.skill)
                 }
             })
             await newSubmit.save()
@@ -86,6 +98,14 @@ const submitCtrl = {
             return res.json({ msg: err.message })
         }
 
+    },
+    deleteSubmit: async (req, res) => {
+        try {
+            const { id } = req.body
+            await submit.findOneAndDelete({ idJob: id })
+        } catch (err) {
+            return res.json({ msg: err.message })
+        }
     }
 }
 

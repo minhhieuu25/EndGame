@@ -26,16 +26,20 @@ export const getListSubmitedForCompany = (id, auth) => async (dispatch) => {
     try {
         const res = await getDataAPI('get_submited_for_company', auth.token)
         let data = {}
-        res.data.map(element => {
-            if (element.idJob === id) {
-                data = { ...element }
-            }
-        })
+        if (id) {
+            res.data.map(element => {
+                if (element.idJob === id) {
+                    data = { ...element }
+                }
+            })
+        }
+
 
         dispatch({
             type: GLOBALTYPES.SUBMITEDRESUME,
             payload: {
-                submited: data
+                submited: data,
+                submitedByCompany: res.data
             }
         })
     } catch (err) {
@@ -90,6 +94,26 @@ export const setStatus = (idJob, idCV, idCandidate, status, auth, socket) => asy
         }
 
         dispatch(createNotify({ msg, auth, socket }))
+    } catch (err) {
+        dispatch({
+            type: GLOBALTYPES.ALERT,
+            payload: {
+                error: err.response.data.msg
+            }
+        })
+    }
+}
+
+export const getAllSubmitedForCompany = (idCompany, auth) => async (dispatch) => {
+    try {
+        const res = await getDataAPI('get_submited_for_company', auth.token)
+
+        dispatch({
+            type: GLOBALTYPES.SUBMITEDRESUME,
+            payload: {
+                submited: res.data ? res.data.filter(element => element.idCompany === idCompany) : []
+            }
+        })
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,

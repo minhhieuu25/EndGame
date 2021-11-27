@@ -20,9 +20,9 @@ const topSkill = [
 ];
 
 const level = [
-    { level: 'basic', point: '1' },
-    { level: 'intermediate', point: '3' },
-    { level: 'competently', point: '5' },
+    { level: 'first', point: '5' },
+    { level: 'second', point: '4' },
+    { level: 'thirst', point: '3' },
 ];
 
 const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {

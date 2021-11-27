@@ -87,6 +87,8 @@ function App() {
       dispatch(getSuggestions(auth.token))
       dispatch(getNotifies(auth.token))
       dispatch(getAllResume(auth))
+      if (auth.isCompany)
+        dispatch(getListSubmitedForCompany(null, auth))
       if (auth.isAdmin)
         dispatch(getAllUsers(auth.token))
       if (!auth.isAdmin && !auth.isCompany)

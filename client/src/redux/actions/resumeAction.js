@@ -135,8 +135,8 @@ export const deleteResume = (id, auth) => async (dispatch) => {
         dispatch(getAllResume(auth))
 
         dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
+        console.log(res.data)
     } catch (err) {
-        console.log(err)
         dispatch({
             type: GLOBALTYPES.ALERT,
             payload: { error: err.response.data.msg }
