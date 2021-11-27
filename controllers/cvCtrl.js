@@ -52,10 +52,10 @@ const cvCtrl = {
     deleteCV: async (req, res) => {
         try {
             const { id } = req.body
-            const res = await CV.findOneAndDelete({ _id: id })
-            return res.json({ msg: "Delete success!" })
+            await CV.findOneAndDelete({ _id: id })
+            return res.json({ msg: "delete success" })
         } catch (err) {
-            res.json({ msg: err.message })
+            return res.json({ msg: err.message })
         }
     }
 }

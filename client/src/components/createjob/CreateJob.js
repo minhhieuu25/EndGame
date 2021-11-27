@@ -138,25 +138,25 @@ const CreateJob = () => {
                             <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label" >Job Category</label>
                                 <div className="col-sm-8">
-                                    <input type="" className="form-control" id="" placeholder="Nhập ngành nghề" name='industry' onChange={handleInput} />
+                                    <input type="" className="form-control" id="" placeholder="Ex: Infomation technology" name='industry' onChange={handleInput} />
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label">Working Location</label>
                                 <div className="col-sm-8">
-                                    <input type="" name='address' onChange={handleInput} className="form-control" id="" placeholder="123 Đà Nẵng" />
+                                    <input type="" name='address' onChange={handleInput} className="form-control" id="" placeholder="123 Da Nang" />
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label">Description</label>
                                 <div className="col-sm-8">
-                                    <textarea className="form-control" name='description' onChange={handleInput} placeholder="Nhập mô tả công việc"></textarea>
+                                    <textarea className="form-control" name='description' onChange={handleInput} placeholder="Description about job"></textarea>
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label">Requirements</label>
                                 <div className="col-sm-8">
-                                    <textarea className="form-control" name='requirement' onChange={handleInput} placeholder="Nhập yêu cầu công việc"></textarea>
+                                    <textarea className="form-control" name='requirement' onChange={handleInput} placeholder="Requirement about job"></textarea>
                                 </div>
                             </div>
                             <div className="row mb-3">
@@ -174,16 +174,16 @@ const CreateJob = () => {
                             <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label">Salary Range</label>
                                 <div className="col-sm-4">
-                                    <input type="" name='minSalary' onChange={handleInput} className="form-control" id="" placeholder="Ví dụ: 2000000" />
+                                    <input type="" name='minSalary' onChange={handleInput} className="form-control" id="" placeholder="Ex: 2000000" />
                                 </div>
                                 <div className="col-sm-4">
-                                    <input type="" name='maxSalary' onChange={handleInput} className="form-control" id="" placeholder="Ví dụ: 5000000" />
+                                    <input type="" name='maxSalary' onChange={handleInput} className="form-control" id="" placeholder="Ex: 5000000" />
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label for="" className="col-sm-3 col-form-label">Benefits</label>
                                 <div className="col-sm-8">
-                                    <input type="" className="form-control" name='benefit' onChange={handleInput} id="" placeholder="Ví dụ: Lương tháng 13" />
+                                    <input type="" className="form-control" name='benefit' onChange={handleInput} id="" placeholder="Ex: Competitive remuneration package" />
                                 </div>
                             </div>
                             <div className="row mb-3">

@@ -18,9 +18,6 @@ import NativeSelect from '@mui/material/NativeSelect';
 const AnalysisJobs = () => {
 
 
-    // const dispatch = useDispatch()
-
-
     const columns = [
         { field: 'id', headerName: 'ID', width: 100 },
         {
@@ -60,10 +57,9 @@ const AnalysisJobs = () => {
             }
         },
         {
-            field: 'Point',
+            field: 'point',
             headerName: 'Point',
             width: 150,
-
         },
         {
             field: 'action',
@@ -133,7 +129,6 @@ const AnalysisJobs = () => {
     }
 
     const handleOnChange = (e, idCV, idCandidate) => {
-        // console.log(e.target.value)
         dispatch(setStatus(jobs._id, idCV, idCandidate, e.target.value, auth, socket))
     }
 

@@ -151,15 +151,15 @@ export const deleteJob = ({ id, auth }) => async (dispatch) => {
     try {
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
         const resAllJob = await postDataAPI('delete_job', { id }, auth.token)
-        // dispatch({
-
-        //     type: GLOBALTYPES.ALLJOB,
-        //     payload: {
-        //         jobs: resAllJob.data
-        //     }
-        // })
-        // dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: false } })
-
+        await postDataAPI('delete_submit', { id: id }, auth.token)
+        dispatch({
+            type: GLOBALTYPES.ALERT,
+            payload: {
+                success: resAllJob.data.msg
+            }
+        })
+        dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: false } })
+        
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,

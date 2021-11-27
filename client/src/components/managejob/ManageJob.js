@@ -35,7 +35,7 @@ const ManageJobs = () => {
             field: 'status',
             headerName: 'Status',
             width: 150,
-
+            valueFormatter: (params) => { return (new Date().getTime() - new Date(params.row.endDate).getTime() < 0) ? dateFormat(params.row.endDate, 'dd/mm/yyyy') : 'Expired' }
         },
         {
             field: 'createdAt',
@@ -80,7 +80,6 @@ const ManageJobs = () => {
 
     const handleDelete = (id) => {
         dispatch(deleteJob({ id, auth }))
-        // console.log(id)
     }
 
     useEffect(() => {

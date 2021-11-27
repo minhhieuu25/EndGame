@@ -8,5 +8,6 @@ router.get('/get_submited', auth, submitCtrl.getSubmited)
 router.post('/unsubmit_cv', auth, submitCtrl.unsubmit)
 router.post('/set_status', auth, authCompany, submitCtrl.setStatus)
 router.get('/get_submited_for_company', auth, authCompany, submitCtrl.getSubmitedForCompany)
+router.post('/delete_submit', auth, authCompany, submitCtrl.deleteSubmit)
 
 module.exports = router
