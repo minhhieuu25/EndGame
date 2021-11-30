@@ -20,7 +20,7 @@ const Experience = ({ index, arr, handleDelete, load }) => {
   const handleInputEducation = e => {
     const { name, value } = e.target
     setData({ ...data, [name]: value })
-    arr[index] = data
+    arr[index] = { ...arr[index], [name]: value }
   }
 
 

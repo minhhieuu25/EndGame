@@ -1,0 +1,28 @@
+.create-job {
+    width: 100%;
+    margin-left: 20px;
+    
+    .text-2{
+        padding: 20px 0px;
+    }
+
+    .container-create-job {  
+        .profile-account {
+            .card-body{
+                .col-form-label {
+                    text-align: right;
+                }
+        
+                textarea.form-control {
+                    height: 200px;
+                }
+        
+                .btn-save {
+                    padding: 10px 45px;
+                }
+            }
+        }        
+    }
+
+
+}

@@ -134,7 +134,7 @@ const AnalysisJobs = () => {
 
     return (
         <div className="analysis-job-view">
-            <h2 className="text-center text-2">Analysis Job</h2>
+            <h2 className="text-center text-2">Detail Job</h2>
             <div className="container-analysis-job">
                 <div className="card">
                     <div className="card-body">

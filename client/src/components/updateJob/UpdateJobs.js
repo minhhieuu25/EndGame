@@ -9,8 +9,10 @@ import { GLOBALTYPES } from '../../redux/actions/globalTypes'
 import { updateJob } from '../../redux/actions/listJobAction'
 import { checkImage } from '../../utils/imageUpload'
 import Sidebar from '../sidebar/Sidebar'
+import AddSkill from './AddSkill'
+import './CreateJob.scss'
 
-
+let arrSkill = []
 const UpdateJobs = () => {
     const dataLevel = [
         "Interns",
@@ -51,7 +53,7 @@ const UpdateJobs = () => {
     const [endDate, setEndDate] = useState('')
 
     const initState = {
-        companyName: '', position: '', level, industry: '', address: '', description: '', requirement: '', companySize: '', infoCompany: '', benefit: ''
+        companyName: '', position: '', industry: '', address: '', description: '', requirement: '', companySize: '', infoCompany: '', benefit: ''
     }
     const [jobData, setJobData] = useState(initState)
     // const { idCompany, companyName, position, industry, address, description, requirement, minSalary, maxSalary, infoCompany, benefit } = jobData
@@ -86,6 +88,15 @@ const UpdateJobs = () => {
         setSkill(values)
     }
 
+    const [load, setLoad] = useState([1])
+
+    const handleDeleteSkill = (i) => {
+        arrSkill.splice(i, 1)
+        load.splice(i, 1)
+        let tmp = [...load]
+        setLoad(tmp)
+    }
+
     const handleUpdate = () => {
         dispatch(updateJob(id, jobData, level, jobType, companySize, skill, logo, image, auth, socket))
     }
@@ -96,13 +107,17 @@ const UpdateJobs = () => {
             allJob.jobs.map(element => {
                 if (element._id === id) {
                     data = { ...element }
-                    setLevel(element.level)
-                    setJobType(element.jobType)
+                    // setLevel(element.level)
+                    // setJobType(element.jobType)
                     setSkill([...element.skill])
                     setEndDate(dateFormat(element.endDate, 'yyyy-mm-dd'))
                 }
             })
         }
+        setLevel(data.level)
+        setJobType(data.jobType)
+        arrSkill = [...data.skill]
+        setLoad([...data.skill])
         setJobData(data)
     }, [allJob.jobs])
 
@@ -110,11 +125,11 @@ const UpdateJobs = () => {
         <>
             <div className="manage_container">
                 <Sidebar />
+
                 <div className="create-job">
                     <div className="create-job-header">
                         <h2 className="text-center text-2">Edit Post</h2>
                     </div>
-                    {console.log('skill', skill, 'topskill', topSkill)}
                     <div className="container-create-job">
                         <div className="profile-account card">
                             <div className="card-body">
@@ -129,7 +144,7 @@ const UpdateJobs = () => {
                                     <div className="row mb-3">
                                         <label for="" className="col-sm-3 col-form-label">Job Level</label>
                                         <div className="col-sm-8">
-                                            <select className="form-control" id="" placeholder="" name='level' defaultValue={level} onChange={e => setLevel(e.target.value)}>
+                                            <select className="form-control" id="" placeholder="" name='level' value={level} onChange={e => setLevel(e.target.value)}>
                                                 {
                                                     dataLevel.map((element) => (
                                                         <option value={element}>{element}</option>
@@ -141,7 +156,9 @@ const UpdateJobs = () => {
                                     <div className="row mb-3">
                                         <label for="" className="col-sm-3 col-form-label">Job Type</label>
                                         <div className="col-sm-8">
-                                            <select className="form-control" id="" placeholder="" defaultValue={jobType} name='jobType' onChange={e => setJobType(e.target.value)}>
+
+                                            <select className="form-control" id="" placeholder="" name='level' value={jobType} onChange={e => setLevel(e.target.value)}>
+                                                {/* <select className="form-control" id="" placeholder="" value={jobType} name='jobType' onChange={e => setJobType(e.target.value)}> */}
                                                 {
                                                     dataTypeJob.map((element) => (
                                                         <option value={element}>{element}</option>
@@ -176,9 +193,19 @@ const UpdateJobs = () => {
                                     </div>
                                     <div className="row mb-3">
                                         <label for="" className="col-sm-3 col-form-label">Skill Tags</label>
+                                        {
+                                            console.log(load)
+                                        }
+
                                         <div className="col-sm-8">
-                                            {/* <input type="" name='skill' onChange={handleInput} defaultValue={jobData.skill} className="form-control" id="" placeholder="Ví dụ: JavaScript, C++, ...." /> */}
-                                            <Autocomplete
+
+                                            {
+                                                load.map((data, index) => (
+                                                    <AddSkill index={index} load={load} handleDeleteSkill={handleDeleteSkill} arr={load} />
+                                                ))
+                                            }
+                                            <button type="button" onClick={e => setLoad([...load, 1])} class="btn btn-primary btn-save">Add skill</button>
+                                            {/* <Autocomplete
                                                 multiple
                                                 limitTags={2}
                                                 id="multiple-limit-tags"
@@ -189,7 +216,7 @@ const UpdateJobs = () => {
                                                 renderInput={(params) => (
                                                     <TextField {...params} label="limitTags" placeholder="Skill" />
                                                 )}
-                                            />
+                                            /> */}
                                         </div>
                                     </div>
                                     <div className="row mb-3">
@@ -245,18 +272,6 @@ const UpdateJobs = () => {
                                         <label for="" className="col-sm-3 col-form-label">Benefits</label>
                                         <div className="col-sm-8">
                                             <input type="" className="form-control" name='benefit' defaultValue={jobData.benefit} onChange={handleInput} id="" placeholder="Ví dụ: Lương tháng 13" />
-                                        </div>
-                                    </div>
-                                    <div className="row mb-3">
-                                        <label for="" className="col-sm-3 col-form-label">Company Logo</label>
-                                        <div className="col-sm-8">
-                                            <input type="file" class="form-control" accept="image/*" onChange={changeLogo} aria-label="Upload" />
-                                        </div>
-                                    </div>
-                                    <div className="row mb-3">
-                                        <label for="" className="col-sm-3 col-form-label">Company Photos</label>
-                                        <div className="col-sm-8">
-                                            <input type="file" onChange={changeImage} accept="image/*" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
                                         </div>
                                     </div>
                                 </form>

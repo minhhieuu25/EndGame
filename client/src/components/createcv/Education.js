@@ -23,9 +23,8 @@ const Education = ({ index, arr, handleDelete, load }) => {
 
   const handleInputEducation = e => {
     const { name, value } = e.target
+    arr[index] = { ...arr[index], [name]: value }
     setData({ ...data, [name]: value })
-    arr[index] = data
-    console.log('arrindex', arr[index])
   }
 
   return (
