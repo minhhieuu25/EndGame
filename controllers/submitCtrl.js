@@ -17,14 +17,24 @@ const submitCtrl = {
     submit: async (req, res) => {
         try {
             const { idJob, idCompany, idCV, dataCV, dateSubmit } = req.body
+            if (new Date(dateSubmit).getTime() < new Date().getTime())
+                return res.json({ msg: 'Job expired' })
             if (!idJob || !idCV)
                 return res.json({ msg: 'Missing parameter!' })
+            // const oldCandidate = await submit.findOne({ idJob: idJob })
+            // oldCandidate.cv.map(data => {
+            //     console.log(data.idCandidate == req.user._id)
+            //     console.log(data.idCandidate)
+            //     console.log(req.user._id)
+            //     // if (data.idCandidate === req.user._id) {
 
+            //     // }
+            //     // return res.json({ msg: 'You has been applied this job' })
+            // })
             const job = await jobs.findOne({ _id: idJob })
             const oldSubmit = await submit.findOne({ idJob })
             if (oldSubmit) {
                 const arr = oldSubmit.cv.filter(element => element.idCV === idCV)
-
                 if (!arr[0]) {
                     await submit.findOneAndUpdate({ idJob }, {
                         $push: {
@@ -103,6 +113,7 @@ const submitCtrl = {
         try {
             const { id } = req.body
             await submit.findOneAndDelete({ idJob: id })
+            return res.json({ msg: 'success' })
         } catch (err) {
             return res.json({ msg: err.message })
         }

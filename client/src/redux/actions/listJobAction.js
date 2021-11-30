@@ -67,26 +67,15 @@ export const createJob = (jobData, level, jobType, arrSkill, companySize, logo, 
                 dispatch({ type: GLOBALTYPES.ALERT, payload: { error: 'End date wrong' } })
             }
             else {
-                // if (logo) mediaLogo = await imageUpload([logo])
-                // if (image) mediaImage = await imageUpload([image])
-
-
                 const res = await postDataAPI("create_job", {
                     ...jobData, level, jobType, companySize, skill: arrSkill,
                     // logo: logo ? mediaLogo[0].url : '', image: image ? mediaImage[0].url : ''
                     logo: auth.user.avatar,
                 }, auth.token)
-
-
-
                 dispatch(getAllJob())
                 dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
                 if (res.data.newJob) {
-
-
                     socket.emit('createJob', auth.user)
-
-
                     // Notify
                     const msg = {
                         id: res.data.newJob._id,
@@ -98,9 +87,8 @@ export const createJob = (jobData, level, jobType, arrSkill, companySize, logo, 
 
                     dispatch(createNotify({ msg, auth, socket }))
                 }
+                return res.data.msg
             }
-
-
     } catch (err) {
         console.log(err)
         dispatch({
@@ -125,17 +113,16 @@ export const updateJob = (id, jobData, level, jobType, companySize, skill, logo,
             logo: logo ? mediaLogo[0].url : jobData.logo, image: image ? mediaImage[0].url : jobData.image
         }, auth.token)
 
-        console.log(res.data)
         dispatch(getAllJob())
         // Notify
-        const msg = {
-            id: res.data.newJob._id,
-            text: 'updated a post.',
-            recipients: res.data.newJob.user.followersCompany,
-            url: `/jobdetail/${res.data.newJob._id}`,
-            image: logo ? mediaLogo[0].url : ''
-        }
-        dispatch(createNotify({ msg, auth, socket }))
+        // const msg = {
+        //     id: res.data.newJob._id,
+        //     text: 'updated a post.',
+        //     recipients: res.data.newJob.user.followersCompany,
+        //     url: `/jobdetail/${res.data.newJob._id}`,
+        //     image: logo ? mediaLogo[0].url : ''
+        // }
+        // dispatch(createNotify({ msg, auth, socket }))
 
         dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
     } catch (err) {
@@ -152,14 +139,14 @@ export const deleteJob = ({ id, auth }) => async (dispatch) => {
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
         const resAllJob = await postDataAPI('delete_job', { id }, auth.token)
         await postDataAPI('delete_submit', { id: id }, auth.token)
+        dispatch(getAllJob())
         dispatch({
             type: GLOBALTYPES.ALERT,
             payload: {
                 success: resAllJob.data.msg
             }
         })
-        dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: false } })
-        
+
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,

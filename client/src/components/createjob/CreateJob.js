@@ -45,8 +45,8 @@ const CreateJob = () => {
     const [jobType, setJobType] = useState('Full-time')
     const [companySize, setSize] = useState('10-')
     const initState = {
-        companyName: '', position: '', industry: '', address: '', description: '', requirement: '', minSalary: 0,
-        maxSalary: 0, companySize: '', infoCompany: '', benefit: '', endDate: ''
+        position: '', industry: '', address: '', description: '', requirement: '', minSalary: 0,
+        maxSalary: 0, benefit: '', endDate: ''
     }
     const [jobData, setJobData] = useState(initState)
 
@@ -66,12 +66,14 @@ const CreateJob = () => {
     const handleInput = e => {
         const { name, value } = e.target
         setJobData({ ...jobData, [name]: value })
+
     }
 
 
     const handleCreate = () => {
-        dispatch(createJob(jobData, level, jobType, arrSkill, companySize, logo, image, auth, socket))
-        console.log('arrSkill', arrSkill)
+        const result = dispatch(createJob(jobData, level, jobType, arrSkill, companySize, logo, image, auth, socket))
+        console.log(!result)
+
     }
     const onTagsChangeSkill = (e, value) => {
         setSkill([value])

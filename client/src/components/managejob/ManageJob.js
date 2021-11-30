@@ -65,7 +65,6 @@ const ManageJobs = () => {
                             <EditIcon titleAccess="Edit" />
                         </Link>
                         <DeleteOutline titleAccess="Delete" className="manage-job-delete" onClick={e => handleDelete(params.row._id)} />
-
                     </>
                 );
             },

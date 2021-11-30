@@ -6,10 +6,10 @@ import { updateProfileUser } from '../../redux/actions/profileAction'
 
 const EditProfile = ({ setOnEdit }) => {
     const initState = {
-        fullname: '', mobile: '', address: '', website: '', story: '', gender: ''
+        firstname: '', lastname: '', mobile: '', address: '', website: '', story: '', gender: ''
     }
     const [userData, setUserData] = useState(initState)
-    const { fullname, mobile, address, story, gender } = userData
+    const { firstname, lastname, mobile, address, story, gender } = userData
 
     const [avatar, setAvatar] = useState('')
 
@@ -65,11 +65,11 @@ const EditProfile = ({ setOnEdit }) => {
                     <label htmlFor="fullname">Full Name</label>
                     <div className="position-relative">
                         <input type="text" className="form-control" id="fullname"
-                            name="fullname" value={fullname} onChange={handleInput} />
-                        <small className="text-danger position-absolute"
+                            name="fullname" value={firstname + ' ' + lastname} onChange={handleInput} />
+                        {/* <small className="text-danger position-absolute"
                             style={{ top: '50%', right: '5px', transform: 'translateY(-50%)' }}>
-                            {fullname.length}/25
-                        </small>
+                            {lastname.length}/25
+                        </small> */}
                     </div>
                 </div>
 
@@ -91,9 +91,9 @@ const EditProfile = ({ setOnEdit }) => {
                     <textarea name="story" value={story} cols="30" rows="4"
                         className="form-control" onChange={handleInput} />
 
-                    <small className="text-danger d-block text-right">
+                    {/* <small className="text-danger d-block text-right">
                         {story.length}/200
-                    </small>
+                    </small> */}
                 </div>
 
                 <label htmlFor="gender">Gender</label>

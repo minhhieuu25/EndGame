@@ -41,7 +41,7 @@ const Info = ({ id, auth, profile, dispatch }) => {
 
                         <div className="info_content">
                             <div className="info_content_title">
-                                <h2>{user.fistname + ' ' + user.lastname}</h2>
+                                <h2>{user.firstname + ' ' + user.lastname}</h2>
                                 {
                                     user._id === auth.user._id
                                         ? <button className="btn btn-outline-info"
@@ -101,7 +101,7 @@ const Info = ({ id, auth, profile, dispatch }) => {
                                                 <div className="col-lg-6">
                                                     <div className="form-group">
                                                         <label className="form-control-label" htmlFor="input-companyName">Full Name</label>
-                                                        <input type="text" id="input-companyName" className="form-control" placeholder="Long" readOnly />
+                                                        <input type="text" id="input-companyName" className="form-control" placeholder="Long" readOnly></input>
                                                     </div>
                                                 </div>
                                                 <div className="col-lg-6">
