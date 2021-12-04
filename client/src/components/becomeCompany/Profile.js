@@ -55,6 +55,12 @@ const Profile = ({ handleInput, changeAvatar, values, setSize }) => {
               </div>
             </div>
             <div className="row mb-3">
+              <label for="" className="col-sm-3 col-form-label">Tax Code</label>
+              <div className="col-sm-8">
+                <input type="text" className="form-control" onChange={handleInput} name='taxCode' placeholder="" />
+              </div>
+            </div>
+            <div className="row mb-3">
               <label for="" className="col-sm-3 col-form-label">Address</label>
               <div className="col-sm-8">
                 <input type="text" className="form-control" onChange={handleInput} name='address' placeholder="Ex: 1234 Da Nang" />

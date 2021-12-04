@@ -67,6 +67,8 @@ const MenuRightAuth = () => {
                                 <i className="fas fa-tasks"></i> Manage Users</Link>
                             <Link className="dropdown-item" to={`/manage_companies`}>
                                 <i className="fas fa-tasks"></i> Manage Companies</Link>
+                            <Link className="dropdown-item" to={`/manage_post`}>
+                                <i className="fas fa-tasks"></i> Moderator Post</Link>
                         </>}
 
 

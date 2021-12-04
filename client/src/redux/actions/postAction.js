@@ -170,7 +170,6 @@ export const deletePost = ({post, auth, socket}) => async (dispatch) => {
 
     try {
         const res = await deleteDataAPI(`post/${post._id}`, auth.token)
-
         // Notify
         const msg = {
             id: post._id,

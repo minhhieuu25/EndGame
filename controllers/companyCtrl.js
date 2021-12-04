@@ -31,10 +31,10 @@ const companyCtrl = {
     },
     updateInfoCompany: async (req, res) => {
         try {
-            const { companyName, address, info, companySize, logo, email, website, phoneNumber } = req.body
+            const { companyName, address, info, companySize, logo, email, website, phoneNumber, taxCode } = req.body
 
             await Company.findOneAndUpdate({ idCompany: req.user.id }, {
-                companyName, address, info, companySize, logo, website, phoneNumber, email
+                companyName, address, info, companySize, logo, website, phoneNumber, email, taxCode
             })
             res.json({ msg: "Update Success!" })
         } catch (err) {
@@ -64,7 +64,7 @@ const companyCtrl = {
         }
     },
     getTopCompany: async (req, res) => {
-        const top = await Job.aggregate([{ "$group": { _id: { idCompany: "$idCompany", companyName: '$companyName', logo: '$logo' }, count: { $sum: 1 } } }]).sort('-count')
+        const top = await Job.aggregate([{ "$group": { _id: { idCompany: "$idCompany", companyName: '$companyName', logo: '$logo' }, count: { $sum: 1 } } }]).sort('-count').limit(4)
         return res.json(top)
     }
 }

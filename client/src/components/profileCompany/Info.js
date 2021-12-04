@@ -180,6 +180,13 @@ const Info = ({ id, auth, profile, dispatch }) => {
                                                 <textarea rows={4} className="form-control" placeholder="A few words about your company ..." readOnly defaultValue={company.info} />
                                             </div>
                                         </div>
+                                        <div className="pl-lg-4">
+                                            <div className="form-group">
+                                                <label className="form-control-label">Tax code</label>
+                                                <text className="form-control" readOnly >{company.taxCode}</text>
+                                                {console.log(company.taxCode)}
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

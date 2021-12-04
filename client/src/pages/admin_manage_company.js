@@ -131,7 +131,6 @@ function Profile() {
                                             <td>{company.website}</td>
 
                                             <td>
-
                                                 <i className="fas fa-edit" title="Edit"
                                                     onClick={() => handleView(company)}></i>
                                                 <i className="fas fa-trash-alt" title="Remove"

@@ -22,7 +22,6 @@ export const createNotify = ({ msg, auth, socket }) => async (dispatch) => {
             }
         })
     } catch (err) {
-        console.log(err.response.data.msg)
         dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err.response.data.msg } })
     }
 }

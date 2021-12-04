@@ -189,9 +189,12 @@ export const updateProfileCompany = ({ companyData, logo, auth }) => async (disp
     try {
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
         let media
-        console.log(logo.name)
-        if (logo && logo.name) media = await imageUpload([logo])
-        const res = await patchDataAPI('update_info_company', { ...companyData, logo: logo.name ? media[0].url : companyData.logo }, auth.token)
+        if (!logo.name)
+            console.log('done')
+        else
+            if (logo && logo.name)
+                media = await imageUpload([logo])
+        const res = await patchDataAPI('update_info_company', { ...companyData, logo: logo.name ? media[0].url : logo }, auth.token)
 
 
         dispatch(getListCompany())

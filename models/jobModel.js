@@ -53,6 +53,9 @@ const jobSchema = new mongoose.Schema({
     logo: {
         type: String,
     },
+    experience: {
+        type: String,
+    },
     images: {
         type: String
     },
