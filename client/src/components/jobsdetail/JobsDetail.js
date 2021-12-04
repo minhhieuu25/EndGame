@@ -58,7 +58,7 @@ const JobsDetail = () => {
                                                 </div>
                                                 <div className="info-detail">
                                                     <span className="title-3">Salary:</span>
-                                                    <span>{job.minSalary / 1000000}-{job.maxSalary / 1000000} Triệu</span>
+                                                    <span>{job.minSalary / 1000000}-{job.maxSalary / 1000000} Million</span>
                                                 </div>
                                             </div>
                                             <hr />
@@ -109,7 +109,7 @@ const JobsDetail = () => {
                                                 </div>
                                                 <div className="info-detail">
                                                     <span className="title-3">Exp requirements:</span>
-                                                    <span>2 năm</span>
+                                                    <span>{job.experience}</span>
                                                 </div>
                                             </div>
                                             <hr />
@@ -207,10 +207,9 @@ const JobsDetail = () => {
                             <h5 className="mt-3 text-uppercase">Rusume Requirements</h5>
                             <div className="job-req-doc-content">
                                 <span>
-                                    - Đơn xin việc <br />
-                                    - Sơ yếu lý lịch <br />
-                                    - Hộ khẩu, chứng minh nhân dân <br />
-                                    - Giấy khám sức khỏe (có thể bổ sung khi trúng tuyển)
+                                    - Resume <br />
+                                    - Job application <br />
+                                    - Health certificate (can be added when matriculation)
                                 </span>
                             </div>
                         </div>
@@ -231,8 +230,8 @@ const JobsDetail = () => {
                             <h5 className="mt-3 text-uppercase">CONTACT INFO</h5>
                             <div className="job-req-doc-content">
                                 <span>
-                                    Người liên hệ: Ms. Thanh <br />
-                                    Địa chỉ công ty: Tầng 5, Số 68 Trần Thái Tông, Dịch Vọng Hậu, Cầu Giấy, Hà Nội<br />
+                                    {/* Người liên hệ: Ms. Thanh <br /> */}
+                                    Address: {job.address}<br />
                                     Hạn nộp hồ sơ: {dateFormat(job.endDate, 'dd/mm/yyyy')}
                                 </span>
                             </div>

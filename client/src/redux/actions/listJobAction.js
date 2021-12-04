@@ -52,7 +52,7 @@ export const searchJob = (search, address) => async (dispatch) => {
     }
 }
 
-export const createJob = (jobData, level, jobType, arrSkill, companySize, logo, image, auth, socket) => async (dispatch) => {
+export const createJob = (jobData, level, jobType, experience, arrSkill, companySize, logo, image, auth, socket) => async (dispatch) => {
     try {
         let mediaLogo;
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
@@ -68,7 +68,7 @@ export const createJob = (jobData, level, jobType, arrSkill, companySize, logo, 
             }
             else {
                 const res = await postDataAPI("create_job", {
-                    ...jobData, level, jobType, companySize, skill: arrSkill,
+                    ...jobData, level, jobType, companySize, skill: arrSkill, experience: experience,
                     // logo: logo ? mediaLogo[0].url : '', image: image ? mediaImage[0].url : ''
                     logo: auth.user.avatar,
                 }, auth.token)
@@ -98,18 +98,17 @@ export const createJob = (jobData, level, jobType, arrSkill, companySize, logo, 
     }
 }
 
-export const updateJob = (id, jobData, level, jobType, companySize, skill, logo, image, auth, socket) => async (dispatch) => {
+export const updateJob = (id, jobData, level, jobType, companySize, arrSkill, logo, image, auth, socket) => async (dispatch) => {
     try {
-        console.log(jobData)
         let mediaLogo, mediaImage;
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
 
         if (logo) mediaLogo = await imageUpload([logo])
         if (image) mediaImage = await imageUpload([image])
 
-        console.log(jobData)
+        console.log(arrSkill)
         const res = await postDataAPI("update_job", {
-            ...jobData, level, jobType, companySize, skill, id,
+            ...jobData, level, jobType, companySize, skill: arrSkill, id,
             logo: logo ? mediaLogo[0].url : jobData.logo, image: image ? mediaImage[0].url : jobData.image
         }, auth.token)
 
@@ -156,3 +155,4 @@ export const deleteJob = ({ id, auth }) => async (dispatch) => {
         })
     }
 }
+

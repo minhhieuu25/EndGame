@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function FeaturedInfo() {
 
-  const { allJob, auth } = useSelector(state => state)
+  const { allJob, auth, submited } = useSelector(state => state)
   const [jobs, setJobs] = useState(allJob.jobs ? allJob.jobs.filter(element => element.idCompany === auth.user._id) : [])
 
   useEffect(() => {
@@ -32,22 +32,22 @@ export default function FeaturedInfo() {
       <div className="featuredItem">
         <span className="featuredTitle">Jobs Expired</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">$4,415</span>
-          <span className="featuredMoneyRate">
+          <span className="featuredMoney">{jobs.filter(data => new Date() < new Date(data.endDate)).length}</span>
+          {/* <span className="featuredMoneyRate">
             -1.4 <ArrowDownward className="featuredIcon negative" />
-          </span>
+          </span> */}
         </div>
-        <span className="featuredSub">Compared to last month</span>
+        <span className="featuredSub">Total of job that unexpired</span>
       </div>
       <div className="featuredItem">
         <span className="featuredTitle">Total Resume</span>
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">$2,225</span>
-          <span className="featuredMoneyRate">
+          {/* <span className="featuredMoneyRate">
             +2.4 <ArrowUpward className="featuredIcon" />
-          </span>
+          </span> */}
         </div>
-        <span className="featuredSub">Compared to last month</span>
+        <span className="featuredSub">Total of Resume</span>
       </div>
     </div>
   );

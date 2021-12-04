@@ -29,7 +29,7 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
 
     const initState = {
         title: 'JavaScript',
-        point: '1'
+        point: '5'
     }
     const [data, setData] = useState(null)
 
@@ -81,7 +81,7 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
                             title: newValue.inputValue,
                         });
                     } else {
-                        arr[index] = { ...arr[index], 'title': newValue.title ? '' : newValue.title }
+                        arr[index] = { ...arr[index], 'title': newValue.title ? newValue.title : '' }
                         setData(newValue);
                     }
                 }}

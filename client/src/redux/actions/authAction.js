@@ -238,6 +238,7 @@ export const upgradeAccount = (company, logo, companySize, auth, socket) => asyn
 
         // dispatch(createNotify({ msg, auth, socket }))
 
+        dispatch(refreshToken())
         dispatch({
             type: GLOBALTYPES.ALERT,
             payload: {

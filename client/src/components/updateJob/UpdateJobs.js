@@ -43,6 +43,14 @@ const UpdateJobs = () => {
         { title: 'Adaptability' },
         { title: "Other" }
     ];
+
+    const dataExp = [
+        "Not required",
+        "1-2 years",
+        "4-5 years",
+        "5 years or more"
+    ]
+
     const { allJob, auth, theme, socket } = useSelector(state => state)
     const { id } = useParams()
     const dispatch = useDispatch()
@@ -51,6 +59,7 @@ const UpdateJobs = () => {
     const [companySize, setSize] = useState('10-')
     const [skill, setSkill] = useState([])
     const [endDate, setEndDate] = useState('')
+    const [experience, setExp] = useState("Not required")
 
     const initState = {
         companyName: '', position: '', industry: '', address: '', description: '', requirement: '', companySize: '', infoCompany: '', benefit: ''
@@ -98,7 +107,7 @@ const UpdateJobs = () => {
     }
 
     const handleUpdate = () => {
-        dispatch(updateJob(id, jobData, level, jobType, companySize, skill, logo, image, auth, socket))
+        dispatch(updateJob(id, jobData, level, jobType, companySize, arrSkill, logo, image, auth, socket))
     }
 
     useEffect(() => {
@@ -119,6 +128,7 @@ const UpdateJobs = () => {
         arrSkill = [...data.skill]
         setLoad([...data.skill])
         setJobData(data)
+        setExp(data.experience)
     }, [allJob.jobs])
 
     return (
@@ -192,16 +202,23 @@ const UpdateJobs = () => {
                                         </div>
                                     </div>
                                     <div className="row mb-3">
-                                        <label for="" className="col-sm-3 col-form-label">Skill Tags</label>
-                                        {
-                                            console.log(load)
-                                        }
-
+                                        <label for="" className="col-sm-3 col-form-label">Experience</label>
                                         <div className="col-sm-8">
-
+                                            <select className="form-control" id="" placeholder="" value={experience} name='experience' onChange={e => setExp(e.target.value)}>
+                                                {
+                                                    dataExp.map((element) => (
+                                                        <option value={element}>{element}</option>
+                                                    ))
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="row mb-3">
+                                        <label for="" className="col-sm-3 col-form-label">Skill Tags</label>
+                                        <div className="col-sm-8">
                                             {
                                                 load.map((data, index) => (
-                                                    <AddSkill index={index} load={load} handleDeleteSkill={handleDeleteSkill} arr={load} />
+                                                    <AddSkill index={index} load={load} handleDeleteSkill={handleDeleteSkill} arr={arrSkill} />
                                                 ))
                                             }
                                             <button type="button" onClick={e => setLoad([...load, 1])} class="btn btn-primary btn-save">Add skill</button>

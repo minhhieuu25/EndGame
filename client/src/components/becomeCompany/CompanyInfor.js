@@ -22,7 +22,7 @@ const CompanyInfor = () => {
         website: '',
         email: '',
         phoneNumber: '',
-
+        taxCode: ''
     }
     const [company, setCompany] = useState(initState)
 

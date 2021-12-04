@@ -52,8 +52,8 @@ const Resume = () => {
     const dispatch = useDispatch()
 
     const handlePreview = async () => {
-        // await dispatch(getResume(cvData, arrEdu, arrExp, arrSkill, language, avatar))
-        console.log(arrEdu)
+        await dispatch(getResume(cvData, arrEdu, arrExp, arrSkill, language, avatar))
+        
     }
 
     const handleSave = async () => {

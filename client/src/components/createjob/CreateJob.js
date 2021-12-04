@@ -36,7 +36,12 @@ const CreateJob = () => {
         "500-999",
         "1000-4999"
     ]
-
+    const dataExp = [
+        "Not required",
+        "1-2 years",
+        "4-5 years",
+        "5 years or more"
+    ]
 
 
     const { auth, listCompany, socket } = useSelector(state => state)
@@ -44,6 +49,7 @@ const CreateJob = () => {
     const [level, setLevel] = useState('Interns')
     const [jobType, setJobType] = useState('Full-time')
     const [companySize, setSize] = useState('10-')
+    const [experience, setExp] = useState("Not required")
     const initState = {
         position: '', industry: '', address: '', description: '', requirement: '', minSalary: 0,
         maxSalary: 0, benefit: '', endDate: ''
@@ -71,8 +77,7 @@ const CreateJob = () => {
 
 
     const handleCreate = () => {
-        const result = dispatch(createJob(jobData, level, jobType, arrSkill, companySize, logo, image, auth, socket))
-        console.log(!result)
+        const result = dispatch(createJob(jobData, level, jobType, experience, arrSkill, companySize, logo, image, auth, socket))
 
     }
     const onTagsChangeSkill = (e, value) => {
@@ -159,6 +164,18 @@ const CreateJob = () => {
                                 <label for="" className="col-sm-3 col-form-label">Requirements</label>
                                 <div className="col-sm-8">
                                     <textarea className="form-control" name='requirement' onChange={handleInput} placeholder="Requirement about job"></textarea>
+                                </div>
+                            </div>
+                            <div className="row mb-3">
+                                <label for="" className="col-sm-3 col-form-label">Experience</label>
+                                <div className="col-sm-8">
+                                    <select className="form-control" id="" placeholder="" defaultValue='Not required' name='jobType' onChange={e => setExp(e.target.value)}>
+                                        {
+                                            dataExp.map((element) => (
+                                                <option value={element}>{element}</option>
+                                            ))
+                                        }
+                                    </select>
                                 </div>
                             </div>
                             <div className="row mb-3">

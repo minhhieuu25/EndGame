@@ -7,11 +7,10 @@ import { checkImage } from '../../utils/imageUpload'
 
 const EditProfileCompany = ({ data, setOnEdit }) => {
     const initState = {
-        companyName: data.companyName, address: data.address, companySize: data.companySize, website: data.website, info: data.info, phoneNumber: data.phoneNumber
-        // companyName: '', address: '', companySize: '', website: '', info: '', phoneNumber: ''
+        companyName: data.companyName, address: data.address, companySize: data.companySize, website: data.website, info: data.info, phoneNumber: data.phoneNumber, taxCode: data.taxCode,
     }
     const [companyData, setCompanyData] = useState(initState)
-    const [logo, setLogo] = useState('')
+    const [logo, setLogo] = useState(data.logo)
 
     const { auth, theme } = useSelector(state => state)
     const dispatch = useDispatch()
@@ -28,23 +27,19 @@ const EditProfileCompany = ({ data, setOnEdit }) => {
         if (err) return dispatch({
             type: GLOBALTYPES.ALERT, payload: { error: err }
         })
-
         setLogo(file)
     }
 
     const handleInput = e => {
         const { name, value } = e.target
         setCompanyData({ ...companyData, [name]: value })
-        console.log(companyData)
-
     }
 
     const handleSubmit = e => {
         e.preventDefault()
-
-        console.log(logo)
         dispatch(updateProfileCompany({ companyData, logo, auth }))
-        // dispatch(updateProfileUser({ companyData, logo, auth }))
+        console.log(companyData)
+        console.log(logo)
     }
 
     return (
@@ -56,8 +51,12 @@ const EditProfileCompany = ({ data, setOnEdit }) => {
 
             <form onSubmit={handleSubmit}>
                 <div className="info_avatar">
-                    <img src={logo ? URL.createObjectURL(logo) : data.logo}
+                    <img src={(typeof logo) !== 'string' ? URL.createObjectURL(logo) : data.logo}
                         alt="avatar" style={{ filter: theme ? 'invert(1)' : 'invert(0)' }} />
+
+                    {/* <img src={data.logo}
+                        alt="avatar" style={{ filter: theme ? 'invert(1)' : 'invert(0)' }} /> */}
+                    {/* {console.log(typeof logo)} */}
                     <span>
                         <i className="fas fa-camera" />
                         <p>Change</p>
@@ -97,7 +96,10 @@ const EditProfileCompany = ({ data, setOnEdit }) => {
                     <label>Website</label>
                     <input type="text" className="form-control" name="website" value={companyData.website} onChange={handleInput} />
                 </div>
-
+                <div className="form-group">
+                    <label>Tax code</label>
+                    <input type="text" className="form-control" name="taxCode" value={companyData.taxCode} onChange={handleInput} />
+                </div>
 
 
                 <div className="form-group">

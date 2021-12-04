@@ -47,6 +47,10 @@ const companySchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    taxCode: {
+        type: String,
+        default: ''
+    },
     // followers: [{ type: mongoose.Types.ObjectId, ref: 'user' }],
     // website: { type: String, default: '' },
     // followers: [{ type: mongoose.Types.ObjectId, ref: 'user' }],

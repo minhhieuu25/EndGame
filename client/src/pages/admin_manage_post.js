@@ -3,6 +3,7 @@ import dateFormat from 'dateformat';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCompany } from '../redux/actions/listCompanyAction';
+import { deleteJobForAdmin } from '../redux/actions/usersAction';
 // import { updateRole } from '../redux/actions/usersAction';
 
 
@@ -12,8 +13,9 @@ const initialState = {
 }
 const limit = 7
 function Profile() {
-    const { auth, listCompany, allJob } = useSelector(state => state)
+    const { auth, listCompany, allJob, socket } = useSelector(state => state)
     const [data, setData] = useState(initialState)
+    const [listJob, setList] = useState(allJob.jobs ? allJob.jobs : [])
 
     const dispatch = useDispatch()
 
@@ -27,7 +29,7 @@ function Profile() {
         //     setCompanies(listCompany.companies)
         //     console.log(companies)
         // }
-
+        console.log(listJob)
     }, [allJob])
 
     // const handleChange = e => {
@@ -44,7 +46,8 @@ function Profile() {
     }
 
     const handleDelete = (job) => {
-        dispatch(deleteCompany(job, auth))
+        dispatch(deleteJobForAdmin(job, auth, socket))
+        // console.log(job)
     }
     //phan trang
     const initDataShow = allJob.jobs ? allJob.jobs : [];
@@ -69,38 +72,38 @@ function Profile() {
         setCurrPage(page)
     }
     return (
-        <>
+        <div className="page-admin">
             <div className="profile_page">
                 <div className="col-left">
-                    <h2> "Company Info"</h2>
+                    <h2>Company Info</h2>
 
                     <div className="avatar">
                         <img src={data.logo} alt="" />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="name">company Name</label>
+                        <label htmlFor="name" className="text-label">Company Name</label>
                         <input type="text" name="name" id="name" value={data.companyName}
                             disabled />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="email">Address</label>
-                        <input type="email" name="email" id="email" value={data.address}
+                        <label htmlFor="email" className="text-label">Job title</label>
+                        <input type="email" name="email" id="email" value={data.position}
                             disabled />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="password">Position</label>
+                        <label htmlFor="password" className="text-label">Description</label>
                         <input type="text" name="role" id="role"
-                            placeholder="role" value={data.position} disabled />
+                            value={data.description} disabled />
 
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="cf_password">Salary</label>
+                        <label htmlFor="cf_password" className="text-label">Phone Number</label>
                         <input type="text" name="cf_password" id="cf_password"
-                            value={`${data.minSalary / 1000000}-${data.maxSalary / 1000000}tr`} disabled />
+                            value={data.phoneNumber} disabled />
                     </div>
 
                     {/* <div>
@@ -108,12 +111,13 @@ function Profile() {
                             * If you update your password here, you will not be able
                             to login quickly using google and facebook.
                         </em>
+                    </div>
+                    <div className="text-center">
+                        <button onClick={handleUpdate}>Update</button>
                     </div> */}
-
-                    {/* <button onClick={handleUpdate}>Update</button> */}
                 </div>
                 <div className="col-right">
-                    <h2>{auth.isAdmin ? "Companies" : "My Orders"}</h2>
+                    <h2 className="text-center">MODERATOR POST</h2>
 
                     <div style={{ overflowX: "auto" }}>
                         <table className="customers">
@@ -121,20 +125,21 @@ function Profile() {
                                 <tr>
                                     <th>ID</th>
                                     <th>Company Name</th>
-                                    <th>Positon</th>
+                                    <th>Job title</th>
+                                    <th>Salary</th>
                                     <th>Create date</th>
                                     <th>End date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            {console.log(dataShow)}
                             <tbody>
                                 {
-                                    dataShow.map((job, index) => (
+                                    listJob.map((job, index) => (
                                         <tr key={job.idCompany}>
                                             <td>{currPage * 10 + index}</td>
                                             <td>{job.companyName}</td>
                                             <td>{job.position}</td>
+                                            <td>{job.minSalary / 1000000}-{job.maxSalary / 1000000} Million</td>
                                             <td>{dateFormat(job.createdAt, 'dd/mm/yyyy')}</td>
                                             <td>{dateFormat(job.endDate, 'dd/mm/yyyy')}</td>
                                             <td>
@@ -143,7 +148,6 @@ function Profile() {
                                                     onClick={() => handleView(job)}></i>
                                                 <i className="fas fa-trash-alt" title="Remove"
                                                     onClick={() => handleDelete(job)} ></i>
-                                                <ReadMoreIcon />
                                             </td>
                                         </tr>
                                     ))
@@ -166,7 +170,7 @@ function Profile() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
