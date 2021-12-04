@@ -30,7 +30,6 @@ const SubmitCVModal = ({ setShowSubmitCV, job }) => {
                     setIdCompany(element.idCompany)
             })
         }
-        console.log(idCompany)
     }, [allResume.resumes])
 
     const handleOnChange = (data) => {
@@ -38,7 +37,7 @@ const SubmitCVModal = ({ setShowSubmitCV, job }) => {
     }
 
     const handleSubmit = () => {
-        dispatch(submitCV(job._id, idCompany, selected, auth, socket))
+        dispatch(submitCV(job._id, job.endDate, idCompany, selected, auth, socket))
         setShowSubmitCV(false)
     }
 

@@ -16,8 +16,8 @@ const caculatePoint = (dataJob, dataCV) => {
 const submitCtrl = {
     submit: async (req, res) => {
         try {
-            const { idJob, idCompany, idCV, dataCV, dateSubmit } = req.body
-            if (new Date(dateSubmit).getTime() < new Date().getTime())
+            const { idJob, idCompany, idCV, dataCV, dateSubmit, endDate } = req.body
+            if (new Date(endDate).getTime() < new Date().getTime())
                 return res.json({ msg: 'Job expired' })
             if (!idJob || !idCV)
                 return res.json({ msg: 'Missing parameter!' })
