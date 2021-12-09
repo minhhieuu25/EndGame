@@ -10,35 +10,30 @@ import { checkImage } from '../../utils/imageUpload';
 import { GLOBALTYPES } from '../../redux/actions/globalTypes';
 
 
-
+let arrExp = []
+let arrEdu = []
+let arrSkill = []
 const Resume = () => {
 
     const { allResume, auth } = useSelector(state => state)
     const { id } = useParams()
 
 
+
+    const [loadEdu, setLoadEdu] = useState([1])
+    const [loadExp, setLoadExp] = useState([1])
+
     const initState = {
         fullname: '',
         email: '',
         dateofBirth: '1900-01-01',
-        images: '',
         position: '',
         phoneNumber: '',
         address: '',
         descriptionProfile: '',
-        nameSchool: '',
-        major: '',
-        startDateEducation: '',
-        endDateEducation: '',
-        descriptionEducation: '',
-        nameCompany: '',
-        positonCompan: '',
-        startDateExperience: '',
-        endDateExperience: '',
-        descriptionExperience: '',
     }
     const [cvData, setcvData] = useState(allResume.resumes ? allResume.resumes.filter(element => id === element._id) : initState)
-    const [avatar, setAvatar] = useState(allResume.resumes.filter(element => id === element._id).avatar)
+    const [avatar, setAvatar] = useState(allResume.resumes ? allResume.resumes.filter(element => id === element._id).avatar : '')
     const [skill, setSkill] = useState([])
     const [language, setLanguage] = useState([])
 
@@ -48,13 +43,17 @@ const Resume = () => {
             setSkill(cv[0].skill)
             setLanguage(cv[0].language)
             setcvData({ ...cv[0] })
+            setLoadEdu(cv[0].educations)
+            setLoadExp(cv[0].experiences)
+            arrEdu = cv[0].educations
+            arrExp = cv[0].experiences
         }
 
     }, [allResume.resumes])
 
     const handleInput = e => { //[]
         const { name, value } = e.target
-        
+
         setcvData({ ...cvData, [name]: value })
 
     }
@@ -81,12 +80,48 @@ const Resume = () => {
         setAvatar(file)
     }
 
+    const handleDeleteEdu = (i) => {
+        arrEdu.splice(i, 1)
+        const tmp = loadEdu.splice(i, 1)
+        setLoadEdu(tmp)
+
+    }
+
+    const handleDeleteExp = (i) => {
+        arrExp.splice(i, 1)
+        const tmp = loadExp.splice(i, 1)
+        setLoadExp(tmp)
+    }
     return (
         <>
             <Profile handleInput={handleInput} changeAvatar={changeAvatar} values={cvData} />
-            <Education handleInput={handleInput} values={cvData} />
+            {
+                loadEdu.map((element, index) => (
+                    <Education index={index} arr={arrEdu} handleDelete={handleDeleteEdu} load={loadEdu} />
+                ))
+            }
+            <div>
+                <button type="button" class="btn btn-info" onClick={e => setLoadEdu([...loadEdu, 1])}>Add Education More</button>
+            </div>
+            {
+                loadExp.map((element, index) => (
+                    <>
+                        <Experience index={index} arr={arrExp} handleDelete={handleDeleteExp} load={loadExp} />
+
+                    </>
+                ))
+            }
+            <div>
+                <button type="button" class="btn btn-info" onClick={e => setLoadExp([...loadExp, 1])}>Add Experience More</button>
+            </div>
+
+            {/* <Education handleInput={handleInput} values={cvData} />
             <Experience handleInput={handleInput} values={cvData} />
-            <Extras handleInput={handleInput} handleData={setSkill} handleLanguage={setLanguage} values={cvData} />
+            <Extras handleInput={handleInput} handleData={setSkill} handleLanguage={setLanguage} values={cvData} /> */}
+            <Extras handleInput={handleInput} handleSkill={setSkill} handleLanguage={setLanguage} values={cvData}
+                // dataSkill={skill} 
+                dataSkill={arrSkill}
+                dataLanguage={language} />
             <div className="mt-3">
                 <button type="button" class="btn btn-primary mr-3" onClick={handleUpdate}>Update CV</button>
                 <Link to={`/reviewResume/${id}`}><button type="button" onClick={handlePreview} class="btn btn-primary">Preview</button></Link>

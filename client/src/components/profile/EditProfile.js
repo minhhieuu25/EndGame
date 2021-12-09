@@ -17,7 +17,7 @@ const EditProfile = ({ setOnEdit }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        setUserData(auth.user)
+        setUserData({ ...auth.user, ['fullname']: auth.user.firstname + ' ' + auth.user.lastname })
     }, [auth.user])
 
 

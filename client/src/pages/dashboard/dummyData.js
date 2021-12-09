@@ -1,3 +1,54 @@
+export const dataChart = [
+  {
+    name: "Jan",
+    "Total Resume": 0,
+  },
+  {
+    name: "Feb",
+    "Total Resume": 0,
+  },
+  {
+    name: "Mar",
+    "Total Resume": 0,
+  },
+  {
+    name: "Apr",
+    "Total Resume": 0,
+  },
+  {
+    name: "May",
+    "Total Resume": 0,
+  },
+  {
+    name: "Jun",
+    "Total Resume": 0,
+  },
+  {
+    name: "Jul",
+    "Total Resume": 0,
+  },
+  {
+    name: "Agu",
+    "Total Resume": 0,
+  },
+  {
+    name: "Sep",
+    "Total Resume": 0,
+  },
+  {
+    name: "Oct",
+    "Total Resume": 0,
+  },
+  {
+    name: "Nov",
+    "Total Resume": 0,
+  },
+  {
+    name: "Dec",
+    "Total Resume": 0,
+  },
+];
+
 export const userData = [
   {
     name: "Jan",

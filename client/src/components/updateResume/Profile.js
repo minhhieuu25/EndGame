@@ -4,7 +4,7 @@ import dateFormat from 'dateformat'
 
 const Profile = ({ handleInput, changeAvatar, values }) => {
   return (
-    <div className="profile-cv" onLoad={window.scrollTo(0, 0)}>
+    <div className="profile-cv">
       <div className="card">
         <div className="card-body">
           <h3 className="mb-3">Personal Details</h3>

@@ -3,7 +3,7 @@ import { ArrowDownward, ArrowUpward } from '@mui/icons-material';
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-export default function FeaturedInfo() {
+export default function FeaturedInfo({ totalResume }) {
 
   const { allJob, auth, submited } = useSelector(state => state)
   const [jobs, setJobs] = useState(allJob.jobs ? allJob.jobs.filter(element => element.idCompany === auth.user._id) : [])
@@ -13,7 +13,8 @@ export default function FeaturedInfo() {
       const arr = allJob.jobs.filter(element => element.idCompany === auth.user._id)
       setJobs(arr)
     }
-  }, [allJob.jobs])
+    console.log('totalResume', totalResume)
+  }, [allJob.jobs, totalResume])
 
 
 
@@ -30,7 +31,7 @@ export default function FeaturedInfo() {
         <span className="featuredSub">Total of job that you posted</span>
       </div>
       <div className="featuredItem">
-        <span className="featuredTitle">Jobs Expired</span>
+        <span className="featuredTitle">Jobs Unexpired</span>
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">{jobs.filter(data => new Date() < new Date(data.endDate)).length}</span>
           {/* <span className="featuredMoneyRate">
@@ -42,7 +43,7 @@ export default function FeaturedInfo() {
       <div className="featuredItem">
         <span className="featuredTitle">Total Resume</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">$2,225</span>
+          <span className="featuredMoney">{totalResume}</span>
           {/* <span className="featuredMoneyRate">
             +2.4 <ArrowUpward className="featuredIcon" />
           </span> */}

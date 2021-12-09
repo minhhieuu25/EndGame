@@ -119,6 +119,7 @@ function Profile() {
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Website</th>
+                                    <th>Tax code</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -129,7 +130,7 @@ function Profile() {
                                             <td>{currPage * 10 + index}</td>
                                             <td>{company.companyName}</td>
                                             <td>{company.website}</td>
-
+                                            <td>{company.taxCode}</td>
                                             <td>
                                                 <i className="fas fa-edit" title="Edit"
                                                     onClick={() => handleView(company)}></i>

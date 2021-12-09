@@ -31,7 +31,7 @@ io.on('connection', socket => {
 // Create peer server
 ExpressPeerServer(http, { path: '/' })
 
-
+//localhost:5000/api/register
 // Routes
 app.use('/api', require('./routes/authRouter'))
 app.use('/api', require('./routes/jobRouter'))
