@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import AddSkill from './AddSkill';
 
 
-const Extras = ({ handleInput, handleData, handleLanguage, values }) => {
+const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, dataLanguage }) => {
 
+  const initState = [
+    {
+      title: 'JavaScript',
+      level: 'basic'
+    }
+  ]
   const topSkill = [
     { title: 'JavaScript' },
     { title: 'Problem-Solving Skills' },
     { title: 'Planning and Organizational Skills' },
     { title: 'Data Analysis' },
-    { title: 'Adaptability' },]
+    { title: 'Adaptability' },
+    { title: "Other" }
+  ];
 
   const topLanguage = [
     { title: "English" },
@@ -20,12 +29,22 @@ const Extras = ({ handleInput, handleData, handleLanguage, values }) => {
     { title: "Korean Laguage" },
     { title: "Other" }
   ]
-  const onTagsChange = (event, values) => {
+  const onTagsChangeSkill = (event, values) => {
 
-    handleData(values)
+    handleSkill(values)
+
   }
   const onTagsChangeLanguage = (event, values) => {
     handleLanguage(values)
+  }
+
+  const [load, setLoad] = useState(values.skill ? values.skill : initState)
+
+  const handleDeleteSkill = (i) => {
+    dataSkill.splice(i, 1)
+    load.splice(i, 1)
+    let tmp = [...load]
+    setLoad(tmp)
   }
 
 
@@ -37,10 +56,10 @@ const Extras = ({ handleInput, handleData, handleLanguage, values }) => {
           <h3 className="mb-3">Extras Details</h3>
           <form>
             <div className="row mb-3">
-              <label for="" className="col-sm-3 col-form-label">Skill</label>
-              <div className="col-sm-8">
-                {/* <input type="text" className="form-control" onChange={handleInput} value={values.skill} name='skill' placeholder="Ex: Java" /> */}
-                <Autocomplete
+              {/* <label for="" className="col-sm-3 col-form-label">Skill</label>
+              <div className="col-sm-8"> */}
+              {/* <input type="text" className="form-control" onChange={handleInput} value={values.skill} name='skill' placeholder="Ex: Java" /> */}
+              {/* <Autocomplete
                   multiple
                   limitTags={2}
                   id="multiple-limit-tags"
@@ -51,7 +70,29 @@ const Extras = ({ handleInput, handleData, handleLanguage, values }) => {
                   renderInput={(params) => (
                     <TextField {...params} label="limitTags" placeholder="Skill" />
                   )}
-                />
+                /> */}
+
+              {/* </div> */}
+              <label for="" className="col-sm-3 col-form-label">Skill</label>
+              <div className="col-sm-8">
+                {/* <Autocomplete
+                  multiple
+                  limitTags={2}
+                  id="multiple-limit-tags"
+                  options={topSkill}
+                  onChange={onTagsChangeSkill}
+                  defaultValue={dataSkill}
+                  getOptionLabel={(option) => option.title}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Skill" placeholder="Skill" />
+                  )}
+                /> */}
+                {
+                  load.map((data, index) => (
+                    <AddSkill index={index} load={load} handleDeleteSkill={handleDeleteSkill} arr={dataSkill} />
+                  ))
+                }
+                <button type="button" onClick={e => setLoad([...load, 1])} class="btn btn-primary btn-save">Add skill</button>
               </div>
             </div>
             <hr />

@@ -16,6 +16,15 @@ const topSkill = [
     { title: 'ReactJs' },
     { title: 'VueJs' },
     { title: 'Sql Server' },
+    { title: 'MongooDB' },
+    { title: 'C/C++' },
+    { title: 'React Native' },
+    { title: 'Python' },
+    { title: 'PHP' },
+    { title: 'Java' },
+    { title: 'Switf' },
+    { title: 'C#' },
+    { title: 'Ruby' },
     { title: "Other" }
 ];
 
@@ -80,8 +89,9 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
                             ...data,
                             title: newValue.inputValue,
                         });
+                        console.log(newValue)
                     } else {
-                        arr[index] = { ...arr[index], 'title': newValue.title ? newValue.title : '' }
+                        arr[index] = { ...arr[index], 'title': newValue.inputValue ? newValue.inputValue : '' }
                         setData(newValue);
                     }
                 }}

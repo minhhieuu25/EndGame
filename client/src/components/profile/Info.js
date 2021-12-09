@@ -7,6 +7,7 @@ import Following from './Following'
 import { GLOBALTYPES } from '../../redux/actions/globalTypes'
 
 const Info = ({ id, auth, profile, dispatch }) => {
+
     const [userData, setUserData] = useState([])
     const [onEdit, setOnEdit] = useState(false)
 
@@ -64,13 +65,13 @@ const Info = ({ id, auth, profile, dispatch }) => {
                                 </span>
                             </div>
 
-                            <h6>{user.fullname} <span className="text-danger">{user.mobile}</span></h6>
+                            <h6><span className="text-danger">{user.mobile}</span></h6>
                             <p className="m-0">{user.address}</p>
                             <h6 className="m-0">{user.email}</h6>
-                            <a href={user.website} target="_blank" rel="noreferrer">
+                            {/* <a href={user.website} target="_blank" rel="noreferrer">
                                 {user.website}
                             </a>
-                            <p>{user.story}</p>
+                            <p>{user.story}</p> */}
                         </div>
 
                         {
@@ -91,6 +92,7 @@ const Info = ({ id, auth, profile, dispatch }) => {
                                 setShowFollowing={setShowFollowing}
                             />
                         }
+                        {console.log('userData', userData)}
                         <div className="col-xl-12 order-xl-1" style={{ margin: '20px auto' }}>
                             <div className="card">
                                 <div className="card-body">
@@ -101,7 +103,7 @@ const Info = ({ id, auth, profile, dispatch }) => {
                                                 <div className="col-lg-6">
                                                     <div className="form-group">
                                                         <label className="form-control-label" htmlFor="input-companyName">Full Name</label>
-                                                        <input type="text" id="input-companyName" className="form-control" placeholder="Long" readOnly></input>
+                                                        <input type="text" id="input-companyName" className="form-control" readOnly></input>
                                                     </div>
                                                 </div>
                                                 <div className="col-lg-6">

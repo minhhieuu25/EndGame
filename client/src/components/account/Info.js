@@ -69,7 +69,7 @@ const Info = ({ id, auth, profile, dispatch }) => {
                                 <a href={user.website} target="_blank" rel="noreferrer">
                                     {user.website}
                                 </a>
-                                <p>{user.story}</p>
+                                {/* <p>{user.story}</p> */}
                             </div>
 
                             {
@@ -115,12 +115,12 @@ const Info = ({ id, auth, profile, dispatch }) => {
                                                         <input type="text" id="input-username" className="form-control" placeholder="Username" defaultValue={user.fullname} />
                                                     </div>
                                                 </div>
-                                                <div className="col-lg-6">
+                                                {/* <div className="col-lg-6">
                                                     <div className="form-group">
                                                         <label className="form-control-label" htmlFor="input-email">User name</label>
                                                         <input type="email" id="input-email" className="form-control" defaultValue={user.username} />
                                                     </div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                             <div className="row">
                                                 <div className="col-lg-6">
