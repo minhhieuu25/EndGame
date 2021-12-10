@@ -64,7 +64,7 @@ const SavedJob = () => {
                                                         setShowSubmitCV={setShowSubmitCV}
                                                         job={element} />
                                                 }
-                                                <FollowCompanyBtn className="btn btn-unsave-job" job={element} />
+                                                <FollowCompanyBtn job={element} />
                                             </div>
                                         </div>
                                     </div>
