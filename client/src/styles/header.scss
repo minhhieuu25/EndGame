@@ -84,6 +84,10 @@
 .header .menu .dropdown:hover .dropdown-menu{
     display: block;
     
+    a:hover {
+        text-decoration: none;
+    }
+    
 }
 
 .header .menu li:hover {
