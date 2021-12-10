@@ -149,7 +149,7 @@ const Register = () => {
                     <button type="submit" className="signup-btn">
                         Register
                     </button>
-                    <hr />
+                    {/* <hr />
                     <div className="login-with-gg">
                         <p>Sign up with other:</p>
                         <div className="row">
@@ -170,7 +170,7 @@ const Register = () => {
                                 />
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         </div>
