@@ -66,7 +66,6 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
     //     console.log(load)
     // }, [])
     return (
-
         <div className="add-skill">
             <Autocomplete
                 value={data}

@@ -53,7 +53,7 @@ const Resume = () => {
 
     const handlePreview = async () => {
         await dispatch(getResume(cvData, arrEdu, arrExp, arrSkill, language, avatar))
-        
+
     }
 
     const handleSave = async () => {
@@ -84,25 +84,40 @@ const Resume = () => {
     return (
         <>
             <Profile handleInput={handleInput} changeAvatar={changeAvatar} values={cvData} />
-            {
-                loadEdu.map((element, index) => (
-                    <Education index={index} arr={arrEdu} handleDelete={handleDeleteEdu} load={loadEdu} />
-                ))
-            }
-            <div>
-                <button type="button" class="btn btn-info" onClick={e => setLoadEdu([...loadEdu, 1])}>Add Education More</button>
+            <div className="education-cv mt-5">
+                <div className="card">
+                    <div className="card-body">
+                        <h3 className="mb-3">Education Details</h3>
+                        {
+                            loadEdu.map((element, index) => (
+                                <Education index={index} arr={arrEdu} handleDelete={handleDeleteEdu} load={loadEdu} />
+                            ))
+                        }
+                        <div className='mt-3'>
+                            <button type="button" class="btn btn-info" onClick={e => setLoadEdu([...loadEdu, 1])}>Add Education More</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {
-                loadExp.map((element, index) => (
-                    <>
-                        <Experience index={index} arr={arrExp} handleDelete={handleDeleteExp} load={loadExp} />
+            
+            <div className="experience-cv mt-5">
+                <div className="card">
+                    <div className="card-body">
+                        <h3 className="mb-3">Experience Details</h3>
+                        {
+                            loadExp.map((element, index) => (
+                                <>
+                                    <Experience index={index} arr={arrExp} handleDelete={handleDeleteExp} load={loadExp} />
+                                </>
+                            ))
+                        }
+                        <div className="mt-3">
+                            <button type="button" class="btn btn-info" onClick={e => setLoadExp([...loadExp, 1])}>Add Experience More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    </>
-                ))
-            }
-            <div>
-                <button type="button" class="btn btn-info" onClick={e => setLoadExp([...loadExp, 1])}>Add Experience More</button>
-            </div>
             <Extras handleInput={handleInput} handleSkill={setSkill} handleLanguage={setLanguage} values={cvData}
                 // dataSkill={skill} 
                 dataSkill={arrSkill}
