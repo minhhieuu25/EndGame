@@ -93,8 +93,8 @@ const Login = () => {
                         disabled={email && password ? false : true}>
                         Login
                     </button>
-                    <hr />
-                    <div className="login-with-gg">
+                    {/* <hr /> */}
+                    {/* <div className="login-with-gg">
                         <p>Login with other:</p>
                         <div className="row">
                             <div className="col-6">
@@ -114,7 +114,7 @@ const Login = () => {
                                 />
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         </div>

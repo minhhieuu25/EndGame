@@ -139,7 +139,7 @@ const JobsDetail = () => {
                             <div className="col-sm-4">
                                 {auth.isCompany ?
                                     <div className="job-btn">
-                                        <button type="button" className="btn btn-info btn-lg" onClick={() => setShowSubmitCV(true)} disabled={true}><i className="far fa-paper-plane"></i> APPLY NOW</button>
+                                        <button type="button" className="btn btn-info btn-lg mb-3" onClick={() => setShowSubmitCV(true)} disabled={true}><i className="far fa-paper-plane"></i> APPLY NOW</button>
                                         {
                                             ShowSubmitCV &&
                                             <SubmitCVModal
@@ -150,7 +150,7 @@ const JobsDetail = () => {
                                         <button type="button" disabled={true} className="btn btn-secondary btn-lg mt-3" ><i className="fas fa-share-alt" ></i> Share Job</button>
                                     </div> :
                                     <div className="job-btn">
-                                        <button type="button" className="btn btn-info btn-lg" onClick={() => setShowSubmitCV(true)}><i className="far fa-paper-plane"></i> APPLY NOW</button>
+                                        <button type="button" className="btn btn-info btn-lg mb-3" onClick={() => setShowSubmitCV(true)}><i className="far fa-paper-plane"></i> APPLY NOW</button>
                                         {
                                             ShowSubmitCV &&
                                             <SubmitCVModal

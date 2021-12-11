@@ -74,7 +74,7 @@ function Profile() {
     return (
         <div className="page-admin">
             <div className="profile_page">
-                <div className="col-left">
+                {/* <div className="col-left">
                     <h2>Company Info</h2>
 
                     <div className="avatar">
@@ -114,8 +114,8 @@ function Profile() {
                     </div>
                     <div className="text-center">
                         <button onClick={handleUpdate}>Update</button>
-                    </div> */}
-                </div>
+                    </div>
+                </div> */}
                 <div className="col-right">
                     <h2 className="text-center">MODERATOR POST</h2>
 
