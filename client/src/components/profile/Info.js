@@ -92,7 +92,6 @@ const Info = ({ id, auth, profile, dispatch }) => {
                                 setShowFollowing={setShowFollowing}
                             />
                         }
-                        {console.log('userData', userData)}
                         <div className="col-xl-12 order-xl-1" style={{ margin: '20px auto' }}>
                             <div className="card">
                                 <div className="card-body">
@@ -103,7 +102,7 @@ const Info = ({ id, auth, profile, dispatch }) => {
                                                 <div className="col-lg-6">
                                                     <div className="form-group">
                                                         <label className="form-control-label" htmlFor="input-companyName">Full Name</label>
-                                                        <input type="text" id="input-companyName" className="form-control" readOnly></input>
+                                                        <input type="text" id="input-industry" className="form-control" placeholder="01/01/2000" value={user.firstname + ' ' + user.lastname} readOnly />
                                                     </div>
                                                 </div>
                                                 <div className="col-lg-6">

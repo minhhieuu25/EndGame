@@ -80,8 +80,8 @@ const MenuRightAuth = () => {
                             {theme ? 'Light mode' : 'Dark mode'}
                         </label> */}
 
-                        <Link className="dropdown-item" to={`/account/${auth.user._id}`}>
-                            <i className="fas fa-cog"></i> Account Settings</Link>
+                        {/* <Link className="dropdown-item" to={`/account/${auth.user._id}`}>
+                            <i className="fas fa-cog"></i> Account Settings</Link> */}
 
                         <div className="dropdown-divider"></div>
                         <Link className="dropdown-item logout" to="/"
