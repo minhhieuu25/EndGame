@@ -67,8 +67,9 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
     // }, [])
     return (
 
-        <div>
+        <div className='add-skill mt-3'>
             <Autocomplete
+                className="mr-3"
                 value={data}
                 onChange={(event, newValue) => {
                     if (typeof newValue === 'string') {
@@ -132,12 +133,13 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
                 sx={{ width: 300 }}
                 freeSolo
                 renderInput={(params) => (
-                    <TextField {...params} label="Free solo with text demo" />
+                    <TextField {...params} label="Skill" />
                 )}
             />
 
             {/* &emsp; */}
             <NativeSelect id="select"
+                className="mr-3 high-23"
                 onChange={handleInput}
             >
                 {
@@ -147,7 +149,7 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
                 }
             </NativeSelect>
             &emsp;
-            {index > 0 && <button type="button" onClick={e => handleDeleteSkill(index)} class="btn btn-primary btn-save">Delete</button>}
+            {index > 0 && <button type="button" onClick={e => handleDeleteSkill(index)} class="btn btn-info">Delete</button>}
         </div>
 
     );

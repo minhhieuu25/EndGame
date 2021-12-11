@@ -113,14 +113,7 @@ function Profile() {
                                 <MenuItem value={'admin'}>admin</MenuItem>
                             </Select>
                         </FormControl>
-                    </div>
-
-                    <div>
-                        <em style={{ color: "crimson" }}>
-                            * If you update your password here, you will not be able
-                            to login quickly using google and facebook.
-                        </em>
-                    </div>
+                    </div>             
                     <div className="text-center">
                         <button onClick={handleUpdate}>Update</button>
                     </div>

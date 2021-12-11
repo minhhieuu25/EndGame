@@ -66,9 +66,10 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
     //     console.log(load)
     // }, [])
     return (
-        <div className="add-skill">
+        <div className="add-skill mt-3">
             <Autocomplete
                 value={data}
+                className="mr-3"
                 onChange={(event, newValue) => {
                     if (typeof newValue === 'string') {
                         arr[index] = {
@@ -136,7 +137,7 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
             />
 
             {/* &emsp; */}
-            <NativeSelect id="select"
+            <NativeSelect id="select" className="mr-3 high-23"
                 onChange={handleInput}
             >
                 {
@@ -145,7 +146,7 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
                     ))
                 }
             </NativeSelect>         
-            {index > 0 && <button type="button" onClick={e => handleDeleteSkill(index)} class="btn btn-primary btn-save">Delete</button>}
+            {index > 0 && <button type="button" onClick={e => handleDeleteSkill(index)} class="btn btn-info">Delete</button>}
         </div>
 
     );

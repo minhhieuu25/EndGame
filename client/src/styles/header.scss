@@ -83,11 +83,14 @@
 }
 .header .menu .dropdown:hover .dropdown-menu{
     display: block;
-    
-    a:hover {
+
+    .notification-1:hover {
+        transform: scale(1.03);
         text-decoration: none;
+        border-radius: 10px;
+        transition: 0.5s;
     }
-    
+   
 }
 
 .header .menu li:hover {
