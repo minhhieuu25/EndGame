@@ -26,7 +26,7 @@ const ReviewResume = () => {
 	}
 
 	const { id } = useParams()
-	const { allResume} = useSelector(state => state)
+	const { allResume } = useSelector(state => state)
 
 	const [resume, setResume] = useState(initState)
 
@@ -106,10 +106,12 @@ const ReviewResume = () => {
 				</div>
 				<div className="clearfix-1"></div>
 			</div>
-			<div className="text-center">
-				<Link className="edit-cv mr-2" to={`/updateResume/${resume._id}`}><button className="btn btn-primary">Edit CV</button></Link>
+			<div className="mb-5 text-center">
+				<Link className="edit-cv mr-2" to={`/updateResume/${resume._id}`}>
+					<button className="btn btn-lg btn-primary">Edit CV</button>
+				</Link>
 				<Pdf targetRef={ref} filename="post.pdf">
-					{({ toPdf }) => <button className="btn btn-primary" onClick={toPdf}>Download file PDF</button>}
+					{({ toPdf }) => <button className="btn btn-primary btn-lg" onClick={toPdf}>Download file PDF</button>}
 				</Pdf>
 			</div>
 		</>
