@@ -39,8 +39,9 @@ const AnalysisJobs = () => {
             width: 150,
             renderCell: (params) => {
                 return (
-                    <FormControl fullWidth sx={{ height: 20 }}>
+                    <FormControl fullWidth sx={{ height: '40px' }}>
                         <NativeSelect
+                            style={{ height: '100%' }}
                             defaultValue={params.row.status}
                             onChange={e => handleOnChange(e, params.row.idCV, params.row.idCandidate)}
                         // inputProps={{
@@ -139,21 +140,23 @@ const AnalysisJobs = () => {
             <div className="container-analysis-job">
                 <div className="card">
                     <div className="card-body">
-                        <div className="job-title">
-                            <span>Job Title: {jobs.position}</span>
-                        </div>
-                        <div className="job-day">
-                            <span>Date created:</span> {dateFormat(jobs.createdAt, 'dd/mm/yyyy')}
-                        </div>
-                        <div className="job-day">
-                            <span>Expires on:</span> {dateFormat(jobs.endDate, 'dd/mm/yyyy')}
-                        </div>
-                        <div className="job-day">
-                            {/* <span>Status:</span> Active - Pending Approval - Closed */}
-                            <span>Status:</span> {new Date(jobs.endDate).getTime() < new Date().getTime() ? 'Closed' : 'Active'}
-                        </div>
-                        <div className="job-day">
-                            <span>Total Resume:</span> {cvs.length}
+                        <div className="ml-3">
+                            <div className="job-title">
+                                <span>Job Title: {jobs.position}</span>
+                            </div>
+                            <div className="job-day">
+                                <span>Date created:</span> {dateFormat(jobs.createdAt, 'dd/mm/yyyy')}
+                            </div>
+                            <div className="job-day">
+                                <span>Expires on:</span> {dateFormat(jobs.endDate, 'dd/mm/yyyy')}
+                            </div>
+                            <div className="job-day">
+                                {/* <span>Status:</span> Active - Pending Approval - Closed */}
+                                <span>Status:</span> {new Date(jobs.endDate).getTime() < new Date().getTime() ? 'Closed' : 'Active'}
+                            </div>
+                            <div className="job-day mb-3">
+                                <span>Total Resume:</span> {cvs.length}
+                            </div>
                         </div>
                         <div className="featured">
                             <div className="featuredItem">
