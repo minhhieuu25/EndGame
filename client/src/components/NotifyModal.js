@@ -61,7 +61,7 @@ const NotifyModal = () => {
                 {
                     notify.data.map((msg, index) => (
                         <div key={index} className="px-2 mb-3" >
-                            <Link to={`${msg.url}`} className="d-flex text-dark align-items-center"
+                            <Link to={`${msg.url}`} className="d-flex text-dark align-items-center notification-1"
                                 onClick={() => handleIsRead(msg)}>
                                 <Avatar src={msg.user.avatar} size="big-avatar" />
 

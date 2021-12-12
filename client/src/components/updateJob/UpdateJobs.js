@@ -214,14 +214,14 @@ const UpdateJobs = () => {
                                         </div>
                                     </div>
                                     <div className="row mb-3">
-                                        <label for="" className="col-sm-3 col-form-label">Skill Tags</label>
+                                        <label for="" className="col-sm-3 col-form-label mt-3">Skill Tags</label>
                                         <div className="col-sm-8">
                                             {
                                                 load.map((data, index) => (
                                                     <AddSkill index={index} load={load} handleDeleteSkill={handleDeleteSkill} arr={arrSkill} />
                                                 ))
                                             }
-                                            <button type="button" onClick={e => setLoad([...load, 1])} class="btn btn-primary btn-save">Add skill</button>
+                                            <button type="button" onClick={e => setLoad([...load, 1])} class="btn mt-3 btn-info btn-add-skill-1">Add Skill More</button>
                                             {/* <Autocomplete
                                                 multiple
                                                 limitTags={2}

@@ -56,49 +56,17 @@ const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, d
           <h3 className="mb-3">Extras Details</h3>
           <form>
             <div className="row mb-3">
-              {/* <label for="" className="col-sm-3 col-form-label">Skill</label>
-              <div className="col-sm-8"> */}
-              {/* <input type="text" className="form-control" onChange={handleInput} value={values.skill} name='skill' placeholder="Ex: Java" /> */}
-              {/* <Autocomplete
-                  multiple
-                  limitTags={2}
-                  id="multiple-limit-tags"
-                  options={topSkill}
-                  onChange={onTagsChange}
-                  defaultValue={values.skill}
-                  getOptionLabel={(option) => option.title}
-                  renderInput={(params) => (
-                    <TextField {...params} label="limitTags" placeholder="Skill" />
-                  )}
-                /> */}
-
-              {/* </div> */}
-              <label for="" className="col-sm-3 col-form-label">Skill</label>
+              <label for="" className="col-sm-3 col-form-label mt-3">Skill</label>
               <div className="col-sm-8">
-                {/* <Autocomplete
-                  multiple
-                  limitTags={2}
-                  id="multiple-limit-tags"
-                  options={topSkill}
-                  onChange={onTagsChangeSkill}
-                  defaultValue={dataSkill}
-                  getOptionLabel={(option) => option.title}
-                  renderInput={(params) => (
-                    <TextField {...params} label="Skill" placeholder="Skill" />
-                  )}
-                /> */}
                 {
                   load.map((data, index) => (
                     <AddSkill index={index} load={load} handleDeleteSkill={handleDeleteSkill} arr={dataSkill} />
                   ))
                 }
-                <button type="button" onClick={e => setLoad([...load, 1])} class="btn btn-primary btn-save">Add skill</button>
+                <button type="button" onClick={e => setLoad([...load, 1])} class="btn btn-add-skill btn-info mt-3">Add Skill More</button>
               </div>
             </div>
             <hr />
-            <div className="mb-3">
-              <button type="button" class="btn btn-info">Add Skill More</button>
-            </div>
             <div className="row mb-3">
               <label for="" className="col-sm-3 col-form-label">Language</label>
               <div className="col-sm-8">
@@ -112,7 +80,7 @@ const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, d
                   defaultValue={values.language}
                   getOptionLabel={(option) => option.title}
                   renderInput={(params) => (
-                    <TextField {...params} label="limitTags" placeholder="Skill" />
+                    <TextField {...params} label="Language" placeholder="Skill" />
                   )}
                 />
               </div>

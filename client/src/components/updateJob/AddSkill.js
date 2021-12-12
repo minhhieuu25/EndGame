@@ -20,9 +20,9 @@ const topSkill = [
 ];
 
 const level = [
-    { level: 'first', point: '5' },
-    { level: 'second', point: '4' },
-    { level: 'thirst', point: '3' },
+    { level: 'First', point: '5' },
+    { level: 'Second', point: '4' },
+    { level: 'Third', point: '3' },
 ];
 
 const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
@@ -58,8 +58,9 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
     // }, [])
     return (
 
-        <div>
+        <div className='add-skill mt-3'>
             <Autocomplete
+                className="mr-3"
                 value={data}
                 onChange={(event, newValue) => {
                     if (typeof newValue === 'string') {
@@ -130,7 +131,7 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
 
             {/* &emsp; */}
             <NativeSelect id="select"
-
+                className="mr-3 high-23"
                 onChange={handleInput}
             >
                 {
@@ -140,7 +141,7 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
                 }
             </NativeSelect>
             &emsp;
-            {index > 0 && <button type="button" onClick={e => handleDeleteSkill(index)} class="btn btn-primary btn-save">Delete</button>}
+            {index > 0 && <button type="button" onClick={e => handleDeleteSkill(index)} class="btn btn-info">Delete</button>}
         </div>
 
     );
