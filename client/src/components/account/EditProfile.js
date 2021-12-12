@@ -6,10 +6,10 @@ import { updateProfileUser } from '../../redux/actions/profileAction'
 
 const EditProfile = ({ setOnEdit }) => {
     const initState = {
-        fullname: '', mobile: '', address: '', website: '', story: '', gender: ''
+        fullname: '', mobile: '', address: '', story: '', gender: ''
     }
     const [userData, setUserData] = useState(initState)
-    const { fullname, mobile, address, website, story, gender } = userData
+    const { fullname, mobile, address, story, gender } = userData
 
     const [avatar, setAvatar] = useState('')
 
@@ -83,12 +83,6 @@ const EditProfile = ({ setOnEdit }) => {
                 <div className="form-group">
                     <label htmlFor="address">Address</label>
                     <input type="text" name="address" value={address}
-                        className="form-control" onChange={handleInput} />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="website">Website</label>
-                    <input type="text" name="website" value={website}
                         className="form-control" onChange={handleInput} />
                 </div>
 

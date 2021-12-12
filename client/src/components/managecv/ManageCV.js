@@ -31,44 +31,44 @@ const ManageCV = () => {
 
     return (
         <div className="manage-cv container" onLoad={window.scrollTo(0, 0)}>
-            <h3 className="text-center mt-3">Quản lý hồ sơ</h3>
+            <h3 className="text-center mt-3">Manage CV</h3>
             <div className="manage-cv-content card mt-3">
                 <div className="card-body">
                     <div className="manage-cv-warn">
-                        <p className="">Bạn được phép tạo tối đa 02 hồ sơ</p>
+                        <p className="">You are allowed to create up to 02 profiles</p>
                     </div>
                     {
-                        resumes.map((element) => (
+                        resumes.map((element, index) => (
                             <div className="manage-cv-list">
                                 <div className="list-cv">
-                                    <span className="name-cv"><i className="fas fa-pen-alt"></i>HỒ SƠ 1: {element.position}</span>
-                                    <span className="font-weight-bold mt-3">Mã hồ sơ: NTV{element._id}</span>
+                                    <span className="name-cv"><i className="fas fa-pen-alt"></i>RESUME {index + 1}: {element.position}</span>
+                                    <span className="font-weight-bold mt-3">ID: NTV{element._id}</span>
                                     <div className="row">
                                         <div className="col-sm-4">
-                                            <span className="font-weight-bold">Loại hồ sơ: </span><span> Hồ sơ tạo trực tuyến</span>
+                                            <span className="font-weight-bold">Kind of resume: </span><span>Profile created online</span>
                                         </div>
                                         <div className="col-sm-4">
-                                            <span className="font-weight-bold">Tình trạng: </span><span> Chờ duyệt</span>
+                                            <span className="font-weight-bold">Status: </span><span> Waiting</span>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-sm-4">
-                                            <span className="font-weight-bold">Ngày tạo: </span><span> {dateFormat(element.updatedAt, 'dd/mm/yyyy')}</span>
+                                            <span className="font-weight-bold">Date create: </span><span> {dateFormat(element.updatedAt, 'dd/mm/yyyy')}</span>
                                         </div>
                                         <div className="col-sm-4">
-                                            <span className="font-weight-bold">Lượt xem: </span><span> 0</span>
+                                            <span className="font-weight-bold">View: </span><span> 0</span>
                                         </div>
                                     </div>
                                     <div className="form-check mt-3">
                                         <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                                         <label className="form-check-label" for="flexCheckDefault">
-                                            Cho phép nhà tuyển dụng tìm kiếm hồ sơ và liên lạc với bạn
+                                            Allow employers to search your resume and contact you
                                         </label>
                                     </div>
                                     <div className="btn-manage-cv mt-3">
-                                        <Link to={`/reviewResume/${element._id}`}><button type="button" className="btn btn-manage-cv-1 mr-3"><i className="far fa-eye"></i> Xem trước</button></Link>
-                                        <Link to={`/updateResume/${element._id}`}><button type="button" className="btn btn-manage-cv-1 mr-3"><i className="far fa-edit"></i> Chỉnh sửa</button></Link>
-                                        <button type="button" className="btn btn-manage-cv-1" onClick={() => handleDelete(element._id)}><i className="far fa-trash-alt"></i> Xóa hồ sơ</button>
+                                        <Link to={`/reviewResume/${element._id}`}><button type="button" className="btn btn-manage-cv-1 mr-3"><i className="far fa-eye"></i> View </button></Link>
+                                        <Link to={`/updateResume/${element._id}`}><button type="button" className="btn btn-manage-cv-1 mr-3"><i className="far fa-edit"></i> Update</button></Link>
+                                        <button type="button" className="btn btn-manage-cv-1" onClick={() => handleDelete(element._id)}><i className="far fa-trash-alt"></i> Delete</button>
                                     </div>
                                 </div>
                                 <hr />
@@ -77,8 +77,8 @@ const ManageCV = () => {
                         ))
                     }
                     <div className="button-no-cv mt-4">
-                        <p className="font-weight-bold">Nếu bạn chưa có file hồ sơ:</p>
-                        <Link to={`createcv`}><button type="button" className="btn btn-new-cv-1 text-uppercase"><i className="fas fa-pen-alt"></i> Tạo hồ sơ bằng form khai trực tuyến</button></Link>
+                        <p className="font-weight-bold">If you do not have a profile file:</p>
+                        <Link to={`createcv`}><button type="button" className="btn btn-new-cv-1 text-uppercase"><i className="fas fa-pen-alt"></i>Create profile by online declaration form </button></Link>
                     </div>
                 </div>
             </div>

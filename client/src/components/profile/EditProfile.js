@@ -62,17 +62,27 @@ const EditProfile = ({ setOnEdit }) => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="fullname">Full Name</label>
+                    <label htmlFor="fullname">First Name</label>
                     <div className="position-relative">
-                        <input type="text" className="form-control" id="fullname"
-                            name="fullname" value={firstname + ' ' + lastname} onChange={handleInput} />
+                        <input type="text" className="form-control" id="firstname"
+                            name="firstname" value={firstname} onChange={handleInput} />
                         {/* <small className="text-danger position-absolute"
                             style={{ top: '50%', right: '5px', transform: 'translateY(-50%)' }}>
                             {lastname.length}/25
                         </small> */}
                     </div>
                 </div>
-
+                <div className="form-group">
+                    <label htmlFor="fullname">Last Name</label>
+                    <div className="position-relative">
+                        <input type="text" className="form-control" id="lastname"
+                            name="lastname" value={lastname} onChange={handleInput} />
+                        {/* <small className="text-danger position-absolute"
+                            style={{ top: '50%', right: '5px', transform: 'translateY(-50%)' }}>
+                            {lastname.length}/25
+                        </small> */}
+                    </div>
+                </div>
                 <div className="form-group">
                     <label htmlFor="mobile">Mobile</label>
                     <input type="text" name="mobile" value={mobile}
