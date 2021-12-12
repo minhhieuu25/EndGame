@@ -73,7 +73,7 @@ const authCtrl = {
     upgradeAccount: async (req, res) => {
         const { companyName, address, industry, info, website, phoneNumber, companySize, logo, email } = req.body
         if (!companyName || !address || !industry || !info || !website || !phoneNumber || !companySize || !email)
-            return res.json({ msg: 'Missing paramater!' })
+            return res.json({ msg: 'Missing parameter!' })
         if (!logo)
             return res.json({ msg: 'Missing logo!' })
         let user_Name = companyName.toLowerCase().replace(/ /g, '')
