@@ -170,6 +170,7 @@
                 float: right;
 
                 i {
+                    color: #007bff;
                     margin-left: 5px;
                 }
             }
@@ -187,6 +188,7 @@
             transform-origin: bottom center;
             width: 300px;
             text-align: center;
+            transition: 0.25s;
 
             .btn-new {
                 padding: 3px 20px;
