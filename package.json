@@ -17,6 +17,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ag-grid-community": "^26.2.0",
+    "ag-grid-react": "^26.2.0",
     "bcrypt": "^5.0.0",
     "cloudinary": "^1.23.0",
     "concurrently": "^6.0.0",

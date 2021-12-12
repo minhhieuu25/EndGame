@@ -10,8 +10,28 @@ import './ManageJob.scss';
 import { AddToQueue } from '@mui/icons-material';
 import dateFormat from 'dateformat'
 
+//Ag Grid Reat
+import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 const ManageJobs = () => {
+
+    const defaultColDef = {
+        sortable: true,
+        editable: true,
+        flex: 1, filter: true,
+        floatingFilter: true
+    }
+    const columnDefs = [
+        { headerName: "ID", field: "_id" },
+        { headerName: "Job title", field: "position" },
+        { headerName: "Industry", field: "industry" },
+        { headerName: "Status", field: "status" },
+        { headerName: "Date created", field: "createAt" },
+        { headerName: "Expried on", field: "endDate" },
+
+    ]
 
     const columns = [
         {
@@ -116,7 +136,7 @@ const ManageJobs = () => {
                         </div>
                     </div>
                     <div className="manage-job-container ">
-                        <DataGrid
+                        {/* <DataGrid
                             rows={jobs}
                             component="div"
                             columns={columns}
@@ -124,11 +144,28 @@ const ManageJobs = () => {
                             rowsPerPageOptions={[5]}
                             checkboxSelection
                             disableSelectionOnClick
-                        />
+                        /> */}
+                        <div className="ag-theme-alpine" style={{ height: 350, width: 1100 }}>
+                            <AgGridReact
+                                columnDefs={columnDefs}
+                                rowData={jobs}
+                                defaultColDef={defaultColDef}
+                            ></AgGridReact>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+        </div >
+        // <>
+        //     <div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
+        //         <AgGridReact
+        //             columnDefs={columnDefs}
+        //             rowData={jobs}
+        //             defaultColDef={defaultColDef}
+        //         ></AgGridReact>
+        //     </div>
+        // </>
     )
 }
 
