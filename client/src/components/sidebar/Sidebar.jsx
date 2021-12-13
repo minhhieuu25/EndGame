@@ -50,7 +50,7 @@ export default function Sidebar() {
                 Post Job
               </li>
             </Link>
-            <Link to="/managejob/:id" className="link">
+            <Link to="/managejob" className="link">
               <li className="sidebarListItem">
                 <WorkOutline className="sidebarIcon" />
                 Manage Jobs

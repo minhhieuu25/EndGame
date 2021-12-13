@@ -27,11 +27,37 @@ const ManageJobs = () => {
         { headerName: "ID", field: "_id" },
         { headerName: "Job title", field: "position" },
         { headerName: "Industry", field: "industry" },
-        { headerName: "Status", field: "status" },
-        { headerName: "Date created", field: "createAt" },
-        { headerName: "Expried on", field: "endDate" },
+        {
+            headerName: "Status", field: "status",
+            valueFormatter: params => { return (new Date().getTime() - new Date(params.data.endDate).getTime() < 0) ? dateFormat(params.data.endDate, 'dd/mm/yyyy') : 'Expired' }
+        },
+        {
+            headerName: "Date created", field: "createAt",
+            valueFormatter: params => { return dateFormat(params.value, 'dd/mm/yyyy') }
+        },
+        {
+            headerName: "Expried on", field: "endDate",
+            valueFormatter: params => { return dateFormat(params.value, 'dd/mm/yyyy') }
+        },
+        {
+            headerName: 'Action',
+            cellRendererFramework: (params) => {
+                return (
+                    <div>
+                        <Link to={"/analysis/" + params.data._id}>
+                            <TimelineIcon titleAccess="Analysis" />
+                        </Link>
+                        <Link to={"/edit-job/" + params.data._id}>
+                            <EditIcon titleAccess="Edit" />
+                        </Link>
+                        <DeleteOutline titleAccess="Delete" className="manage-job-delete" onClick={e => handleDelete(params.data._id)} />
+                    </div>
+                )
+            }
 
+        },
     ]
+
 
     const columns = [
         {
@@ -155,17 +181,7 @@ const ManageJobs = () => {
                     </div>
                 </div>
             </div>
-
         </div >
-        // <>
-        //     <div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
-        //         <AgGridReact
-        //             columnDefs={columnDefs}
-        //             rowData={jobs}
-        //             defaultColDef={defaultColDef}
-        //         ></AgGridReact>
-        //     </div>
-        // </>
     )
 }
 

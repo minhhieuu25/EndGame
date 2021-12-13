@@ -151,7 +151,7 @@ function App() {
             <Route exact path="/becomeCompany" component={becomeCompany} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/newJob" component={NewJob} />
-            <Route exact path="/managejob/:id" component={ManageJob} />
+            <Route exact path="/managejob" component={ManageJob} />
             <Route exact path="/userList" component={UserList} />
             <Route exact path="/edit-job/:id" component={UpdateJob} />
             <Route exact path="/analysis/:id" component={AnalysisJob} />
