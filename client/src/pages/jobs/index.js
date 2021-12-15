@@ -65,6 +65,7 @@ const Job = () => {
                                                     idCompany={item.idCompany}
                                                     endDate={item.endDate}
                                                     logo={item.logo}
+                                                    exp={item.experience}
                                                 />
                                             </div>
                                             <hr />

@@ -71,14 +71,16 @@ const Resume = () => {
     }
 
     const handleDeleteEdu = (i) => {
-        arrEdu.splice(i, 1)
-        const tmp = loadEdu.splice(i, 1)
-        setLoadEdu(tmp)
+
+        arrEdu.splice(i, 1)  //load [1,1,1]
+        loadEdu.splice(0, 1)
+        setLoadEdu([...loadEdu])
+
     }
     const handleDeleteExp = (i) => {
         arrExp.splice(i, 1)
-        const tmp = loadExp.splice(i, 1)
-        setLoadExp(tmp)
+        const tmp = loadExp.splice(0, 1)
+        setLoadExp([...loadExp])
     }
 
     return (
@@ -99,7 +101,7 @@ const Resume = () => {
                     </div>
                 </div>
             </div>
-            
+
             <div className="experience-cv mt-5">
                 <div className="card">
                     <div className="card-body">

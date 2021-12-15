@@ -13,7 +13,7 @@ import dateFormat from 'dateformat';
 import { TollTwoTone } from '@mui/icons-material';
 
 
-let dataChart = [
+let dataChart2 = [
   {
     name: "Jan",
     "Total Resume": 0,
@@ -66,6 +66,56 @@ let dataChart = [
 
 export default function Dashboard() {
 
+  let dataChart = [
+    {
+      name: "Jan",
+      "Total Resume": 0,
+    },
+    {
+      name: "Feb",
+      "Total Resume": 0,
+    },
+    {
+      name: "Mar",
+      "Total Resume": 0,
+    },
+    {
+      name: "Apr",
+      "Total Resume": 0,
+    },
+    {
+      name: "May",
+      "Total Resume": 0,
+    },
+    {
+      name: "Jun",
+      "Total Resume": 0,
+    },
+    {
+      name: "Jul",
+      "Total Resume": 0,
+    },
+    {
+      name: "Agu",
+      "Total Resume": 0,
+    },
+    {
+      name: "Sep",
+      "Total Resume": 0,
+    },
+    {
+      name: "Oct",
+      "Total Resume": 0,
+    },
+    {
+      name: "Nov",
+      "Total Resume": 0,
+    },
+    {
+      name: "Dec",
+      "Total Resume": 0,
+    },
+  ];
 
   const { auth, submited } = useSelector(state => state)
   const [data, setData] = useState([])
@@ -82,17 +132,18 @@ export default function Dashboard() {
         let month = parseInt(dateFormat(element.dateSubmit, 'mm'))
         dataChart[month - 1]['Total Resume'] = dataChart[month - 1]['Total Resume'] + 1
       })
-
+      setData(dataChart)
+      dataChart = dataChart2
     }
   }, [submited.submitedByCompany])
 
   useEffect(() => {
     let tmp = 0;
-    dataChart.map(data => {
+    data.map(data => {
       tmp = tmp + data['Total Resume']
     })
     setTotal(tmp)
-  }, [dataChart])
+  }, [data])
 
   return (
     <>
@@ -100,7 +151,7 @@ export default function Dashboard() {
         <Sidebar />
         <div className="home">
           <FeaturedInfo totalResume={total} />
-          <Chart data={dataChart} title="Resume submited Analytics" grid dataKey="Total Resume" />
+          <Chart data={data} title="Resume submited Analytics" grid dataKey="Total Resume" />
           <div className="homeWidgets">
             <WidgetSm />
             <WidgetLg />
