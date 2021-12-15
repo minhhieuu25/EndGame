@@ -15,7 +15,7 @@ const MessageAuth = () => {
                         <span>Message</span>
                         {auth.token ?
                             <span className="right-header">
-                                <Link to="/message"><i className="fab fa-facebook-messenger"></i></Link>
+                                <Link to="/message"><i style={{color: '#007bff'}} className="fab fa-facebook-messenger"></i></Link>
                                 {typeContent ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-up"></i>}
                             </span>
                             :
