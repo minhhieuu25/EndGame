@@ -51,7 +51,7 @@ const Evaluate = () => {
                                 <div className="col-sm-4">
                                     <div className="card border-info mb-3">
                                         <div className="card-body">
-                                            <h5 className="card-title">Mrs. Thúy Trinh</h5>
+                                            <h5 className="card-title">Mr. Tấn Thuận</h5>
                                             <p className="card-text text-secondary">RankWork là một ý tưởng rất sáng tạo và thực tế. Tôi đã chỉnh sửa CV của mình tốt lên hơn rất nhiều từ những mẫu tham khảo trên trang web.</p>
                                         </div>
                                     </div>

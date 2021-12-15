@@ -5,8 +5,13 @@ import img2 from './img_cty2.png'
 import img3 from './img_cty3.png'
 import img0 from './home-teamworks.svg'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 
 const NhaTuyenDung = () => {
+
+    const { auth } = useSelector(state => state)
+
     return (
         <div className="for-employers pb-5" onLoad={window.scrollTo(0, 0)}>
             <div className="banner-employers">
@@ -17,13 +22,22 @@ const NhaTuyenDung = () => {
                             <p id="section-header-1">Get Your Job Matched With The Right Candidate</p>
                         </div>
                         <div className="col-sm-6 img-header">
-                            <img src={img0} alt=""/>
+                            <img src={img0} alt="" />
                         </div>
                     </div>
                 </div>
-                <div className="become-employers">
-                    <Link to={`/becomeCompany`}>Become Employers</Link>
-                </div>
+                {!auth.isCompany && !auth.isAdmin &&
+                    <div className="become-employers">
+                        <Link to={`/becomeCompany`}>Become Employers</Link>
+                    </div>
+                }
+                {auth.token ?
+                    <></>
+                    :
+                    <div className="become-employers">
+                        <Link to={`/login`}>Become Employers</Link>
+                    </div>
+                }
             </div>
             {/* <div className="container nutnhan">
                 <a href="#1" className="text-center">

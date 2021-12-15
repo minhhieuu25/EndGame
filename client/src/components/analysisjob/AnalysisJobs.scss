@@ -29,6 +29,10 @@
         .datagrid-table {
             height: 375px;
             width: 100%;
+
+            .MuiNativeSelect-select {
+                height: 35px;
+            }
         }
     }
 }
