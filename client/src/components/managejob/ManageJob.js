@@ -45,10 +45,10 @@ const ManageJobs = () => {
                 return (
                     <div>
                         <Link to={"/analysis/" + params.data._id}>
-                            <TimelineIcon titleAccess="Analysis" />
+                            <TimelineIcon style={{color: '#007bff'}} titleAccess="Analysis" />
                         </Link>
                         <Link to={"/edit-job/" + params.data._id}>
-                            <EditIcon titleAccess="Edit" />
+                            <EditIcon style={{color: '#ff9900a3'}} titleAccess="Edit" />
                         </Link>
                         <DeleteOutline titleAccess="Delete" className="manage-job-delete" onClick={e => handleDelete(params.data._id)} />
                     </div>
