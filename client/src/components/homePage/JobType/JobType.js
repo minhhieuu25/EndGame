@@ -58,7 +58,7 @@ const JobType = () => {
                                                     <div className="row job-info">
                                                         <div className="salary col-6">
                                                             <i className="fas fa-dollar-sign"></i>
-                                                            <span>{job.minSalary / 1000000}-{job.maxSalary / 1000000} triệu</span>
+                                                            <span>{job.minSalary / 1000000}-{job.maxSalary / 1000000} M</span>
                                                         </div>
                                                         <div title={job.address} className="location col-6">
                                                             <i className="fas fa-map-marker-alt"></i>{job.address}
@@ -100,7 +100,7 @@ const JobType = () => {
                                                     <div className="row job-info">
                                                         <div className="salary col-6">
                                                             <i className="fas fa-dollar-sign"></i>
-                                                            <span>{job.minSalary / 1000000}-{job.maxSalary / 1000000} triệu</span>
+                                                            <span>{job.minSalary / 1000000}-{job.maxSalary / 1000000} M</span>
                                                         </div>
                                                         <div className="location col-6">
                                                             <i className="fas fa-map-marker-alt"></i>
@@ -143,7 +143,7 @@ const JobType = () => {
                                                     <div className="row job-info">
                                                         <div className="salary col-6">
                                                             <i className="fas fa-dollar-sign"></i>
-                                                            <span>{job.minSalary / 1000000}-{job.maxSalary / 1000000} triệu</span>
+                                                            <span>{job.minSalary / 1000000}-{job.maxSalary / 1000000} M</span>
                                                         </div>
                                                         <div className="location col-6">
                                                             <i className="fas fa-map-marker-alt"></i>

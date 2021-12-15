@@ -31,6 +31,7 @@ const Resume = () => {
         phoneNumber: '',
         address: '',
         descriptionProfile: '',
+
     }
     const [cvData, setcvData] = useState(allResume.resumes ? allResume.resumes.filter(element => id === element._id) : initState)
     const [avatar, setAvatar] = useState(allResume.resumes ? allResume.resumes.filter(element => id === element._id).avatar : '')
@@ -47,6 +48,7 @@ const Resume = () => {
             setLoadExp(cv[0].experiences)
             arrEdu = cv[0].educations
             arrExp = cv[0].experiences
+            setAvatar(cv[0].avatar)
         }
 
     }, [allResume.resumes])
@@ -67,7 +69,6 @@ const Resume = () => {
 
     const handleUpdate = async () => {
         await dispatch(updateResume(id, cvData, skill, language, avatar, auth))
-
     }
 
     const changeAvatar = (e) => {

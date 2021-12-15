@@ -10,8 +10,54 @@ import './ManageJob.scss';
 import { AddToQueue } from '@mui/icons-material';
 import dateFormat from 'dateformat'
 
+//Ag Grid Reat
+import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 const ManageJobs = () => {
+
+    const defaultColDef = {
+        sortable: true,
+        editable: true,
+        flex: 1, filter: true,
+        floatingFilter: true
+    }
+    const columnDefs = [
+        { headerName: "ID", field: "_id" },
+        { headerName: "Job title", field: "position" },
+        { headerName: "Industry", field: "industry" },
+        {
+            headerName: "Status", field: "status",
+            valueFormatter: params => { return (new Date().getTime() - new Date(params.data.endDate).getTime() < 0) ? dateFormat(params.data.endDate, 'dd/mm/yyyy') : 'Expired' }
+        },
+        {
+            headerName: "Date created", field: "createAt",
+            valueFormatter: params => { return dateFormat(params.value, 'dd/mm/yyyy') }
+        },
+        {
+            headerName: "Expried on", field: "endDate",
+            valueFormatter: params => { return dateFormat(params.value, 'dd/mm/yyyy') }
+        },
+        {
+            headerName: 'Action',
+            cellRendererFramework: (params) => {
+                return (
+                    <div>
+                        <Link to={"/analysis/" + params.data._id}>
+                            <TimelineIcon titleAccess="Analysis" />
+                        </Link>
+                        <Link to={"/edit-job/" + params.data._id}>
+                            <EditIcon titleAccess="Edit" />
+                        </Link>
+                        <DeleteOutline titleAccess="Delete" className="manage-job-delete" onClick={e => handleDelete(params.data._id)} />
+                    </div>
+                )
+            }
+
+        },
+    ]
+
 
     const columns = [
         {
@@ -116,7 +162,7 @@ const ManageJobs = () => {
                         </div>
                     </div>
                     <div className="manage-job-container ">
-                        <DataGrid
+                        {/* <DataGrid
                             rows={jobs}
                             component="div"
                             columns={columns}
@@ -124,11 +170,18 @@ const ManageJobs = () => {
                             rowsPerPageOptions={[5]}
                             checkboxSelection
                             disableSelectionOnClick
-                        />
+                        /> */}
+                        <div className="ag-theme-alpine" style={{ height: 350, width: 1100 }}>
+                            <AgGridReact
+                                columnDefs={columnDefs}
+                                rowData={jobs}
+                                defaultColDef={defaultColDef}
+                            ></AgGridReact>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

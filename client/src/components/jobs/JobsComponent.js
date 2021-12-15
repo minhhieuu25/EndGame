@@ -21,7 +21,7 @@ const JobsComponent = (props) => {
                 <div className="row job-info">
                     <div className="salary col-sm-6">
                         <i class="fas fa-dollar-sign"></i>
-                        <span>Salary: {props.minSalary / 1000000}-{props.maxSalary / 1000000} triệu</span>
+                        <span>Salary: {props.minSalary / 1000000}-{props.maxSalary / 1000000} Million</span>
                     </div>
                     <div className="location col-sm-6">
                         <i class="fas fa-map-marker-alt"></i>
@@ -36,7 +36,7 @@ const JobsComponent = (props) => {
                     </div>
                     <div className="exp col-sm-6">
                         <i class="fas fa-icicles"></i>
-                        <span>Exp: 1 năm</span>
+                        <span>Exp: {props.exp}</span>
                     </div>
                 </div>
             </div>

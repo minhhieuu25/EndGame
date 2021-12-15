@@ -14,10 +14,66 @@ import './AnalysisJobs.scss';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 
+//Ag Grid Reat
+import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+
 
 const AnalysisJobs = () => {
 
-
+    const defaultColDef = {
+        sortable: true,
+        editable: true,
+        flex: 1, filter: true,
+        floatingFilter: true
+    }
+    const columnDefs = [
+        { headerName: "ID", field: "id" },
+        { headerName: "Full name", field: "fullname" },
+        {
+            headerName: "Apply on", field: "dateSubmit",
+            valueFormatter: params => { return dateFormat(params.data.dateSubmit, 'dd/mm/yyyy') }
+        },
+        {
+            headerName: 'Status',
+            cellRendererFramework: (params) => {
+                return (
+                    <div>
+                        <FormControl fullWidth sx={{ height: 20 }}>
+                            <NativeSelect
+                                defaultValue={params.data.status}
+                                onChange={e => handleOnChange(e, params.data.idCV, params.data.idCandidate)}
+                            >
+                                <option value={'Waiting'}>Waiting</option>
+                                <option value={'Accept'}>Accept</option>
+                                <option value={'Refuse'}>Refuse</option>
+                            </NativeSelect>
+                        </FormControl>
+                    </div>
+                )
+            }
+        },
+        {
+            field: 'point',
+            headerName: 'Point',
+            width: 150,
+        },
+        {
+            field: 'action',
+            headerName: 'Action',
+            width: 120,
+            cellRendererFramework: (params) => {
+                return (
+                    <>
+                        <Link to={"/detailResume/" + params.data.idCV} query={{ testvalue: "hello" }}>
+                            <ReadMoreIcon />
+                        </Link>
+                    </>
+                );
+            },
+        },
+    ]
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 100 },
@@ -207,7 +263,7 @@ const AnalysisJobs = () => {
                                     <span>List Candidates</span>
                                 </div>
                                 <div className="datagrid-table">
-                                    <DataGrid
+                                    {/* <DataGrid
                                         component="div"
                                         pageSize={5}
                                         rows={cvs}
@@ -215,7 +271,14 @@ const AnalysisJobs = () => {
                                         rowsPerPageOptions={[5]}
                                         checkboxSelection
                                         disableSelectionOnClick
-                                    />
+                                    /> */}
+                                    <div className="ag-theme-alpine" style={{ height: 350, width: 1100 }}>
+                                        <AgGridReact
+                                            columnDefs={columnDefs}
+                                            rowData={cvs}
+                                            defaultColDef={defaultColDef}
+                                        ></AgGridReact>
+                                    </div>
                                 </div>
                             </div>
                         </div>

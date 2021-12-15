@@ -96,21 +96,26 @@ export const getAllResume = (auth) => async (dispatch) => {
 export const updateResume = (id, cvData, skill, language, avatar, auth) => async (dispatch) => {
     try {
         let media;
+
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
 
-        if (avatar) media = await imageUpload([avatar])
+        // if (avatar) media = await imageUpload([avatar])
 
-        console.log(cvData)
+        if (!avatar.name)
+            console.log('done')
+        else
+            if (avatar && avatar.name)
+                media = await imageUpload([avatar])
 
         const res = await patchDataAPI("update_cv", {
             id,
             ...cvData,
             skill,
             language,
-            avatar: avatar ? media[0].url : cvData[0].avatar
+            avatar: avatar.name ? media[0].url : avatar
         }, auth.token)
 
-
+        console.log(res)
 
         dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
     } catch (err) {

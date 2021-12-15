@@ -86,7 +86,7 @@ const CompanysDetails = () => {
                                                     <Link to={`/jobdetail/${element._id}`}><span title={element.position} className="card-title">{element.position}</span></Link>
                                                     <div className="job-info row">
                                                         <div className="col-sm-4 salary">
-                                                            <i className="fas fa-dollar-sign"></i><span> Salary: {element.minSalary / 1000000}-{element.maxSalary / 1000000} Triệu</span>
+                                                            <i className="fas fa-dollar-sign"></i><span> Salary: {element.minSalary / 1000000}-{element.maxSalary / 1000000} Million</span>
                                                         </div>
                                                         <div className="col-sm-4 location">
                                                             <i className="fas fa-map-marker-alt"></i><span title={element.address}> Location: {element.address}</span>
