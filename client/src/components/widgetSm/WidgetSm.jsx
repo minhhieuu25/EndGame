@@ -2,6 +2,7 @@ import "./widgetSm.css";
 import { Visibility } from '@mui/icons-material';
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function WidgetSm() {
 
@@ -53,10 +54,11 @@ export default function WidgetSm() {
                 <span className="widgetSmUsername">{element.fullname}</span>
                 <span className="widgetSmUserTitle">{element.dataCV.position}</span>
               </div>
-              <button className="widgetSmButton">
-                <Visibility className="widgetSmIcon" />
-                Display
-              </button>
+              <Link to={`/detailResume/${element.idCV}`}>
+                <button className="widgetSmButton">
+                  <Visibility className="widgetSmIcon" />
+                  Display
+                </button></Link>
             </li>
           ))
         }
@@ -122,6 +124,6 @@ export default function WidgetSm() {
           </button>
         </li> */}
       </ul>
-    </div>
+    </div >
   );
 }

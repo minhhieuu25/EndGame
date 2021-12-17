@@ -37,7 +37,7 @@ export const searchJob = (search, address) => async (dispatch) => {
         dispatch({
             type: GLOBALTYPES.ALLJOB,
             payload: {
-                searchJob: address === 'All locations' ? resSearchJob.data : resSearchJob.data.filter((key) => key.address === address)
+                searchJob: address === 'All locations' ? resSearchJob.data : resSearchJob.data.filter((key) => (key.address.indexOf(address) !== -1))
 
             }
         })

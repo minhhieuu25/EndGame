@@ -6,7 +6,8 @@ import FollowCompanyBtn from '../FollowJobBtn'
 import SearchJob from '../jobs/SearchJob'
 import SubmitCVModal from '../submitcvmodal/SubmitCVModal'
 import './JobsDetail.scss'
-
+import ShareModal from '../ShareModal'
+import { BASE_URL } from '../../utils/config'
 
 const JobsDetail = () => {
 
@@ -16,7 +17,7 @@ const JobsDetail = () => {
     const [ShowSubmitCV, setShowSubmitCV] = useState(false)
 
     const { allJob, auth, socket } = useSelector(state => state)
-
+    const [typeShare, setTypeShare] = useState(false)
     const jobs = allJob.jobs ? allJob.jobs : allJob.searchJob ? allJob.searchJob : []
 
     const checkId = (id) => {
@@ -147,7 +148,11 @@ const JobsDetail = () => {
                                                 job={job} />
                                         }
                                         <FollowCompanyBtn job={job} />
-                                        <button type="button" disabled={true} className="btn btn-secondary btn-lg mt-3" ><i className="fas fa-share-alt" ></i> Share Job</button>
+                                        {/* <button type="button" disabled={true} className="btn btn-secondary btn-lg mt-3" ><i className="fas fa-share-alt" ></i> Share Job</button> */}
+                                        <button type="button" className="btn btn-secondary btn-lg mt-3" onClick={() => setTypeShare(!typeShare)}><i className="fas fa-share-alt"></i> Share Job</button>
+                                        <div className="item-share" style={{ display: `${typeShare ? 'block' : 'none'}` }}>
+                                            <ShareModal url={`${BASE_URL}/jobdetail/${job._id}`} />
+                                        </div>
                                     </div> :
                                     <div className="job-btn">
                                         <button type="button" className="btn btn-info btn-lg mb-3" onClick={() => setShowSubmitCV(true)}><i className="far fa-paper-plane"></i> APPLY NOW</button>
@@ -158,7 +163,11 @@ const JobsDetail = () => {
                                                 job={job} />
                                         }
                                         <FollowCompanyBtn job={job} />
-                                        <button type="button" className="btn btn-secondary btn-lg mt-3"><i className="fas fa-share-alt"></i> Share Job</button>
+                                        {/* <button type="button" className="btn btn-secondary btn-lg mt-3"><i className="fas fa-share-alt"></i> Share Job</button> */}
+                                        <button type="button" className="btn btn-secondary btn-lg mt-3" onClick={() => setTypeShare(!typeShare)}><i className="fas fa-share-alt"></i> Share Job</button>
+                                        <div className="item-share" style={{ display: `${typeShare ? 'block' : 'none'}` }}>
+                                            <ShareModal url={`${BASE_URL}/jobdetail/${job._id}`} />
+                                        </div>
                                     </div>
                                 }
                             </div>
