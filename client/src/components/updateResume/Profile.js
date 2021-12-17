@@ -47,7 +47,7 @@ const Profile = ({ handleInput, changeAvatar, values }) => {
               </div>
             </div>
             <div className="row mb-3">
-              <label for="" className="col-sm-3 col-form-label">Vi tri ung tuyen</label>
+              <label for="" className="col-sm-3 col-form-label">Apply for</label>
               <div className="col-sm-8">
                 <input type="text" className="form-control" onChange={handleInput} defaultValue={values.position} name='position' placeholder="Ex: CEO" />
               </div>

@@ -44,7 +44,8 @@ const submitCtrl = {
                             }
                         }
                     })
-                    return res.json({ msg: 'submit success!' })
+
+                    return res.json({ newSubmit: { idCompany, idCV, idJob }, msg: 'submit success!' })
                 }
                 else {
                     return res.json({ msg: 'Your CV has been submitted' })

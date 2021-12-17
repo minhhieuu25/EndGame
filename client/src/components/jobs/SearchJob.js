@@ -19,8 +19,11 @@ const SearchJob = () => {
             value: 'Da Nang'
         },
         {
-            label: 'TP. Ho Chi Minh',
-            value: 'TP. Ho Chi Minh'
+            label: 'Ho Chi Minh',
+            value: 'Ho Chi Minh'
+        }, {
+            label: 'Hoi An',
+            value: 'Hoi An'
         }
     ]
     const [address, setAddress] = useState('All locations')

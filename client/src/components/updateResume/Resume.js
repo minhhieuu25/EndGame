@@ -48,6 +48,7 @@ const Resume = () => {
             setLoadExp(cv[0].experiences)
             arrEdu = cv[0].educations
             arrExp = cv[0].experiences
+            arrSkill = cv[0].skill
             setAvatar(cv[0].avatar)
         }
 
@@ -68,7 +69,7 @@ const Resume = () => {
     }
 
     const handleUpdate = async () => {
-        await dispatch(updateResume(id, cvData, skill, language, avatar, auth))
+        await dispatch(updateResume(id, cvData, arrSkill, language, avatar, auth))
     }
 
     const changeAvatar = (e) => {
