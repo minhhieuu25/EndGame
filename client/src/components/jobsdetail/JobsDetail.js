@@ -148,7 +148,11 @@ const JobsDetail = () => {
                                                 job={job} />
                                         }
                                         <FollowCompanyBtn job={job} />
-                                        <button type="button" disabled={true} className="btn btn-secondary btn-lg mt-3" ><i className="fas fa-share-alt" ></i> Share Job</button>
+                                        {/* <button type="button" disabled={true} className="btn btn-secondary btn-lg mt-3" ><i className="fas fa-share-alt" ></i> Share Job</button> */}
+                                        <button type="button" className="btn btn-secondary btn-lg mt-3" onClick={() => setTypeShare(!typeShare)}><i className="fas fa-share-alt"></i> Share Job</button>
+                                        <div className="item-share" style={{ display: `${typeShare ? 'block' : 'none'}` }}>
+                                            <ShareModal url={`${BASE_URL}/jobdetail/${job._id}`} />
+                                        </div>
                                     </div> :
                                     <div className="job-btn">
                                         <button type="button" className="btn btn-info btn-lg mb-3" onClick={() => setShowSubmitCV(true)}><i className="far fa-paper-plane"></i> APPLY NOW</button>
@@ -160,7 +164,7 @@ const JobsDetail = () => {
                                         }
                                         <FollowCompanyBtn job={job} />
                                         {/* <button type="button" className="btn btn-secondary btn-lg mt-3"><i className="fas fa-share-alt"></i> Share Job</button> */}
-                                        <button type="button" className="btn btn-secondary btn-lg mt-3" onClick={() => setTypeShare(!typeShare)}><i className="fas fa-share-alt"></i> Share Company</button>
+                                        <button type="button" className="btn btn-secondary btn-lg mt-3" onClick={() => setTypeShare(!typeShare)}><i className="fas fa-share-alt"></i> Share Job</button>
                                         <div className="item-share" style={{ display: `${typeShare ? 'block' : 'none'}` }}>
                                             <ShareModal url={`${BASE_URL}/jobdetail/${job._id}`} />
                                         </div>

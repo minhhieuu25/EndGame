@@ -13,10 +13,17 @@ const MessageAuth = () => {
                 <div className="card">
                     <div className="header-message" onClick={() => setTypeContent(!typeContent)}>
                         <span>Message</span>
-                        <span className="right-header">
-                            <Link to="/message"><i className="fab fa-facebook-messenger"></i></Link>
-                            {typeContent ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-up"></i>}
-                        </span>
+                        {auth.token ?
+                            <span className="right-header">
+                                <Link to="/message"><i style={{color: '#007bff'}} className="fab fa-facebook-messenger"></i></Link>
+                                {typeContent ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-up"></i>}
+                            </span>
+                            :
+                            <span className="right-header">
+                                <Link to="/login"><i className="fab fa-facebook-messenger"></i></Link>
+                                {typeContent ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-up"></i>}
+                            </span>
+                        }
                     </div>
                     {auth.token ?
                         <div className="content-message" style={{ display: `${typeContent ? 'block' : 'none'}` }}>

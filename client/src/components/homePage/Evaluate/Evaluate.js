@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Evaluate.scss';
+import { useSelector } from 'react-redux'
 
 const Evaluate = () => {
+
+    const { auth } = useSelector(state => state)
+
     return (
         <div className="evaluate mt-5 mb-5">
             <div className="container">
@@ -51,7 +55,7 @@ const Evaluate = () => {
                                 <div className="col-sm-4">
                                     <div className="card border-info mb-3">
                                         <div className="card-body">
-                                            <h5 className="card-title">Mrs. Thúy Trinh</h5>
+                                            <h5 className="card-title">Mr. Tấn Thuận</h5>
                                             <p className="card-text text-secondary">RankWork là một ý tưởng rất sáng tạo và thực tế. Tôi đã chỉnh sửa CV của mình tốt lên hơn rất nhiều từ những mẫu tham khảo trên trang web.</p>
                                         </div>
                                     </div>
@@ -91,14 +95,18 @@ const Evaluate = () => {
                         <p className="card-text text-secondary">Candidate found suitable job</p>
                     </div>
                 </div>
-                <div className="row text-center mt-5 evaluate-data">
-                    <div className="col-sm-12">
-                        <p className="card-text text-secondary">So why not start your dream job with RankWork?</p>
-                        <Link to="/register">
-                            <button type="button" className="btn btn-primary btn-dang-ky">Register Now</button>
-                        </Link>
+                {auth.token ?
+                    <></>
+                    :
+                    <div className="row text-center mt-5 evaluate-data">
+                        <div className="col-sm-12">
+                            <p className="card-text text-secondary">So why not start your dream job with RankWork?</p>
+                            <Link to="/register">
+                                <button type="button" className="btn btn-primary btn-dang-ky">Register Now</button>
+                            </Link>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
 
         </div>
