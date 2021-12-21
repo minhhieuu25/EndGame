@@ -28,7 +28,7 @@ const JobType = () => {
     return (
         <div className="job-best mt-5">
             <div className="container">
-                <h2 className="text-center">The Best Jobs</h2>
+                <h2 className="text-center">The New Jobs</h2>
                 <h2 className="text-center text-2"></h2>
                 <div className="row">
                     <div className="col-sm-4 mt-3">

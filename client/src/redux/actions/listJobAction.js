@@ -59,7 +59,7 @@ export const createJob = (jobData, level, jobType, experience, arrSkill, company
         console.log(arrSkill)
         let now = new Date()
         let endDate = new Date(jobData.endDate)
-        if (jobData.minSalary > jobData.maxSalary) {
+        if (parseInt(jobData.minSalary) > parseInt(jobData.maxSalary)) {
             dispatch({ type: GLOBALTYPES.ALERT, payload: { error: 'Salary wrong' } })
         }
         else
