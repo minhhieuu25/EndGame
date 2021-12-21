@@ -13,7 +13,7 @@ const dataSize = [
 const Profile = ({ handleInput, changeAvatar, values, setSize }) => {
 
   return (
-    <div className="profile-cv" onLoad={window.scrollTo(0, 0)}>
+    <div className="profile-cv">
       <div className="card">
         <div className="card-body">
           <form>

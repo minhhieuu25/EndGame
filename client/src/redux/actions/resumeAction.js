@@ -40,20 +40,25 @@ export const saveResume = (cvData, arrEdu, arrExp, arrSkill, language, avatar, a
     try {
         let media;
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
+        let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!cvData.email.match(regexEmail)) {
+            dispatch({
+                type: GLOBALTYPES.ALERT,
+                payload: {
+                    error: 'Invalid email'
+                }
+            })
+        } else {
+            if (avatar) media = await imageUpload([avatar])
 
-        if (avatar) media = await imageUpload([avatar])
-
-        const res = await postDataAPI("create_cv", {
-            ...cvData, educations: [...arrEdu], experiences: [...arrExp],
-            skill: arrSkill,
-            language,
-            avatar: avatar ? media[0].url : ''
-        }, auth.token)
-
-
-
-        dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
-
+            const res = await postDataAPI("create_cv", {
+                ...cvData, educations: [...arrEdu], experiences: [...arrExp],
+                skill: arrSkill,
+                language,
+                avatar: avatar ? media[0].url : ''
+            }, auth.token)
+            dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
+        }
     } catch (err) {
         console.log(err)
         dispatch({

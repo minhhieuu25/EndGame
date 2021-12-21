@@ -49,7 +49,7 @@ const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, d
           <h3 className="mb-3">Extras Details</h3>
           <form>
             <div className="row mb-3">
-              <label for="" className="col-sm-3 col-form-label mt-3">Skill</label>
+              <label for="" className="col-sm-3 col-form-label mt-4">Skill</label>
               <div className="col-sm-8">
                 {
                   load.map((data, index) => (

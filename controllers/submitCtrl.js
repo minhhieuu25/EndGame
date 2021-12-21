@@ -118,6 +118,16 @@ const submitCtrl = {
         } catch (err) {
             return res.json({ msg: err.message })
         }
+    },
+    deleteCV: async (req, res) => {
+        try {
+            const { idJob, idCV } = req.body
+            await submit.findOneAndUpdate({ idJob: idJob }, {
+                $pull: { cv: { idCV: idCV } }
+            })
+        } catch (err) {
+            return res.json({ msg: err.message })
+        }
     }
 }
 

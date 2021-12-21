@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteCompany } from '../redux/actions/listCompanyAction';
 import { deleteJobForAdmin } from '../redux/actions/usersAction';
 // import { updateRole } from '../redux/actions/usersAction';
+import { createNotify } from '../redux/actions/notifyAction';
+import { GLOBALTYPES } from '../redux/actions/globalTypes';
 
 
 const initialState = {
@@ -70,6 +72,24 @@ function Profile() {
         setDataShow(initDataShow.slice(start, end))
 
         setCurrPage(page)
+    }
+    const handleAlert = (job) => {
+        // Notify
+        const msg = {
+            id: job._id,
+            text: 'Alert your post',
+            recipients: [job.idCompany],
+            url: `/jobdetail/${job._id}`,
+            // content: 'Alert your post',
+            // image: post.images[0].url
+        }
+        dispatch(createNotify({ msg, auth, socket }))
+        dispatch({
+            type: GLOBALTYPES.ALERT,
+            payload: {
+                success: 'Alert success!'
+            }
+        })
     }
     return (
         <div className="page-admin">
@@ -146,8 +166,10 @@ function Profile() {
 
                                                 <i className="fas fa-edit" title="Edit"
                                                     onClick={() => handleView(job)}></i>
-                                                <i className="fas fa-trash-alt" title="Remove"
+                                                <i className="fas fa-trash-alt mr-2" title="Remove"
                                                     onClick={() => handleDelete(job)} ></i>
+                                                <i class="fas fa-exclamation-triangle" title='Alert'
+                                                    onClick={() => handleAlert(job)}></i>
                                             </td>
                                         </tr>
                                     ))
