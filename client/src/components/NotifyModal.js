@@ -67,7 +67,9 @@ const NotifyModal = () => {
 
                                 <div className="mx-1 flex-fill">
                                     <div>
-                                        <strong className="mr-1">{msg.user.firstname+' ' + msg.user.lastname}</strong>
+                                        {console.log(msg.user.fullname)}
+                                        <strong className="mr-1">{msg.fullname ? msg.fullname : msg.user.fullname}</strong>
+                                        {/* <strong className="mr-1">{msg.user.firstname === '' ? msg.user.lastname : msg.user.firstname + ' ' + msg.user.lastname}</strong> */}
                                         <span>{msg.text}</span>
                                     </div>
                                     {msg.content && <small>{msg.content.slice(0, 20)}...</small>}

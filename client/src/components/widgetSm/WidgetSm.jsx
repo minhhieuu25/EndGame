@@ -54,7 +54,7 @@ export default function WidgetSm() {
                 <span className="widgetSmUsername">{element.fullname}</span>
                 <span className="widgetSmUserTitle">{element.dataCV.position}</span>
               </div>
-              <Link to={`/detailResume/${element.idCV}`}>
+              <Link to={`/managejob`}>
                 <button className="widgetSmButton">
                   <Visibility className="widgetSmIcon" />
                   Display

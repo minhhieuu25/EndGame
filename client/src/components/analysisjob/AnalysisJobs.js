@@ -6,9 +6,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-import { getListSubmitedForCompany, setStatus } from "../../redux/actions/sumitedAction";
+import { getListSubmitedForCompany, setStatus, deleteCV } from "../../redux/actions/sumitedAction";
 import './AnalysisJobs.scss';
-
+import { DeleteOutline } from "@material-ui/icons";
 
 //select
 import FormControl from '@mui/material/FormControl';
@@ -69,6 +69,7 @@ const AnalysisJobs = () => {
                         <Link to={"/detailResume/" + params.data.idCV} query={{ testvalue: "hello" }}>
                             <ReadMoreIcon />
                         </Link>
+                        {/* <DeleteOutline titleAccess="Delete" className="manage-job-delete" onClick={e => handleDeleteCV(params.data.idCV)} /> */}
                     </>
                 );
             },
@@ -129,6 +130,7 @@ const AnalysisJobs = () => {
                         <Link to={"/detailResume/" + params.row.idCV} query={{ testvalue: "hello" }}>
                             <ReadMoreIcon />
                         </Link>
+
                         {/* <Link to={"/edit-job/" + params.row._id}>
                             <EditIcon titleAccess="Edit" />
                         </Link>
@@ -147,6 +149,10 @@ const AnalysisJobs = () => {
     const [totalCVToday, setCvToday] = useState(0)
     const [totalCVYesterday, setCvYesterday] = useState(0)
     const dispatch = useDispatch()
+
+    const handleDeleteCV = (idCV) => {
+        dispatch(deleteCV(id, idCV, auth))
+    }
 
     useEffect(() => {
         dispatch(getListSubmitedForCompany(id, auth))

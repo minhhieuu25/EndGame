@@ -138,6 +138,7 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
             />
 
             {/* &emsp; */}
+            <label for="" className="mr-2 mt-2 col-form-label">Priority</label>
             <NativeSelect id="select"
                 className="mr-3 high-23"
                 onChange={handleInput}

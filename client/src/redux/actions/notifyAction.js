@@ -13,12 +13,13 @@ export const NOTIFY_TYPES = {
 export const createNotify = ({ msg, auth, socket }) => async (dispatch) => {
     try {
         const res = await postDataAPI('notify', msg, auth.token)
+        console.log('fullname', auth.user.firtName + ' ' + auth.user.lastname)
         socket.emit('createNotify', {
             ...res.data.notify,
             user: {
                 username: auth.user.username,
                 avatar: auth.user.avatar,
-                fullname: auth.user.firtName + ' ' + auth.user.lastname
+                fullname: (!auth.isCompany && !auth.isAdmin) ? auth.user.firstname + ' ' + auth.user.lastname : auth.user.lastname
             }
         })
     } catch (err) {
@@ -40,7 +41,13 @@ export const getNotifies = (token) => async (dispatch) => {
     try {
         const res = await getDataAPI('notifies', token)
 
-        dispatch({ type: NOTIFY_TYPES.GET_NOTIFIES, payload: res.data.notifies })
+        let arr = []
+
+        res.data.notifies.map((element, index) => {
+            arr[index] = { ...element, 'fullname': element.user.firstname + ' ' + element.user.lastname }
+        })
+
+        dispatch({ type: NOTIFY_TYPES.GET_NOTIFIES, payload: arr })
     } catch (err) {
         dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err.response.data.msg } })
     }
