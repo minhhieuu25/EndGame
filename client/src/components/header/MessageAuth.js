@@ -15,7 +15,7 @@ const MessageAuth = () => {
                         <span>Message</span>
                         {auth.token ?
                             <span className="right-header">
-                                <Link to="/message"><i style={{color: '#007bff'}} className="fab fa-facebook-messenger"></i></Link>
+                                <Link to="/message"><i style={{ color: '#007bff' }} className="fab fa-facebook-messenger"></i></Link>
                                 {typeContent ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-up"></i>}
                             </span>
                             :
@@ -29,14 +29,14 @@ const MessageAuth = () => {
                         <div className="content-message" style={{ display: `${typeContent ? 'block' : 'none'}` }}>
                             <span>Connect with others on RankWorks by beginning a new conversation.</span>
                             <Link to="/message">
-                                <button className="btn btn-new">New message</button>
+                                <button onClick={() => setTypeContent(false)} className="btn btn-new">New message</button>
                             </Link>
                         </div>
                         :
                         <div className="content-message" style={{ display: `${typeContent ? 'block' : 'none'}` }}>
                             <span>Connect with others on RankWorks by beginning a new conversation.</span>
                             <Link to="/login">
-                                <button className="btn btn-new">Login</button>
+                                <button onClick={() => setTypeContent(false)} className="btn btn-new">Login</button>
                             </Link>
                         </div>
                     }
