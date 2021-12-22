@@ -33,7 +33,6 @@ const notifyCtrl = {
             let notifies = await Notifies.find({ recipients: req.user._id })
                 .sort('-createdAt').populate('user', 'avatar username firstname lastname')
 
-
             return res.json({ notifies })
         } catch (err) {
             return res.status(500).json({ msg: err.message })

@@ -37,7 +37,7 @@ export const searchJob = (search, address) => async (dispatch) => {
         dispatch({
             type: GLOBALTYPES.ALLJOB,
             payload: {
-                searchJob: address === 'All locations' ? resSearchJob.data : resSearchJob.data.filter((key) => key.address === address)
+                searchJob: address === 'All locations' ? resSearchJob.data : resSearchJob.data.filter((key) => (key.address.indexOf(address) !== -1))
 
             }
         })
@@ -59,7 +59,7 @@ export const createJob = (jobData, level, jobType, experience, arrSkill, company
         console.log(arrSkill)
         let now = new Date()
         let endDate = new Date(jobData.endDate)
-        if (jobData.minSalary > jobData.maxSalary) {
+        if (parseInt(jobData.minSalary) > parseInt(jobData.maxSalary)) {
             dispatch({ type: GLOBALTYPES.ALERT, payload: { error: 'Salary wrong' } })
         }
         else

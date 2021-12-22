@@ -40,20 +40,25 @@ export const saveResume = (cvData, arrEdu, arrExp, arrSkill, language, avatar, a
     try {
         let media;
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
+        let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!cvData.email.match(regexEmail)) {
+            dispatch({
+                type: GLOBALTYPES.ALERT,
+                payload: {
+                    error: 'Invalid email'
+                }
+            })
+        } else {
+            if (avatar) media = await imageUpload([avatar])
 
-        if (avatar) media = await imageUpload([avatar])
-
-        const res = await postDataAPI("create_cv", {
-            ...cvData, educations: [...arrEdu], experiences: [...arrExp],
-            skill: arrSkill,
-            language,
-            avatar: avatar ? media[0].url : ''
-        }, auth.token)
-
-
-
-        dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
-
+            const res = await postDataAPI("create_cv", {
+                ...cvData, educations: [...arrEdu], experiences: [...arrExp],
+                skill: arrSkill,
+                language,
+                avatar: avatar ? media[0].url : ''
+            }, auth.token)
+            dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
+        }
     } catch (err) {
         console.log(err)
         dispatch({
@@ -100,6 +105,7 @@ export const updateResume = (id, cvData, skill, language, avatar, auth) => async
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
 
         // if (avatar) media = await imageUpload([avatar])
+        console.log('avatar', avatar)
 
         if (!avatar.name)
             console.log('done')
@@ -115,7 +121,7 @@ export const updateResume = (id, cvData, skill, language, avatar, auth) => async
             avatar: avatar.name ? media[0].url : avatar
         }, auth.token)
 
-        console.log(res)
+
 
         dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } })
     } catch (err) {
@@ -176,12 +182,13 @@ export const submitCV = (idJob, endDate, idCompany, cv, auth, socket) => async (
         const date = new Date()
 
         const res = await postDataAPI('submit-cv', { idJob, idCompany, endDate, idCV: cv._id, dataCV: cv, dateSubmit: dateFormat(date, 'yyyy/mm/dd') }, auth.token)
+        console.log(res.data.newSubmit)
         if (res.data.newSubmit) {
             const msg = {
                 id: res.data.newSubmit.idCV,
                 text: 'submited resume.',
                 recipients: res.data.newSubmit.idCompany,
-                url: `/reviewResume/${res.data.newSubmit._id}`,
+                url: `/analysis/${res.data.newSubmit.idJob}`,
                 // image: logo ? mediaLogo[0].url : ''
             }
             dispatch(createNotify({ msg, auth, socket }))

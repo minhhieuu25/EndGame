@@ -215,37 +215,48 @@ export const upgradeAccount = (company, logo, companySize, auth, socket) => asyn
 
     try {
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } })
-        let media;
-        if (logo) media = await imageUpload([logo])
-        const res = await postDataAPI('upgrade', {
-            ...company,
-            logo: logo ? media[0].url : undefined,
-            companySize
-        }, auth.token)
 
-        // // Socket
-        // socket.emit('upgradeAccount', company)
+        let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!company.email.match(regexEmail)) {
+            dispatch({
+                type: GLOBALTYPES.ALERT,
+                payload: {
+                    error: 'Invalid email'
+                }
+            })
+        }
+        else {
+            let media;
+            if (logo) media = await imageUpload([logo])
+            const res = await postDataAPI('upgrade', {
+                ...company,
+                logo: logo ? media[0].url : undefined,
+                companySize
+            }, auth.token)
 
-        // // Notify
-        // const msg = {
-        //     id: res.data.idCompany,
-        //     text: 'A newly registered company.',
-        //     recipients: '',
-        //     url: `manage_companies`,
-        //     // content: post.content,
-        //     // image: post.images[0].url
-        // }
+            // // Socket
+            // socket.emit('upgradeAccount', company)
 
-        // dispatch(createNotify({ msg, auth, socket }))
+            // // Notify
+            // const msg = {
+            //     id: res.data.idCompany,
+            //     text: 'A newly registered company.',
+            //     recipients: '',
+            //     url: `manage_companies`,
+            //     // content: post.content,
+            //     // image: post.images[0].url
+            // }
 
-        dispatch(refreshToken())
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {
-                success: res.data.msg
-            }
-        })
+            // dispatch(createNotify({ msg, auth, socket }))
 
+            dispatch(refreshToken())
+            dispatch({
+                type: GLOBALTYPES.ALERT,
+                payload: {
+                    success: res.data.msg
+                }
+            })
+        }
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,

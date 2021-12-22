@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -38,7 +38,8 @@ const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, d
     handleLanguage(values)
   }
 
-  const [load, setLoad] = useState(values.skill ? values.skill : initState)
+  const [load, setLoad] = useState(initState)
+
 
   const handleDeleteSkill = (i) => {
     dataSkill.splice(i, 1)
@@ -47,7 +48,15 @@ const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, d
     setLoad(tmp)
   }
 
+  useEffect(() => {
+    // dataSkill = [...values.skill]
+    console.log('dataLanguage', dataLanguage)
+    if (values.skill) {
+      dataSkill = [...values.skill]
+      setLoad([...values.skill])
 
+    }
+  }, [values.skill, dataLanguage])
 
   return (
     <div className="extras-cv mt-5">
@@ -77,7 +86,7 @@ const Extras = ({ handleInput, handleSkill, handleLanguage, values, dataSkill, d
                   id="multiple-limit-tags"
                   options={topLanguage}
                   onChange={onTagsChangeLanguage}
-                  defaultValue={values.language}
+                  defaultValue={dataLanguage}
                   getOptionLabel={(option) => option.title}
                   renderInput={(params) => (
                     <TextField {...params} label="Language" placeholder="Skill" />

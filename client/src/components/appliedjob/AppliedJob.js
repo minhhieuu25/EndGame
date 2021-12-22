@@ -50,10 +50,10 @@ const AppliedJob = () => {
                                     <div className="row">
                                         <div className="col-sm-9">
                                             <div className="name-job">
-                                                <Link><span>{element.position}</span></Link>
+                                                <Link to={`/jobdetail/${element._id}`}><span>{element.position}</span></Link>
                                             </div>
                                             <div className="name-company">
-                                                <Link><span >{element.companyName}</span></Link>
+                                                <Link to={`/companydetail/${element.idCompany}`}><span >{element.companyName}</span></Link>
                                             </div>
 
                                             <div className="row">

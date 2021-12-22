@@ -44,7 +44,8 @@ const submitCtrl = {
                             }
                         }
                     })
-                    return res.json({ msg: 'submit success!' })
+
+                    return res.json({ newSubmit: { idCompany, idCV, idJob }, msg: 'submit success!' })
                 }
                 else {
                     return res.json({ msg: 'Your CV has been submitted' })
@@ -114,6 +115,16 @@ const submitCtrl = {
             const { id } = req.body
             await submit.findOneAndDelete({ idJob: id })
             return res.json({ msg: 'success' })
+        } catch (err) {
+            return res.json({ msg: err.message })
+        }
+    },
+    deleteCV: async (req, res) => {
+        try {
+            const { idJob, idCV } = req.body
+            await submit.findOneAndUpdate({ idJob: idJob }, {
+                $pull: { cv: { idCV: idCV } }
+            })
         } catch (err) {
             return res.json({ msg: err.message })
         }

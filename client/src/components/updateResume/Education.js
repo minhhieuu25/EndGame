@@ -49,7 +49,7 @@ const Education = ({ index, arr, handleDelete, load }) => {
           </div>
         </div>
         <div className="row mb-3">
-          <label for="" className="col-sm-3 col-form-label">Khoa/ Nganh</label>
+          <label for="" className="col-sm-3 col-form-label">Major</label>
           <div className="col-sm-8">
             <input type="email" className="form-control" onChange={handleInputEducation} defaultValue={data.major} name='major' placeholder="Ex: Technology Information" />
           </div>

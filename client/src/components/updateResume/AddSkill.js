@@ -43,11 +43,11 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
     const [data, setData] = useState(initState)
 
     useEffect(() => {
-        if (!data) {
-            arr[index] = initState
-            setData(initState)
-            console.log('arr', arr)
-        }
+        // if (!data) {
+        //     arr[index] = initState
+        //     setData(initState)
+        //     console.log('arr', arr)
+        // }
     }, [load])
 
 
@@ -117,6 +117,7 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
                 handleHomeEndKeys
                 id="free-solo-with-text-demo"
                 options={topSkill}
+                // defaultValue={data.title}
                 getOptionLabel={(option) => {
                     // Value selected with enter, right from the input
                     if (typeof option === 'string') {
