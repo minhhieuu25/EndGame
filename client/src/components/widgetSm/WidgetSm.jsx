@@ -57,8 +57,9 @@ export default function WidgetSm() {
               <Link to={`/managejob`}>
                 <button className="widgetSmButton">
                   <Visibility className="widgetSmIcon" />
-                  Display
-                </button></Link>
+                    Display
+                </button>
+              </Link>
             </li>
           ))
         }

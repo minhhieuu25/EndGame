@@ -104,10 +104,7 @@ const CreateJob = () => {
     return (
 
         <div className="create-job" >
-            <div className="create-cv-header">
-                <h2 className="text-center text-2">Post Job</h2>
-            </div>
-            <div className="container-create-job">
+            <div className="container-create-job mt-1 mb-4">
                 <div className="profile-account card">
                     <div className="card-body">
                         <h4 className="text-center mb-4">The Job</h4>
