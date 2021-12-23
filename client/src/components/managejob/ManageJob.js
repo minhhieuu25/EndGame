@@ -29,7 +29,7 @@ const ManageJobs = () => {
         { headerName: "Industry", field: "industry" },
         {
             headerName: "Status", field: "status",
-            valueFormatter: params => { return (new Date().getTime() - new Date(params.data.endDate).getTime() < 0) ? dateFormat(params.data.endDate, 'dd/mm/yyyy') : 'Expired' }
+            valueFormatter: params => { return (new Date().getTime() - new Date(params.data.endDate).getTime() < 0) ? 'Active' : 'Expired' }
         },
         {
             headerName: "Date created", field: "createAt",
@@ -81,7 +81,7 @@ const ManageJobs = () => {
             field: 'status',
             headerName: 'Status',
             width: 150,
-            valueFormatter: (params) => { return (new Date().getTime() - new Date(params.row.endDate).getTime() < 0) ? dateFormat(params.row.endDate, 'dd/mm/yyyy') : 'Expired' }
+            valueFormatter: (params) => { return (new Date().getTime() - new Date(params.row.endDate).getTime() < 0) ? 'Active' : 'Expired' }
         },
         {
             field: 'createdAt',

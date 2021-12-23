@@ -164,9 +164,9 @@ function Profile() {
                                             <td>{dateFormat(job.endDate, 'dd/mm/yyyy')}</td>
                                             <td>
 
-                                                <i className="fas fa-edit" title="Edit"
-                                                    onClick={() => handleView(job)}></i>
-                                                <i className="fas fa-trash-alt mr-2" title="Remove"
+                                                {/* <i className="fas fa-edit" title="Edit"
+                                                    onClick={() => handleView(job)}></i> */}
+                                                <i className="fas fa-trash-alt mr-3" title="Remove"
                                                     onClick={() => handleDelete(job)} ></i>
                                                 <i class="fas fa-exclamation-triangle" title='Alert'
                                                     onClick={() => handleAlert(job)}></i>
