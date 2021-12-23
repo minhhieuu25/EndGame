@@ -96,15 +96,13 @@ const EditProfile = ({ setOnEdit }) => {
                 </div>
 
 
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label htmlFor="story">Story</label>
                     <textarea name="story" value={story} cols="30" rows="4"
                         className="form-control" onChange={handleInput} />
 
-                    {/* <small className="text-danger d-block text-right">
-                        {story.length}/200
-                    </small> */}
-                </div>
+                   
+                </div> */}
 
                 <label htmlFor="gender">Gender</label>
                 <div className="input-group-prepend px-0 mb-4">

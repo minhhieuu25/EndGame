@@ -30,8 +30,8 @@ const topSkill = [
 
 const level = [
     { level: 'basic', point: '1' },
-    { level: 'intermediate', point: '3' },
-    { level: 'competently', point: '5' },
+    { level: 'good', point: '3' },
+    { level: 'master', point: '5' },
 ];
 
 const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
@@ -137,7 +137,8 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
             />
 
             {/* &emsp; */}
-            <NativeSelect id="select" className="mr-3 high-23"
+            <label for="" className="mr-2 mt-2 col-form-label">Level</label>
+            <NativeSelect id="select" className="ml-2 mr-3 high-23"
                 onChange={handleInput}
             >
                 {
@@ -145,7 +146,7 @@ const AddSkill = ({ index, load, handleDeleteSkill, arr }) => {
                         <option value={element.point}>{element.level}</option>
                     ))
                 }
-            </NativeSelect>         
+            </NativeSelect>
             {index > 0 && <button type="button" onClick={e => handleDeleteSkill(index)} class="btn btn-info">Delete</button>}
         </div>
 

@@ -78,8 +78,8 @@ export default function WidgetLg() {
         <tr className="widgetLgTr">
           <th className="widgetLgTh">Job title</th>
           <th className="widgetLgTh">Date end</th>
-          <th className="widgetLgTh">Total submited</th>
-          <th className="widgetLgTh">Total selected</th>
+          <th className="widgetLgTh text-center">Total submited</th>
+          <th className="widgetLgTh text-center">Total selected</th>
         </tr>
         {
           post.map((element, index) => (
@@ -93,8 +93,8 @@ export default function WidgetLg() {
                 <span className="widgetLgName">{element.position}</span>
               </td>
               <td className="widgetLgDate">{(new Date().getTime() - new Date(element.endDate).getTime() < 0) ? dateFormat(element.endDate, 'dd/mm/yyyy') : 'Expired'}</td>
-              <td className="widgetLgAmount">{element.submited}</td>
-              <td className="widgetLgAmount">{element.selected}</td>
+              <td className="widgetLgAmount text-center">{element.submited}</td>
+              <td className="widgetLgAmount text-center">{element.selected}</td>
             </tr>
           ))
         }

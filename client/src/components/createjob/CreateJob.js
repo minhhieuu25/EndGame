@@ -176,7 +176,7 @@ const CreateJob = () => {
                                 </div>
                             </div>
                             <div className="row mb-3">
-                                <label for="" className="col-sm-3 col-form-label mt-3">Skill Tags</label>
+                                <label for="" className="col-sm-3 col-form-label mt-4">Skill Tags</label>
                                 <div className="col-sm-8">
                                     {
                                         load.map((data, index) => (

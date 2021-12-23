@@ -123,3 +123,24 @@ export const getAllSubmitedForCompany = (idCompany, auth) => async (dispatch) =>
         })
     }
 }
+
+export const deleteCV = (idJob, idCV, auth) => async (dispatch) => {
+    try {
+        const res = await postDataAPI('delete_cv', { idJob, idCV }, auth.token)
+
+        dispatch({
+            type: GLOBALTYPES.ALERT,
+            payload: {
+                success: res.data.msg
+            }
+        })
+        dispatch(getListSubmitedForCompany(idJob, auth))
+    } catch (err) {
+        dispatch({
+            type: GLOBALTYPES.ALERT,
+            payload: {
+                error: err.response.data.msg
+            }
+        })
+    }
+}

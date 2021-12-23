@@ -245,7 +245,7 @@ const UpdateJobs = () => {
                                     <div className="row mb-3">
                                         <label for="" className="col-sm-3 col-form-label">Date-end</label>
                                         <div className="col-sm-8">
-                                            <input type="date" value={endDate} className="form-control" />
+                                            <input type="date" name='endDate' value={endDate} onChange={handleInput} className="form-control" />
                                         </div>
                                     </div>
                                 </form>
