@@ -58,6 +58,7 @@ const companyCtrl = {
         try {
             await Company.findOneAndDelete({ idCompany: idCompany })
             await Users.findOneAndUpdate({ _id: idCompany }, { role: 'candidate' })
+            await Job.deleteMany({ idCompany: idCompany })
             return res.json({ msg: 'Delete successfull' })
         } catch (err) {
             return res.status(500).json({ msg: err.message })

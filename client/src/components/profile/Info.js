@@ -161,14 +161,7 @@ const Info = ({ id, auth, profile, dispatch }) => {
                                             </div>
                                         </div>
                                         <hr className="my-4" />
-                                        {/* Description */}
-                                        <h6 className="heading-small text-muted mb-4">About company</h6>
-                                        <div className="pl-lg-4">
-                                            <div className="form-group">
-                                                <label className="form-control-label">Description about company</label>
-                                                <textarea rows={4} className="form-control" placeholder="A few words about your company ..." readOnly defaultValue={user.story} />
-                                            </div>
-                                        </div>
+
                                     </form>
                                 </div>
                             </div>

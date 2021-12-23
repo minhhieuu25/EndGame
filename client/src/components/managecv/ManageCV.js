@@ -35,7 +35,7 @@ const ManageCV = () => {
             <div className="manage-cv-content card mt-3">
                 <div className="card-body">
                     <div className="manage-cv-warn">
-                        <p className="">You are allowed to create up to 02 profiles</p>
+                        <p className="">{resumes[0] ? "" : "You have not created any CV yet"}</p>
                     </div>
                     {
                         resumes.map((element, index) => (
