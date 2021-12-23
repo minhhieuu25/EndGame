@@ -252,7 +252,7 @@ const AnalysisJobs = () => {
                                 {/* <span className="featuredSub">Compared to last day</span> */}
                             </div>
                         </div>
-                        <div className="chart">
+                        {/* <div className="chart">
                             <h3 className="chartTitle"></h3>
                             <ResponsiveContainer width="100%" aspect={4 / 1}>
                                 <LineChart data="">
@@ -262,8 +262,8 @@ const AnalysisJobs = () => {
                                     <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 5" />
                                 </LineChart>
                             </ResponsiveContainer>
-                        </div>
-                        <div className="card">
+                        </div> */}
+                        <div className="card mt-5" >
                             <div className="card-body">
                                 <div className="list-candidates">
                                     <span>List Candidates</span>
