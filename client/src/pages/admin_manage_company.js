@@ -87,9 +87,9 @@ function Profile() {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="password" className="text-label">Company size</label>
+                        <label htmlFor="password" className="text-label">Tax Code</label>
                         <input type="text" name="role" id="role"
-                            value={data.companySize} disabled />
+                            value={data.taxCode} disabled />
 
                     </div>
 
