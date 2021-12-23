@@ -192,8 +192,7 @@ const AnalysisJobs = () => {
 
     return (
         <div className="analysis-job-view">
-            <h2 className="text-center text-2">Detail Job</h2>
-            <div className="container-analysis-job">
+            <div className="container-analysis-job mt-1 mb-4">
                 <div className="card">
                     <div className="card-body">
                         <div className="ml-3">
@@ -204,14 +203,14 @@ const AnalysisJobs = () => {
                                 <span>Date created:</span> {dateFormat(jobs.createdAt, 'dd/mm/yyyy')}
                             </div>
                             <div className="job-day">
-                                <span>Expires on:</span> {dateFormat(jobs.endDate, 'dd/mm/yyyy')}
+                                <span>Expires on:</span> <span className="text-danger">{dateFormat(jobs.endDate, 'dd/mm/yyyy')}</span>
                             </div>
                             <div className="job-day">
                                 {/* <span>Status:</span> Active - Pending Approval - Closed */}
-                                <span>Status:</span> {new Date(jobs.endDate).getTime() < new Date().getTime() ? 'Closed' : 'Active'}
+                                <span>Status:</span> <span className="text-success">{new Date(jobs.endDate).getTime() < new Date().getTime() ? 'Closed' : 'Active'} </span>
                             </div>
                             <div className="job-day mb-3">
-                                <span>Total Resume:</span> {cvs.length}
+                                <span>Total Resume: {cvs.length}</span>
                             </div>
                         </div>
                         <div className="featured">

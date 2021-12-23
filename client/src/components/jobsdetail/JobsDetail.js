@@ -198,7 +198,7 @@ const JobsDetail = () => {
                                     <br />
                                     <h5 className="mt-3 text-uppercase">Skill</h5>
                                     {job.skill && job.skill.map(element => (
-                                        <span>-{element.title}<br /></span>
+                                        <span>- {element.title}<br /></span>
                                     ))}
                                 </span>
                             </div>

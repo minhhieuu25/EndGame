@@ -136,10 +136,7 @@ const UpdateJobs = () => {
             <div className="manage_container">
                 <Sidebar />
 
-                <div className="create-job">
-                    <div className="create-job-header">
-                        <h2 className="text-center text-2">Edit Post</h2>
-                    </div>
+                <div className="create-job mt-1 mb-4">       
                     <div className="container-create-job">
                         <div className="profile-account card">
                             <div className="card-body">

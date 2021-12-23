@@ -117,7 +117,7 @@ const ReviewResume = () => {
 				<button className="btn btn-primary mr-2">Refuse Resume</button> */}
 
 				<Pdf targetRef={ref} filename="post.pdf">
-					{({ toPdf }) => <button className="btn btn-primary" onClick={toPdf}>Download file PDF</button>}
+					{({ toPdf }) => <button className="btn btn-primary btn-lg mb-4" onClick={toPdf}>Download file PDF</button>}
 				</Pdf>
 			</div>
 		</>

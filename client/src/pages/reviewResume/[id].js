@@ -77,7 +77,7 @@ const ReviewResume = () => {
 						{/* <p className="p3-1">{resume.language}</p> */}
 					</div>
 				</div>
-				<div className="line-1"></div>
+				<div className="line-11"></div>
 				<div className="col-div-8-1">
 					<div className="content-box-1">
 						<p className="head-1">profile</p>
@@ -88,7 +88,7 @@ const ReviewResume = () => {
 							resume.experiences && resume.experiences.map(element => (
 								<>
 									<p>{element.nameCompany} ({dateFormat(element.startDate, 'mm/yyyy')} - {dateFormat(element.endDate, 'mm/yyyy')})</p>
-									<p className="p-4-1">{element.descriptionExperience}</p>
+									<div className="p-4-1">{element.descriptionExperience}</div>
 								</>
 							))
 						}
@@ -98,7 +98,7 @@ const ReviewResume = () => {
 							resume.educations && resume.educations.map(element => (
 								<>
 									<p>{element.nameSchool} ({dateFormat(element.startDate, 'mm/yyyy')} - {dateFormat(element.endDate, 'mm/yyyy')})</p>
-									<p className="p-4-1">{element.descriptionEducation}</p>
+									<div className="p-4-1">{element.descriptionEducation}</div>
 								</>
 							))
 						}
